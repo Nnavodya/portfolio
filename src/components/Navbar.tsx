@@ -44,7 +44,7 @@ export default function Navbar() {
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="p-2 rounded border border-gray-400 dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-110 hover:shadow-lg"
-          title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          title={mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : ""}
         >
           {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-600" />)}
         </button>
@@ -55,7 +55,7 @@ export default function Navbar() {
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-110 hover:shadow-lg"
-          title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          title={mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : ""}
         >
           {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-600" />)}
         </button>
