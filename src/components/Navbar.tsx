@@ -25,8 +25,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 sm:p-6 bg-white dark:bg-gray-900 shadow-md">
-      <h1 className="text-xl sm:text-2xl font-bold whitespace-nowrap">My Portfolio</h1>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 sm:p-6 bg-gray-900 dark:bg-white shadow-md">
+      <h1 className="text-xl sm:text-2xl font-bold whitespace-nowrap text-white dark:text-gray-900">My Portfolio</h1>
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 lg:gap-8 items-center">
@@ -34,7 +34,7 @@ export default function Navbar() {
           <a
             key={link.name}
             href={link.href}
-            className="text-sm lg:text-base hover:text-blue-600 dark:hover:text-blue-400 transition"
+            className="text-sm lg:text-base text-white dark:text-gray-900 hover:text-blue-300 dark:hover:text-blue-600 transition"
           >
             {link.name}
           </a>
@@ -43,10 +43,10 @@ export default function Navbar() {
         {/* Theme Toggle Icon */}
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2 rounded border border-gray-400 dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-110 hover:shadow-lg"
+          className="p-2 rounded border border-gray-400 dark:border-gray-400 hover:bg-gray-700 dark:hover:bg-gray-200 transition duration-300 hover:scale-110 hover:shadow-lg"
           title={mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : ""}
         >
-          {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-600" />)}
+          {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-300" />)}
         </button>
       </div>
 
@@ -54,14 +54,14 @@ export default function Navbar() {
       <div className="md:hidden flex items-center gap-4">
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-110 hover:shadow-lg"
+          className="p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-200 transition duration-300 hover:scale-110 hover:shadow-lg"
           title={mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : ""}
         >
-          {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-600" />)}
+          {mounted && (theme === "dark" ? <BsSun className="text-lg text-yellow-400" /> : <BsMoonStarsFill className="text-lg text-blue-300" />)}
         </button>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          className="p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-200 transition text-white dark:text-gray-900"
           title="Toggle Menu"
         >
           {isOpen ? (
@@ -74,13 +74,13 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg md:hidden">
+        <div className="absolute top-full left-0 right-0 bg-gray-900 dark:bg-white shadow-lg md:hidden">
           <div className="flex flex-col p-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="py-2 px-4 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition border-b border-gray-200 dark:border-gray-700 last:border-b-0"
+                className="py-2 px-4 text-sm text-white dark:text-gray-900 hover:text-blue-300 dark:hover:text-blue-600 transition border-b border-gray-700 dark:border-gray-200 last:border-b-0"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

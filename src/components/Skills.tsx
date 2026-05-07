@@ -89,7 +89,7 @@ export default function Skills() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white"
+      className="p-4 sm:p-6 md:p-10 text-white dark:text-gray-900 bg-gray-900 dark:bg-gray-100"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -111,7 +111,7 @@ export default function Skills() {
           variants={item}
           className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-sky-400 hover:bg-sky-500/10 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-sky-600 dark:text-sky-300 group-hover:text-sky-200 transition-colors">
+          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-sky-300 dark:text-sky-600 group-hover:text-sky-200 transition-colors">
             Frontend Development
           </h3>
 
@@ -141,7 +141,7 @@ export default function Skills() {
           variants={item}
           className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-purple-400 hover:bg-purple-500/10 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-purple-600 dark:text-purple-300 group-hover:text-purple-200 transition-colors">
+          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-purple-300 dark:text-purple-600 group-hover:text-purple-200 transition-colors">
             Backend Development
           </h3>
 
@@ -171,7 +171,7 @@ export default function Skills() {
           variants={item}
           className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-emerald-400 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 group"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-emerald-600 dark:text-emerald-300 group-hover:text-emerald-200 transition-colors">
+          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-emerald-300 dark:text-emerald-600 group-hover:text-emerald-200 transition-colors">
             Tools & DevOps
           </h3>
 

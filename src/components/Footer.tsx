@@ -37,7 +37,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-950 border-t border-white/10 text-white">
+    <footer className="bg-gray-950 dark:bg-white border-t border-white/10 dark:border-gray-300/10 text-white dark:text-gray-900">
       {/* Main Footer Content */}
       <div className="p-4 sm:p-6 md:p-10">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -46,14 +46,14 @@ export default function Footer() {
             <h3 className="text-lg sm:text-xl font-bold mb-2">
               My Portfolio
             </h3>
-            <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 text-center sm:text-left">
               Software Engineering Undergraduate
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="flex flex-col items-center sm:items-start">
-            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300">
+            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300 dark:text-blue-600">
               Quick Links
             </h4>
             <nav className="flex flex-col gap-2 text-center sm:text-left">
@@ -61,7 +61,7 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition"
+                  className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-600 transition"
                 >
                   {link.label}
                 </a>
@@ -71,25 +71,25 @@ export default function Footer() {
 
           {/* Resources */}
           <div className="flex flex-col items-center sm:items-start">
-            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300">
+            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300 dark:text-blue-600">
               Resources
             </h4>
             <div className="flex flex-col gap-2 text-center sm:text-left">
               <a
                 href="https://github.com/Nnavodya"
-                className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition"
+                className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-600 transition"
               >
                 GitHub Profile
               </a>
               <a
                 href="https://medium.com/@nethmirajapaksha"
-                className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition"
+                className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-600 transition"
               >
                 Medium Articles
               </a>
               <a
                 href="#contact"
-                className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition"
+                className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-600 transition"
               >
                 Contact Form
               </a>
@@ -98,7 +98,7 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="flex flex-col items-center sm:items-start">
-            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300">
+            <h4 className="text-sm sm:text-base font-semibold mb-3 text-blue-300 dark:text-blue-600">
               Connect
             </h4>
             <div className="flex gap-3 sm:gap-4">
@@ -110,7 +110,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white/10 hover:bg-blue-600 transition hover:scale-110 duration-200"
+                    className="p-2 rounded-full bg-white/10 dark:bg-gray-900/10 hover:bg-blue-600 dark:hover:bg-blue-600 transition hover:scale-110 duration-200"
                     title={social.name}
                   >
                     <Icon className="text-sm sm:text-base" />
@@ -123,19 +123,19 @@ export default function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-white/10" />
+      <div className="border-t border-white/10 dark:border-gray-300/10" />
 
       {/* Bottom Footer */}
       <div className="p-4 sm:p-6 text-center">
-        <p className="text-xs sm:text-sm text-gray-500">
+        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-600">
           <span className="block sm:inline">
             © {currentYear} Nethmi Rajapaksha. All rights reserved.
           </span>
           <span className="hidden sm:inline mx-2">•</span>
           <span className="block sm:inline">
             Built with{" "}
-            <span className="text-blue-400">Next.js</span> &{" "}
-            <span className="text-sky-400">Tailwind CSS</span>
+            <span className="text-blue-400 dark:text-blue-600">Next.js</span> &{" "}
+            <span className="text-sky-400 dark:text-sky-600">Tailwind CSS</span>
           </span>
         </p>
       </div>
