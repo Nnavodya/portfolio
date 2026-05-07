@@ -8,7 +8,11 @@ export function ThemeProvider({
   children: React.ReactNode;
 }) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system">
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+    >
       {children}
     </NextThemesProvider>
   );
