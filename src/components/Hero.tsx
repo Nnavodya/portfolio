@@ -25,7 +25,7 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-white px-4 md:px-10 overflow-hidden"
+      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-gray-900 dark:text-white px-4 md:px-10 overflow-hidden"
     >
       {/* 🔥 Animated Background Glow */}
       <motion.div
@@ -45,7 +45,7 @@ export default function Hero() {
         <div className="text-center md:text-left">
 
           <motion.div className="space-y-2" variants={item}>
-            <p className="text-xl sm:text-2xl font-semibold text-blue-300 tracking-wide">
+            <p className="text-xl sm:text-2xl font-semibold text-blue-600 dark:text-blue-300 tracking-wide">
               Hi, I'm
             </p>
 
@@ -60,7 +60,7 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-300"
+            className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300"
           >
             Aspiring Software Engineering Intern passionate about building responsive
             web applications, solving real-world problems, and continuously expanding
@@ -72,10 +72,10 @@ export default function Hero() {
             variants={item}
             className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start"
           >
-            {["React", "Next.js", "Node.js", "MongoDB"].map((tech) => (
+            {['React', 'Next.js', 'Node.js', 'MongoDB'].map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 bg-blue-500/20 border border-blue-400 rounded-full text-sm hover:bg-blue-500/40 transition"
+                className="px-3 py-1 bg-blue-500/20 border border-blue-400 rounded-full text-sm hover:bg-blue-500/40 transition text-gray-700 dark:text-gray-300"
               >
                 {tech}
               </span>
@@ -122,7 +122,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl sm:text-5xl md:text-6xl text-gray-300 hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+                className="text-4xl sm:text-5xl md:text-6xl text-gray-600 dark:text-gray-300 hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
               >
                 <Icon />
               </motion.a>
@@ -159,7 +159,7 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-gray-500 dark:text-gray-400 text-sm"
       >
         ↓ Scroll
       </motion.div>

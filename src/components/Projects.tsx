@@ -22,7 +22,7 @@ export default function Projects() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-white"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -51,7 +51,7 @@ export default function Projects() {
             Project One
           </h3>
 
-          <p className="text-sm sm:text-base text-gray-300 group-hover:text-gray-200 transition-colors">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 group-hover:text-gray-200 transition-colors">
             E-commerce website using Next.js
           </p>
         </motion.div>

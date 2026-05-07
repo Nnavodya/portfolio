@@ -60,7 +60,7 @@ export default function Contact() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-white"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -80,7 +80,7 @@ export default function Contact() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-300">
+          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-600 dark:text-blue-300">
             Get in Touch
           </h3>
 
@@ -103,11 +103,11 @@ export default function Contact() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-300 mb-0.5 group-hover:text-blue-200 transition-colors">
+                      <h4 className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 mb-0.5 group-hover:text-blue-200 transition-colors">
                         {info.label}
                       </h4>
 
-                      <p className="text-xs sm:text-sm text-gray-400 break-all group-hover:text-gray-300 transition-colors">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 break-all group-hover:text-gray-300 transition-colors">
                         {info.value}
                       </p>
                     </div>

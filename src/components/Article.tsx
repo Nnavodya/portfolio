@@ -68,7 +68,7 @@ export default function Articles() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="p-4 sm:p-6 md:p-10 text-white scroll-mt-24"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white scroll-mt-24"
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
         My Articles & Blog Posts
@@ -97,10 +97,10 @@ export default function Articles() {
           {/* Content */}
           <div>
             <div className="flex gap-2 mb-3">
-              <span className="px-3 py-1 bg-sky-500/30 border border-sky-400 rounded-full text-xs text-sky-300">
+              <span className="px-3 py-1 bg-sky-500/30 border border-sky-400 rounded-full text-xs text-sky-600 dark:text-sky-300">
                 {articles[currentSlide].category}
               </span>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
                 {articles[currentSlide].date}
               </span>
             </div>
@@ -109,7 +109,7 @@ export default function Articles() {
               {articles[currentSlide].title}
             </h3>
 
-            <p className="text-gray-300 text-sm sm:text-base mb-4">
+            <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4">
               {articles[currentSlide].description}
             </p>
 
