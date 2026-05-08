@@ -60,7 +60,7 @@ export default function Contact() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-white dark:text-gray-900 bg-gray-900 dark:bg-gray-100"
+      className="p-4 sm:p-6 md:p-10 text-white dark:text-white bg-gray-900 dark:bg-[#0b0f1e]"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

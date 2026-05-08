@@ -68,7 +68,7 @@ export default function Articles() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="p-4 sm:p-6 md:p-10 text-white dark:text-gray-900 scroll-mt-24 bg-gray-900 dark:bg-gray-100"
+      className="p-4 sm:p-6 md:p-10 text-white dark:text-white scroll-mt-24 bg-gray-900 dark:bg-[#0b0f1e]"
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
         My Articles & Blog Posts

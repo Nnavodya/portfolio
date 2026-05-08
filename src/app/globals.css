@@ -6,7 +6,7 @@
 }
 
 .dark {
-  --background: #0d1117;
+  --background: #020617;
   --foreground: #ffffff;
 }
 
@@ -40,6 +40,12 @@ body {
 
 /* DARK MODE */
 html.dark body {
-  background: #0d1117;
+  background: radial-gradient(
+    circle at top,
+    #0f172a,
+    #081120 40%,
+    #020617
+  );
+
   color: #f8fafc;
 }

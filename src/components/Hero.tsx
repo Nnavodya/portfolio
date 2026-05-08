@@ -25,7 +25,7 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-white dark:text-gray-900 px-4 md:px-10 overflow-hidden bg-gray-900 dark:bg-gray-100"
+      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-white dark:text-white px-4 md:px-10 overflow-hidden bg-gray-900 dark:bg-[#0b0f1e]"
     >
       {/* 🔥 Animated Background Glow */}
       <motion.div
