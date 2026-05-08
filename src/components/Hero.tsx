@@ -122,7 +122,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl sm:text-5xl md:text-6xl text-gray-300 dark:text-gray-600 hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+                className="text-4xl sm:text-5xl md:text-6xl text-white dark:text-white hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
               >
                 <Icon />
               </motion.a>
