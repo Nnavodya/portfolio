@@ -74,17 +74,14 @@ export default function Skills() {
   const skillGroups = [
     {
       title: "Frontend Development",
-      color: "sky",
       skills: frontend,
     },
     {
       title: "Backend Development",
-      color: "purple",
       skills: backend,
     },
     {
       title: "Tools & DevOps",
-      color: "emerald",
       skills: tools,
     },
   ];
@@ -147,7 +144,7 @@ export default function Skills() {
 
         {/* Skill Cards */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -158,7 +155,7 @@ export default function Skills() {
               key={group.title}
               variants={item}
               whileHover={{ y: -8 }}
-              className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10"
+              className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-br from-[#161b2e] to-[#111827] backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
             >
               {/* Glow Effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-100 transition duration-500 blur-2xl" />
@@ -181,10 +178,10 @@ export default function Skills() {
                     <motion.div
                       key={skill.name}
                       whileHover={{ scale: 1.05 }}
-                      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10"
+                      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
                     >
                       {Icon && (
-                        <Icon className="text-3xl text-cyan-400" />
+                        <Icon className="text-4xl text-cyan-400" />
                       )}
 
                       <span className="text-sm font-medium text-gray-200 text-center">
