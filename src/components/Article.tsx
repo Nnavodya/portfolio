@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaArrowRight,
+  FaClock,
+} from "react-icons/fa";
 
 export default function Articles() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,8 +18,9 @@ export default function Articles() {
       title:
         "How I Connected MongoDB Atlas to My Node.js App Using Mongoose (Beginner-Friendly Guide)",
       description:
-        "A beginner-friendly article on how to connect MongoDB Atlas to a Node.js application using Mongoose.",
+        "A beginner-friendly guide to connecting MongoDB Atlas with a Node.js application using Mongoose and building scalable backend integrations.",
       date: "May 2026",
+      readTime: "5 min read",
       category: "Web Development",
       link: "https://medium.com/@nethmirajapaksha038/how-i-connected-mongodb-atlas-to-my-node-js-app-using-mongoose-beginner-friendly-guide-91116df81b0f",
       image: "/mongoose.png",
@@ -23,8 +29,9 @@ export default function Articles() {
       id: 2,
       title: "Data Structures in Python",
       description:
-        "Python provides essential built-in data structures like Lists, Tuples, Sets, and Dictionaries.",
+        "Explore Python’s essential built-in data structures including Lists, Tuples, Sets, and Dictionaries with practical examples.",
       date: "May 2025",
+      readTime: "4 min read",
       category: "Python",
       link: "https://medium.com/@nethmirajapaksha038/data-structures-in-python-e1e300efc879",
       image: "/python.png",
@@ -34,8 +41,9 @@ export default function Articles() {
       title:
         "The Importance of Continuous Learning in the Software Industry",
       description:
-        "Continuous learning is essential to stay relevant in the fast-changing software industry.",
+        "Why continuous learning is essential for software engineers to stay competitive in the rapidly evolving tech industry.",
       date: "May 2025",
+      readTime: "3 min read",
       category: "Software Engineering",
       link: "https://medium.com/@rajapakse22030.kln/the-importance-of-continuous-learning-in-the-software-industry-e5acb43c7fe2",
       image: "/continuous.png",
@@ -44,8 +52,9 @@ export default function Articles() {
       id: 4,
       title: "Choosing the Right Software License",
       description:
-        "Learn how to choose the right software license and understand ownership and usage rights.",
+        "Learn how to choose the right software license and understand ownership, permissions, and usage rights.",
       date: "May 2025",
+      readTime: "4 min read",
       category: "Software Engineering",
       link: "https://medium.com/@rajapakse22030.kln/choosing-the-right-software-license-what-every-developer-should-know-9bcf52a9b609",
       image: "/license.png",
@@ -66,138 +75,171 @@ export default function Articles() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="px-4 sm:px-6 md:px-10 py-16 md:py-20 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
+      className="relative overflow-hidden px-4 sm:px-6 md:px-10 py-24 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#050816]"
     >
-      {/* Section Title */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
-          My Articles & Blog Posts
-        </h2>
+      {/* Background Glow */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-cyan-500/10 blur-3xl rounded-full pointer-events-none" />
 
-        <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed">
-          Sharing my learning journey in software engineering,
-          full-stack development, and modern web technologies.
-        </p>
-      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
 
-      <div className="max-w-5xl mx-auto px-2 sm:px-4">
+        {/* Top Label */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-4"
+        >
+          <span className="px-4 py-1 rounded-full border border-cyan-400/20 bg-cyan-500/10 text-cyan-300 text-sm font-medium backdrop-blur-md">
+            Knowledge Sharing
+          </span>
+        </motion.div>
+
+        {/* Section Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl sm:text-5xl font-black text-white">
+            My{" "}
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              Articles
+            </span>
+          </h2>
+
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+            I enjoy writing about software engineering, backend development,
+            modern web technologies, and lessons learned throughout my developer
+            journey.
+          </p>
+        </motion.div>
 
         {/* Featured Article */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/20 rounded-2xl hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-500 group backdrop-blur-md">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 blur-2xl rounded-3xl" />
 
-          {/* Featured Badge */}
-          <div className="absolute top-5 left-5 z-20">
-            <span className="px-4 py-1.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-semibold backdrop-blur-md">
-              Featured Article
-            </span>
-          </div>
+          <div className="relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-cyan-400/30 transition-all duration-500">
 
-          {/* Featured Image */}
-          <div className="relative h-[320px] sm:h-[400px] overflow-hidden">
+            <div className="grid lg:grid-cols-2 items-center">
 
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={articles[currentSlide].image}
-                src={articles[currentSlide].image}
-                alt={articles[currentSlide].title}
-                initial={{ opacity: 0, scale: 1.08 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-              />
-            </AnimatePresence>
+              {/* Image */}
+              <div className="relative h-full overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={articles[currentSlide].image}
+                    src={articles[currentSlide].image}
+                    alt={articles[currentSlide].title}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-[260px] sm:h-[350px] lg:h-full object-cover"
+                  />
+                </AnimatePresence>
 
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/70 to-transparent"></div>
-          </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#050816]/30" />
+              </div>
 
-          {/* Featured Content */}
-          <div className="relative z-10 px-6 sm:px-8 pb-8 -mt-28">
+              {/* Content */}
+              <div className="p-6 sm:p-8 lg:p-10">
 
-            {/* Category + Date */}
-            <div className="flex flex-wrap gap-3 items-center mb-4">
-              <span className="px-3 py-1 bg-sky-500/10 border border-sky-400/40 rounded-full text-xs text-sky-300">
-                {articles[currentSlide].category}
-              </span>
+                {/* Category + Date */}
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-medium">
+                    {articles[currentSlide].category}
+                  </span>
 
-              <span className="text-xs text-gray-400">
-                {articles[currentSlide].date}
-              </span>
+                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <FaClock className="text-xs" />
+                    {articles[currentSlide].readTime}
+                  </div>
 
-              <span className="text-xs text-gray-500">
-                • 5 min read
-              </span>
+                  <span className="text-gray-500 text-sm">
+                    {articles[currentSlide].date}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight mb-5">
+                  {articles[currentSlide].title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-400 leading-8 text-base sm:text-lg mb-8">
+                  {articles[currentSlide].description}
+                </p>
+
+                {/* Read Button */}
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={articles[currentSlide].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-7 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
+                >
+                  Read Article
+                  <FaArrowRight />
+                </motion.a>
+              </div>
             </div>
 
-            {/* Title */}
-            <h3 className="text-2xl sm:text-3xl font-black mb-4 text-white leading-tight max-w-3xl">
-              {articles[currentSlide].title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-8 max-w-3xl mb-6">
-              {articles[currentSlide].description}
-            </p>
-
-            {/* Button */}
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              href={articles[currentSlide].link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-sky-500/30"
+            {/* Left Button */}
+            <motion.button
+              whileHover={{ scale: 1.12 }}
+              whileTap={{ scale: 0.92 }}
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 border border-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500/80 transition-all duration-300"
             >
-              Read Article
-              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </motion.a>
+              <FaChevronLeft />
+            </motion.button>
+
+            {/* Right Button */}
+            <motion.button
+              whileHover={{ scale: 1.12 }}
+              whileTap={{ scale: 0.92 }}
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 border border-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500/80 transition-all duration-300"
+            >
+              <FaChevronRight />
+            </motion.button>
           </div>
-
-          {/* Left Button */}
-          <motion.button
-            whileHover={{ scale: 1.15 }}
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
-          >
-            <FaChevronLeft />
-          </motion.button>
-
-          {/* Right Button */}
-          <motion.button
-            whileHover={{ scale: 1.15 }}
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
-          >
-            <FaChevronRight />
-          </motion.button>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-5">
+        <div className="flex justify-center gap-3 mt-8">
           {articles.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
-                  ? "w-6 bg-sky-500"
-                  : "w-2 bg-gray-500 hover:bg-gray-400"
+                  ? "w-8 h-2 bg-cyan-400"
+                  : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
               }`}
             />
           ))}
         </div>
 
         {/* All Articles */}
-        <div className="mt-10">
+        <div className="mt-24">
 
-          <h3 className="text-2xl font-bold mb-6 text-center text-white">
-            All Articles
-          </h3>
+          {/* Section Heading */}
+          <div className="flex flex-col items-center mb-12">
+            <span className="text-cyan-400 text-sm uppercase tracking-[0.3em] font-medium mb-3">
+              Explore More
+            </span>
 
-          {/* Equal Height Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 auto-rows-fr">
+            <h3 className="text-3xl sm:text-4xl font-bold text-white">
+              All Articles
+            </h3>
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             {articles.map((article) => (
               <motion.a
@@ -205,43 +247,58 @@ export default function Articles() {
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="group h-full"
+                whileHover={{ y: -8 }}
+                className="group"
               >
-                <div className="h-full flex flex-col bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/10 rounded-2xl overflow-hidden hover:border-sky-400/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300 backdrop-blur-md">
+                <div className="h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-500">
 
-                  {/* Card Image */}
-                  <div className="overflow-hidden">
+                  {/* Image */}
+                  <div className="relative overflow-hidden">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-52 object-cover group-hover:scale-105 transition duration-500"
+                      className="w-full h-60 object-cover group-hover:scale-105 transition duration-700"
                     />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-transparent to-transparent" />
                   </div>
 
-                  {/* Card Content */}
-                  <div className="flex flex-col flex-grow p-5">
+                  {/* Content */}
+                  <div className="p-6">
 
-                    {/* Category */}
-                    <span className="text-xs text-sky-300 mb-3">
-                      {article.category}
-                    </span>
+                    {/* Top Row */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-xs font-medium">
+                        {article.category}
+                      </span>
+
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <FaClock />
+                        {article.readTime}
+                      </div>
+                    </div>
 
                     {/* Title */}
-                    <h4 className="font-bold text-lg text-white leading-snug mb-3 group-hover:text-sky-300 transition">
+                    <h4 className="text-xl font-bold text-white leading-snug mb-4 group-hover:text-cyan-300 transition-colors duration-300">
                       {article.title}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                    <p className="text-gray-400 leading-7 text-sm sm:text-base mb-6">
                       {article.description}
                     </p>
 
-                    {/* Date */}
-                    <div className="mt-4 text-xs text-gray-500">
-                      {article.date}
-                    </div>
+                    {/* Footer */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500">
+                        {article.date}
+                      </span>
 
+                      <span className="flex items-center gap-2 text-cyan-400 font-medium group-hover:gap-3 transition-all duration-300">
+                        Read More
+                        <FaArrowRight className="text-sm" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.a>
