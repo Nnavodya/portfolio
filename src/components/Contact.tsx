@@ -1,7 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaPhone,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 export default function Contact() {
   const contactInfo = [
@@ -38,13 +44,17 @@ export default function Contact() {
       label: "GitHub",
       value: "Nnavodya",
       href: "https://github.com/Nnavodya",
-      color: "hover:text-gray-500",
+      color: "hover:text-gray-400",
     },
   ];
 
   const container = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.15 } },
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const item = {
@@ -54,94 +64,141 @@ export default function Contact() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white bg-white dark:bg-[#0b0f1e]"
+      id="contact"
+      className="relative overflow-hidden py-24 px-6 md:px-10 bg-[#050816] text-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.7 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center">
-        Contact Me
-      </h2>
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-blue-500/10 blur-3xl rounded-full" />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm font-semibold mb-3">
+            Contact
+          </p>
 
-        {/* LEFT SIDE */}
-        <motion.div
-          className="flex flex-col h-full"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-600 dark:text-blue-400">
-            Get in Touch
-          </h3>
+          <h2 className="text-4xl md:text-5xl font-black mb-5">
+            Let&apos;s Work Together
+          </h2>
 
-          <div className="flex flex-col gap-3 flex-1">
-            {contactInfo.map((info) => {
-              const Icon = info.icon;
-              return (
-                <motion.a
-                  key={info.label}
-                  href={info.href}
-                  variants={item}
-                  whileHover={{ scale: 1.02, y: -3 }}
-                  target={info.label === "Email" || info.label === "Call/SMS" ? "_self" : "_blank"}
-                  rel={info.label === "Email" || info.label === "Call/SMS" ? "" : "noopener noreferrer"}
-                  className="flex-1 p-4 sm:p-5 rounded-lg bg-blue-50 dark:bg-gradient-to-br dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-100 dark:border-white/10 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`text-2xl sm:text-3xl transition ${info.color} shrink-0 group-hover:scale-110 text-gray-600 dark:text-gray-300`}>
+          <p className="max-w-2xl mx-auto text-gray-400 leading-8 text-base md:text-lg">
+            I’m always interested in internship opportunities, collaborations,
+            and exciting software engineering projects. Feel free to reach out
+            anytime.
+          </p>
+        </div>
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+          {/* LEFT SIDE */}
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8"
+          >
+            <h3 className="text-2xl font-bold mb-2">
+              Get in Touch
+            </h3>
+
+            <p className="text-gray-400 mb-8 leading-7">
+              You can contact me through email, phone, WhatsApp, or my social
+              platforms.
+            </p>
+
+            <div className="flex flex-col gap-4">
+              {contactInfo.map((info) => {
+                const Icon = info.icon;
+
+                return (
+                  <motion.a
+                    key={info.label}
+                    href={info.href}
+                    variants={item}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    target={
+                      info.label === "Email" || info.label === "Call/SMS"
+                        ? "_self"
+                        : "_blank"
+                    }
+                    rel={
+                      info.label === "Email" || info.label === "Call/SMS"
+                        ? ""
+                        : "noopener noreferrer"
+                    }
+                    className="group flex items-center gap-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-5 transition-all duration-300"
+                  >
+                    <div
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 text-2xl text-gray-300 transition-all duration-300 ${info.color}`}
+                    >
                       <Icon />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white mb-0.5 group-hover:text-blue-600 dark:group-hover:text-blue-200 transition-colors">
+
+                    <div className="min-w-0">
+                      <h4 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">
                         {info.label}
                       </h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300 break-all group-hover:text-gray-600 dark:group-hover:text-gray-200 transition-colors">
+
+                      <p className="text-sm text-gray-400 break-all">
                         {info.value}
                       </p>
                     </div>
-                  </div>
-                </motion.a>
-              );
-            })}
-          </div>
-        </motion.div>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </motion.div>
 
-        {/* RIGHT SIDE */}
-        <motion.div
-          className="flex flex-col h-full"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-600 dark:text-blue-400">
-            Send Message
-          </h3>
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8"
+          >
+            <h3 className="text-2xl font-bold mb-2">
+              Send Message
+            </h3>
 
-          <form className="flex flex-col gap-3 sm:gap-4 flex-1">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all text-sm sm:text-base"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all text-sm sm:text-base"
-            />
-            <textarea
-              placeholder="Message"
-              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all resize-none text-sm sm:text-base flex-1 min-h-30"
-            />
-            <button className="bg-blue-600 hover:bg-blue-500 text-white p-2 sm:p-3 rounded transition-all font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-600/50 hover:-translate-y-1">
-              Send
-            </button>
-          </form>
-        </motion.div>
+            <p className="text-gray-400 mb-8 leading-7">
+              Have a project idea or internship opportunity? Send me a message.
+            </p>
+
+            <form className="flex flex-col gap-5">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              />
+
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+              />
+
+              <textarea
+                placeholder="Your Message"
+                rows={7}
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
+              />
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
+              >
+                Send Message
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );
