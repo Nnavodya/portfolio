@@ -59,7 +59,7 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Updated Professional Role */}
+          {/* Professional Role */}
           <motion.p
             variants={item}
             className="mt-5 text-xl sm:text-2xl font-medium text-gray-300"
@@ -67,7 +67,7 @@ export default function Hero() {
             Aspiring Full-Stack Developer & Software Engineering Undergraduate
           </motion.p>
 
-          {/* Updated Professional Description */}
+          {/* Professional Description */}
           <motion.p
             variants={item}
             className="mt-7 max-w-2xl text-base sm:text-lg leading-8 text-gray-400"
@@ -94,24 +94,34 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Buttons */}
+          {/* Updated Buttons */}
           <motion.div
             variants={item}
-            className="mt-9 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start"
           >
+            {/* Download CV */}
             <a
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
-              className="px-7 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-lg shadow-blue-500/20"
+              className="px-7 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-lg shadow-blue-500/20"
             >
               Download CV
             </a>
 
+            {/* View Projects */}
             <a
               href="#projects"
-              className="px-7 py-3 border border-blue-500 text-blue-400 rounded-lg hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-medium"
+              className="px-7 py-3 border border-blue-500 text-blue-400 rounded-xl hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-medium"
             >
               View Projects
+            </a>
+
+            {/* Contact Me */}
+            <a
+              href="#contact"
+              className="px-7 py-3 bg-white/5 border border-white/10 text-gray-200 rounded-xl hover:bg-white/10 hover:border-sky-400/40 hover:text-sky-400 hover:scale-105 transition-all duration-300 font-medium backdrop-blur-md"
+            >
+              Contact Me
             </a>
           </motion.div>
 
