@@ -59,22 +59,24 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Role */}
+          {/* Updated Professional Role */}
           <motion.p
             variants={item}
             className="mt-5 text-xl sm:text-2xl font-medium text-gray-300"
           >
-            Software Engineering Undergraduate
+            Aspiring Full-Stack Developer & Software Engineering Undergraduate
           </motion.p>
 
-          {/* Description */}
+          {/* Updated Professional Description */}
           <motion.p
             variants={item}
             className="mt-7 max-w-2xl text-base sm:text-lg leading-8 text-gray-400"
           >
-            Aspiring Software Engineering Intern passionate about building
-            responsive web applications, solving real-world problems, and
-            continuously expanding my skills in modern software development.
+            Passionate about building scalable web applications and creating
+            clean, user-friendly digital experiences. Interested in full-stack
+            development, cloud technologies, and modern software engineering
+            practices while continuously improving technical and problem-solving
+            skills.
           </motion.p>
 
           {/* Tech Stack */}
@@ -153,7 +155,7 @@ export default function Hero() {
             className="relative group"
           >
 
-            {/* Updated Professional Glow */}
+            {/* Professional Glow */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-400 blur-md opacity-60 group-hover:opacity-90 transition duration-500"></div>
 
             <img
