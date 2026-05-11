@@ -71,6 +71,24 @@ export default function Skills() {
     { name: "Docker (basic)", icon: FaDocker },
   ];
 
+  const skillGroups = [
+    {
+      title: "Frontend Development",
+      color: "sky",
+      skills: frontend,
+    },
+    {
+      title: "Backend Development",
+      color: "purple",
+      skills: backend,
+    },
+    {
+      title: "Tools & DevOps",
+      color: "emerald",
+      skills: tools,
+    },
+  ];
+
   const container = {
     hidden: {},
     show: {
@@ -87,127 +105,99 @@ export default function Skills() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white bg-white dark:bg-[#0b0f1e]"
+      id="skills"
+      className="relative overflow-hidden bg-[#050816] py-24 px-6 md:px-12 text-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      {/* Section Heading */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-          Skills
-        </h2>
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-cyan-500/10 blur-3xl rounded-full" />
 
-        <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-7">
-          Technologies and tools I use to build responsive,
-          scalable, and modern full-stack web applications.
-        </p>
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-6xl mx-auto"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
-        {/* Frontend */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Header */}
         <motion.div
-          variants={item}
-          className="p-6 rounded-xl bg-sky-500/10 dark:bg-white/10 backdrop-blur-md border border-sky-200 dark:border-white/10 hover:border-sky-400 hover:bg-sky-500/20 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-sky-600 dark:text-sky-400 group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors">
-            Frontend Development
-          </h3>
+          <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm font-semibold mb-4">
+            My Expertise
+          </p>
 
-          <div className="flex flex-wrap gap-3">
-            {frontend.map((skill) => {
-              const Icon = skill.icon;
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+            Skills & Technologies
+          </h2>
 
-              return (
-                <motion.div
-                  key={skill.name}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-sky-500/20 border border-sky-400/30 hover:bg-sky-500/40 hover:border-sky-400/60 hover:shadow-md hover:shadow-sky-500/30 transition-all duration-300 cursor-pointer group/card"
-                >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
+          <div className="mt-5 w-28 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto" />
 
-                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-sky-700 dark:group-hover/card:text-sky-200 transition-colors">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
+          <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-8">
+            Technologies and tools I use to build responsive,
+            scalable, and user-friendly modern web applications.
+          </p>
         </motion.div>
 
-        {/* Backend */}
+        {/* Skill Cards */}
         <motion.div
-          variants={item}
-          className="p-6 rounded-xl bg-purple-500/10 dark:bg-white/10 backdrop-blur-md border border-purple-200 dark:border-white/10 hover:border-purple-400 hover:bg-purple-500/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
-            Backend Development
-          </h3>
+          {skillGroups.map((group) => (
+            <motion.div
+              key={group.title}
+              variants={item}
+              whileHover={{ y: -8 }}
+              className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10"
+            >
+              {/* Glow Effect */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-100 transition duration-500 blur-2xl" />
 
-          <div className="flex flex-wrap gap-3">
-            {backend.map((skill) => {
-              const Icon = skill.icon;
+              {/* Title */}
+              <div className="relative z-10 mb-8">
+                <h3 className="text-2xl font-bold text-white">
+                  {group.title}
+                </h3>
 
-              return (
-                <motion.div
-                  key={skill.name}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-purple-500/20 border border-purple-400/30 hover:bg-purple-500/40 hover:border-purple-400/60 hover:shadow-md hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer group/card"
-                >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
+                <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
+              </div>
 
-                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-purple-700 dark:group-hover/card:text-purple-200 transition-colors">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
+              {/* Skills */}
+              <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {group.skills.map((skill) => {
+                  const Icon = skill.icon;
+
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ scale: 1.05 }}
+                      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10"
+                    >
+                      {Icon && (
+                        <Icon className="text-3xl text-cyan-400" />
+                      )}
+
+                      <span className="text-sm font-medium text-gray-200 text-center">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-
-        {/* Tools */}
-        <motion.div
-          variants={item}
-          className="p-6 rounded-xl bg-emerald-500/10 dark:bg-white/10 backdrop-blur-md border border-emerald-200 dark:border-white/10 hover:border-emerald-400 hover:bg-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 group"
-        >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
-            Tools & DevOps
-          </h3>
-
-          <div className="flex flex-wrap gap-3">
-            {tools.map((tool) => {
-              const Icon = tool.icon;
-
-              return (
-                <motion.div
-                  key={tool.name}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-emerald-500/20 border border-emerald-400/30 hover:bg-emerald-500/40 hover:border-emerald-400/60 hover:shadow-md hover:shadow-emerald-500/30 transition-all duration-300 cursor-pointer group/card"
-                >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
-
-                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-emerald-700 dark:group-hover/card:text-emerald-200 transition-colors">
-                    {tool.name}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 }
