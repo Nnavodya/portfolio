@@ -66,10 +66,10 @@ export default function Articles() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
+      className="px-4 sm:px-6 md:px-10 py-16 md:py-20 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
     >
       {/* Section Title */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 text-center">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
         My Articles & Blog Posts
       </h2>
 
@@ -79,7 +79,7 @@ export default function Articles() {
         <div className="relative bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/20 rounded-2xl p-4 sm:p-6 md:p-8 hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 group backdrop-blur-md">
 
           {/* Featured Image */}
-          <div className="mb-5 overflow-hidden rounded-xl">
+          <div className="mb-4 overflow-hidden rounded-xl">
             <AnimatePresence mode="wait">
               <motion.img
                 key={articles[currentSlide].image}
@@ -98,7 +98,7 @@ export default function Articles() {
           <div>
 
             {/* Category + Date */}
-            <div className="flex flex-wrap gap-3 items-center mb-4">
+            <div className="flex flex-wrap gap-3 items-center mb-3">
               <span className="px-3 py-1 bg-sky-500/10 border border-sky-400/40 rounded-full text-xs text-sky-300">
                 {articles[currentSlide].category}
               </span>
@@ -150,7 +150,7 @@ export default function Articles() {
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex justify-center gap-2 mt-5">
           {articles.map((_, index) => (
             <button
               key={index}
@@ -165,9 +165,9 @@ export default function Articles() {
         </div>
 
         {/* All Articles */}
-        <div className="mt-14">
+        <div className="mt-10">
 
-          <h3 className="text-2xl font-bold mb-8 text-center text-white">
+          <h3 className="text-2xl font-bold mb-6 text-center text-white">
             All Articles
           </h3>
 
@@ -213,7 +213,7 @@ export default function Articles() {
                     </p>
 
                     {/* Date */}
-                    <div className="mt-5 text-xs text-gray-500">
+                    <div className="mt-4 text-xs text-gray-500">
                       {article.date}
                     </div>
 

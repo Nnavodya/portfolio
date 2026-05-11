@@ -157,10 +157,10 @@ export default function Skills() {
               whileHover={{ y: -8 }}
               className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-br from-[#161b2e] to-[#111827] backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
             >
-              {/* Glow Effect */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-100 transition duration-500 blur-2xl" />
+              {/* Animated Glow */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
 
-              {/* Title */}
+              {/* Card Header */}
               <div className="relative z-10 mb-8">
                 <h3 className="text-2xl font-bold text-white">
                   {group.title}
@@ -169,7 +169,7 @@ export default function Skills() {
                 <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
               </div>
 
-              {/* Skills */}
+              {/* Skills Grid */}
               <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {group.skills.map((skill) => {
                   const Icon = skill.icon;
@@ -177,14 +177,23 @@ export default function Skills() {
                   return (
                     <motion.div
                       key={skill.name}
-                      whileHover={{ scale: 1.05 }}
-                      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                      whileHover={{
+                        scale: 1.08,
+                        y: -6,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                      }}
+                      className="group/skill flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)]"
                     >
+                      {/* Icon */}
                       {Icon && (
-                        <Icon className="text-4xl text-cyan-400" />
+                        <Icon className="text-4xl text-cyan-400 transition-all duration-300 group-hover/skill:scale-125 group-hover/skill:rotate-6" />
                       )}
 
-                      <span className="text-sm font-medium text-gray-200 text-center">
+                      {/* Skill Name */}
+                      <span className="text-sm font-medium text-gray-200 text-center transition-colors duration-300 group-hover/skill:text-cyan-300">
                         {skill.name}
                       </span>
                     </motion.div>
