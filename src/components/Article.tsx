@@ -68,17 +68,18 @@ export default function Articles() {
       transition={{ duration: 0.6 }}
       className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
     >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
+      {/* Section Title */}
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 text-center">
         My Articles & Blog Posts
       </h2>
 
-      <div className="max-w-4xl mx-auto px-2 sm:px-4">
+      <div className="max-w-5xl mx-auto px-2 sm:px-4">
 
-        {/* Featured Article Slider */}
+        {/* Featured Article */}
         <div className="relative bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/20 rounded-2xl p-4 sm:p-6 md:p-8 hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 group backdrop-blur-md">
 
-          {/* Image */}
-          <div className="mb-4 overflow-hidden rounded-xl">
+          {/* Featured Image */}
+          <div className="mb-5 overflow-hidden rounded-xl">
             <AnimatePresence mode="wait">
               <motion.img
                 key={articles[currentSlide].image}
@@ -88,16 +89,16 @@ export default function Articles() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl"
+                className="w-full h-52 sm:h-64 md:h-72 object-cover rounded-xl"
               />
             </AnimatePresence>
           </div>
 
-          {/* Content */}
+          {/* Featured Content */}
           <div>
 
             {/* Category + Date */}
-            <div className="flex gap-3 items-center mb-4 flex-wrap">
+            <div className="flex flex-wrap gap-3 items-center mb-4">
               <span className="px-3 py-1 bg-sky-500/10 border border-sky-400/40 rounded-full text-xs text-sky-300">
                 {articles[currentSlide].category}
               </span>
@@ -131,7 +132,7 @@ export default function Articles() {
 
           {/* Left Button */}
           <motion.button
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.15 }}
             onClick={prevSlide}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
           >
@@ -140,7 +141,7 @@ export default function Articles() {
 
           {/* Right Button */}
           <motion.button
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.15 }}
             onClick={nextSlide}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
           >
@@ -166,11 +167,12 @@ export default function Articles() {
         {/* All Articles */}
         <div className="mt-14">
 
-          <h3 className="text-xl font-semibold mb-6 text-center text-white">
+          <h3 className="text-2xl font-bold mb-8 text-center text-white">
             All Articles
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Equal Height Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 auto-rows-fr">
 
             {articles.map((article) => (
               <motion.a
@@ -178,34 +180,44 @@ export default function Articles() {
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="group"
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group h-full"
               >
-                <div className="p-4 bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/10 rounded-xl hover:border-sky-400/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300 backdrop-blur-md">
+                <div className="h-full flex flex-col bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/10 rounded-2xl overflow-hidden hover:border-sky-400/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300 backdrop-blur-md">
 
-                  {/* Image */}
-                  <div className="mb-3 overflow-hidden rounded-lg">
+                  {/* Card Image */}
+                  <div className="overflow-hidden">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-32 object-cover rounded-lg group-hover:scale-105 transition duration-300"
+                      className="w-full h-52 object-cover group-hover:scale-105 transition duration-500"
                     />
                   </div>
 
-                  {/* Category */}
-                  <span className="text-xs text-sky-300">
-                    {article.category}
-                  </span>
+                  {/* Card Content */}
+                  <div className="flex flex-col flex-grow p-5">
 
-                  {/* Title */}
-                  <h4 className="font-semibold mt-2 text-white group-hover:text-sky-300 transition">
-                    {article.title}
-                  </h4>
+                    {/* Category */}
+                    <span className="text-xs text-sky-300 mb-3">
+                      {article.category}
+                    </span>
 
-                  {/* Description */}
-                  <p className="text-sm text-gray-400 line-clamp-2 mt-2">
-                    {article.description}
-                  </p>
+                    {/* Title */}
+                    <h4 className="font-bold text-lg text-white leading-snug mb-3 group-hover:text-sky-300 transition">
+                      {article.title}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                      {article.description}
+                    </p>
+
+                    {/* Date */}
+                    <div className="mt-5 text-xs text-gray-500">
+                      {article.date}
+                    </div>
+
+                  </div>
                 </div>
               </motion.a>
             ))}
