@@ -38,7 +38,7 @@ export default function Hero() {
       <motion.div
         animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 7, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
+        className="absolute bottom-10 right-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"
       />
 
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
@@ -153,12 +153,13 @@ export default function Hero() {
             className="relative group"
           >
 
-            <div className="absolute inset-0 rounded-full bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+            {/* Updated Professional Glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-400 blur-md opacity-60 group-hover:opacity-90 transition duration-500"></div>
 
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full object-cover border-4 border-gray-900 transition duration-500 group-hover:scale-105"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full object-cover border-4 border-slate-900 shadow-2xl transition duration-500 group-hover:scale-105"
             />
           </motion.div>
         </motion.div>
