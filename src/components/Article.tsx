@@ -69,9 +69,16 @@ export default function Articles() {
       className="px-4 sm:px-6 md:px-10 py-16 md:py-20 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
     >
       {/* Section Title */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
-        My Articles & Blog Posts
-      </h2>
+      <div className="text-center mb-10">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+          My Articles & Blog Posts
+        </h2>
+
+        <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed">
+          Sharing my learning journey in software engineering,
+          full-stack development, and modern web technologies.
+        </p>
+      </div>
 
       <div className="max-w-5xl mx-auto px-2 sm:px-4">
 
