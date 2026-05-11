@@ -83,29 +83,40 @@ export default function Articles() {
       <div className="max-w-5xl mx-auto px-2 sm:px-4">
 
         {/* Featured Article */}
-        <div className="relative bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/20 rounded-2xl p-4 sm:p-6 md:p-8 hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 group backdrop-blur-md">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#111827] to-[#1e293b] border border-sky-500/20 rounded-2xl hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-500 group backdrop-blur-md">
+
+          {/* Featured Badge */}
+          <div className="absolute top-5 left-5 z-20">
+            <span className="px-4 py-1.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-semibold backdrop-blur-md">
+              Featured Article
+            </span>
+          </div>
 
           {/* Featured Image */}
-          <div className="mb-4 overflow-hidden rounded-xl">
+          <div className="relative h-[320px] sm:h-[400px] overflow-hidden">
+
             <AnimatePresence mode="wait">
               <motion.img
                 key={articles[currentSlide].image}
                 src={articles[currentSlide].image}
                 alt={articles[currentSlide].title}
-                initial={{ opacity: 0, scale: 1.05 }}
+                initial={{ opacity: 0, scale: 1.08 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-full h-52 sm:h-64 md:h-72 object-cover rounded-xl"
+                transition={{ duration: 0.6 }}
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
             </AnimatePresence>
+
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/70 to-transparent"></div>
           </div>
 
           {/* Featured Content */}
-          <div>
+          <div className="relative z-10 px-6 sm:px-8 pb-8 -mt-28">
 
             {/* Category + Date */}
-            <div className="flex flex-wrap gap-3 items-center mb-3">
+            <div className="flex flex-wrap gap-3 items-center mb-4">
               <span className="px-3 py-1 bg-sky-500/10 border border-sky-400/40 rounded-full text-xs text-sky-300">
                 {articles[currentSlide].category}
               </span>
@@ -113,15 +124,19 @@ export default function Articles() {
               <span className="text-xs text-gray-400">
                 {articles[currentSlide].date}
               </span>
+
+              <span className="text-xs text-gray-500">
+                • 5 min read
+              </span>
             </div>
 
             {/* Title */}
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white leading-snug">
+            <h3 className="text-2xl sm:text-3xl font-black mb-4 text-white leading-tight max-w-3xl">
               {articles[currentSlide].title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-300 text-sm sm:text-base mb-5 leading-relaxed">
+            <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-8 max-w-3xl mb-6">
               {articles[currentSlide].description}
             </p>
 
@@ -131,9 +146,12 @@ export default function Articles() {
               href={articles[currentSlide].link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-semibold transition shadow-lg hover:shadow-sky-500/30"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-sky-500/30"
             >
-              Read More →
+              Read Article
+              <span className="group-hover:translate-x-1 transition-transform duration-300">
+                →
+              </span>
             </motion.a>
           </div>
 
@@ -141,7 +159,7 @@ export default function Articles() {
           <motion.button
             whileHover={{ scale: 1.15 }}
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
           >
             <FaChevronLeft />
           </motion.button>
@@ -150,7 +168,7 @@ export default function Articles() {
           <motion.button
             whileHover={{ scale: 1.15 }}
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 backdrop-blur-md border border-white/10 hover:bg-sky-500/80 p-3 rounded-full text-white transition"
           >
             <FaChevronRight />
           </motion.button>
