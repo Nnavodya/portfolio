@@ -1,7 +1,15 @@
+
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaCode,
+  FaLaptopCode,
+  FaServer,
+} from "react-icons/fa";
 
 export default function Hero() {
 
@@ -106,6 +114,51 @@ export default function Hero() {
             practices while continuously improving technical and problem-solving skills.
           </motion.p>
 
+          {/* TRUST CARDS */}
+          <motion.div
+            variants={item}
+            className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4"
+          >
+            {[
+              {
+                icon: FaCode,
+                title: "Frontend",
+                desc: "Modern UI/UX",
+              },
+              {
+                icon: FaServer,
+                title: "Backend",
+                desc: "Scalable APIs",
+              },
+              {
+                icon: FaLaptopCode,
+                title: "Full Stack",
+                desc: "End-to-End Apps",
+              },
+            ].map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <div
+                  key={card.title}
+                  className="group p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-cyan-500/10 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-xl mb-4 mx-auto lg:mx-0 group-hover:scale-110 transition">
+                    <Icon />
+                  </div>
+
+                  <h3 className="font-semibold text-white text-lg">
+                    {card.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-400 mt-1">
+                    {card.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </motion.div>
+
           {/* Tech Stack */}
           <motion.div
             variants={item}
@@ -159,13 +212,13 @@ export default function Hero() {
             className="mt-14 grid grid-cols-3 gap-4 max-w-xl mx-auto lg:mx-0"
           >
             {[
-              { number: "3+", label: "Projects" },
+              { number: "5+", label: "Projects" },
               { number: "10+", label: "Technologies" },
-              { number: "5+", label: "Articles" },
+              { number: "3+", label: "Articles" },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/30 hover:bg-white/10 transition-all duration-300"
+                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/10 transition-all duration-300"
               >
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   {stat.number}
@@ -197,7 +250,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-cyan-400 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
+                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-cyan-400 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-xl shadow-lg shadow-black/20"
               >
                 <Icon />
               </motion.a>
@@ -221,8 +274,8 @@ export default function Hero() {
             {/* OUTER GLOW */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-40 scale-110"></div>
 
-            {/* RING */}
-            <div className="absolute inset-0 rounded-full border border-white/10 backdrop-blur-md"></div>
+            {/* GLASS RING */}
+            <div className="absolute inset-0 rounded-full border border-white/20 backdrop-blur-md bg-white/5"></div>
 
             {/* IMAGE */}
             <img
@@ -245,3 +298,5 @@ export default function Hero() {
     </motion.section>
   );
 }
+
+
