@@ -28,7 +28,7 @@ export default function Hero() {
       className="scroll-mt-24 relative min-h-[90vh] flex items-center justify-center text-gray-900 dark:text-white px-6 md:px-12 overflow-hidden bg-white dark:bg-[#0b0f1e]"
     >
 
-      {/* Background Blur Effects */}
+      {/* Background Effects */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 6, repeat: Infinity }}
@@ -43,9 +43,19 @@ export default function Hero() {
 
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
 
-        {/* Left Content */}
+        {/* LEFT CONTENT */}
         <div className="text-center md:text-left">
 
+          {/* Availability Badge */}
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/30 bg-green-500/10 text-green-300 text-sm font-medium backdrop-blur-sm mb-6"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Available for Internships
+          </motion.div>
+
+          {/* Heading */}
           <motion.div
             className="space-y-3"
             variants={item}
@@ -60,7 +70,7 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Professional Role */}
+          {/* Role */}
           <motion.p
             variants={item}
             className="mt-5 text-xl sm:text-2xl font-medium text-gray-300 leading-relaxed"
@@ -68,7 +78,7 @@ export default function Hero() {
             Aspiring Full-Stack Developer & Software Engineering Undergraduate
           </motion.p>
 
-          {/* Professional Description */}
+          {/* Description */}
           <motion.p
             variants={item}
             className="mt-8 max-w-2xl text-base sm:text-lg leading-9 text-gray-400"
@@ -101,7 +111,6 @@ export default function Hero() {
             className="mt-10 flex flex-col sm:flex-row flex-wrap gap-5 justify-center md:justify-start"
           >
 
-            {/* Download CV */}
             <a
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
@@ -110,7 +119,6 @@ export default function Hero() {
               Download CV
             </a>
 
-            {/* View Projects */}
             <a
               href="#projects"
               className="px-8 py-3.5 border border-blue-500 text-blue-400 rounded-2xl hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-semibold text-center"
@@ -118,13 +126,36 @@ export default function Hero() {
               View Projects
             </a>
 
-            {/* Updated Contact Me Button */}
             <a
               href="#contact"
               className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:scale-105 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 text-center border border-cyan-400/20"
             >
               Contact Me
             </a>
+          </motion.div>
+
+          {/* Professional Stats */}
+          <motion.div
+            variants={item}
+            className="mt-12 grid grid-cols-3 gap-4 max-w-lg"
+          >
+            {[
+              { number: "3+", label: "Projects" },
+              { number: "10+", label: "Technologies" },
+              { number: "5+", label: "Articles" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md"
+              >
+                <h3 className="text-2xl font-bold text-white">
+                  {stat.number}
+                </h3>
+                <p className="text-sm text-gray-400 mt-1">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </motion.div>
 
           {/* Social Icons */}
@@ -154,7 +185,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Image */}
+        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -167,7 +198,7 @@ export default function Hero() {
             className="relative group"
           >
 
-            {/* Professional Glow */}
+            {/* Glow */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-400 blur-md opacity-60 group-hover:opacity-90 transition duration-500"></div>
 
             <img
