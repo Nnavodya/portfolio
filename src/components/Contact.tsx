@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaGithub,
   FaLinkedin,
@@ -10,6 +11,15 @@ import {
 } from "react-icons/fa";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
   const contactInfo = [
     {
       icon: FaEnvelope,
@@ -62,6 +72,39 @@ export default function Contact() {
     show: { opacity: 1, y: 0 },
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    setIsSending(true);
+
+    // Fake loading
+    setTimeout(() => {
+      setIsSending(false);
+      setIsSent(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setIsSent(false);
+      }, 4000);
+    }, 2000);
+  };
+
   return (
     <motion.section
       id="contact"
@@ -102,7 +145,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm font-semibold mb-3">
             Contact
@@ -119,9 +162,9 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Main Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -129,7 +172,6 @@ export default function Contact() {
             viewport={{ once: true }}
             className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden"
           >
-            {/* Card Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-2">
@@ -168,7 +210,6 @@ export default function Contact() {
                     }
                     className="group relative overflow-hidden flex items-center gap-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-5 transition-all duration-300"
                   >
-                    {/* Hover Glow */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
 
                     <div
@@ -192,7 +233,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -200,7 +241,6 @@ export default function Contact() {
             viewport={{ once: true }}
             className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden"
           >
-            {/* Form Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-2 relative z-10">
@@ -212,36 +252,67 @@ export default function Contact() {
               Send me a message.
             </p>
 
-            <form className="relative z-10 flex flex-col gap-5">
+            {/* Success Message */}
+            <AnimatePresence>
+              {isSent && (
+                <motion.div
+                  initial={{ opacity: 0, y: -15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="mb-5 rounded-2xl border border-green-500/30 bg-green-500/10 px-5 py-4 text-green-300"
+                >
+                  Message sent successfully 🚀
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <form
+              onSubmit={handleSubmit}
+              className="relative z-10 flex flex-col gap-5"
+            >
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Name"
+                required
                 className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
               />
 
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email"
+                required
                 className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
               />
 
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Your Message"
                 rows={7}
+                required
                 className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 resize-none"
               />
 
               <motion.button
+                type="submit"
+                disabled={isSending}
                 whileHover={{
-                  scale: 1.02,
+                  scale: isSending ? 1 : 1.02,
                   boxShadow:
                     "0px 0px 30px rgba(34,211,238,0.35)",
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition-all duration-300"
+                className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition-all duration-300 disabled:opacity-70"
               >
                 <span className="relative z-10">
-                  Send Message
+                  {isSending ? "Sending..." : "Send Message"}
                 </span>
 
                 <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-400 to-blue-500" />
