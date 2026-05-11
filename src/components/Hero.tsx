@@ -25,31 +25,31 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-[90vh] flex items-center justify-center text-gray-900 dark:text-white px-6 md:px-12 overflow-hidden bg-white dark:bg-[#0b0f1e]"
+      className="scroll-mt-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#050816] px-6 md:px-12 text-white"
     >
 
       {/* Background Effects */}
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.25, 0.12] }}
         transition={{ duration: 6, repeat: Infinity }}
-        className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"
+        className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
       />
 
       <motion.div
-        animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.3, 0.15] }}
+        animate={{ scale: [1, 1.25, 1], opacity: [0.12, 0.22, 0.12] }}
         transition={{ duration: 7, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"
+        className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10">
 
-        {/* LEFT CONTENT */}
-        <div className="text-center md:text-left">
+        {/* LEFT SIDE */}
+        <div className="text-center lg:text-left">
 
           {/* Availability Badge */}
           <motion.div
             variants={item}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/30 bg-green-500/10 text-green-300 text-sm font-medium backdrop-blur-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/30 bg-green-500/10 text-green-300 text-sm font-medium backdrop-blur-sm mb-7"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
             Available for Internships
@@ -57,23 +57,30 @@ export default function Hero() {
 
           {/* Heading */}
           <motion.div
-            className="space-y-3"
+            className="space-y-4"
             variants={item}
           >
-            <p className="text-lg sm:text-xl font-semibold text-blue-500 tracking-[0.2em] uppercase">
+            <p className="text-lg sm:text-xl font-semibold text-blue-400 tracking-[0.25em] uppercase">
               Hi, I&apos;m
             </p>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
-              Nethmi <br />
-              Rajapaksha
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight">
+              <span className="text-white">
+                Nethmi
+              </span>
+
+              <br />
+
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Rajapaksha
+              </span>
             </h1>
           </motion.div>
 
           {/* Role */}
           <motion.p
             variants={item}
-            className="mt-5 text-xl sm:text-2xl font-medium text-gray-300 leading-relaxed"
+            className="mt-6 text-xl sm:text-2xl font-medium text-gray-300 leading-relaxed max-w-2xl"
           >
             Aspiring Full-Stack Developer & Software Engineering Undergraduate
           </motion.p>
@@ -86,19 +93,18 @@ export default function Hero() {
             Passionate about building scalable web applications and creating
             clean, user-friendly digital experiences. Interested in full-stack
             development, cloud technologies, and modern software engineering
-            practices while continuously improving technical and problem-solving
-            skills.
+            practices while continuously improving technical and problem-solving skills.
           </motion.p>
 
           {/* Tech Stack */}
           <motion.div
             variants={item}
-            className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start"
+            className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start"
           >
             {["React", "Next.js", "Node.js", "MongoDB"].map((tech) => (
               <span
                 key={tech}
-                className="px-5 py-2 bg-blue-500/10 border border-blue-400/30 rounded-full text-sm font-medium hover:bg-blue-500/20 transition text-gray-200 backdrop-blur-sm"
+                className="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-gray-200 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-md"
               >
                 {tech}
               </span>
@@ -108,24 +114,27 @@ export default function Hero() {
           {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-5 justify-center md:justify-start"
+            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-5 justify-center lg:justify-start"
           >
 
+            {/* Download CV */}
             <a
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
-              className="px-8 py-3.5 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-semibold shadow-xl shadow-blue-500/20 text-center"
+              className="px-8 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xl shadow-blue-500/20 hover:scale-105 transition-all duration-300 text-center"
             >
               Download CV
             </a>
 
+            {/* View Projects */}
             <a
               href="#projects"
-              className="px-8 py-3.5 border border-blue-500 text-blue-400 rounded-2xl hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-semibold text-center"
+              className="px-8 py-3.5 rounded-2xl border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-semibold hover:scale-105 transition-all duration-300 text-center"
             >
               View Projects
             </a>
 
+            {/* Contact */}
             <a
               href="#contact"
               className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:scale-105 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 text-center border border-cyan-400/20"
@@ -134,10 +143,10 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Professional Stats */}
+          {/* Stats */}
           <motion.div
             variants={item}
-            className="mt-12 grid grid-cols-3 gap-4 max-w-lg"
+            className="mt-14 grid grid-cols-3 gap-4 max-w-xl mx-auto lg:mx-0"
           >
             {[
               { number: "3+", label: "Projects" },
@@ -146,12 +155,13 @@ export default function Hero() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md"
+                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/30 transition-all duration-300"
               >
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   {stat.number}
                 </h3>
-                <p className="text-sm text-gray-400 mt-1">
+
+                <p className="text-sm text-gray-400 mt-2">
                   {stat.label}
                 </p>
               </div>
@@ -161,7 +171,7 @@ export default function Hero() {
           {/* Social Icons */}
           <motion.div
             variants={item}
-            className="mt-12 flex gap-5 justify-center md:justify-start"
+            className="mt-12 flex gap-5 justify-center lg:justify-start"
           >
             {[FaGithub, FaLinkedin, FaInstagram].map((Icon, i) => (
               <motion.a
@@ -177,7 +187,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-sky-400 hover:border-sky-400/40 hover:bg-sky-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
+                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-cyan-400 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
               >
                 <Icon />
               </motion.a>
@@ -185,26 +195,30 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT SIDE IMAGE */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center md:justify-end"
+          transition={{ duration: 0.7 }}
+          className="flex justify-center lg:justify-end"
         >
           <motion.div
-            animate={{ y: [0, -10, 0] }}
+            animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="relative group"
+            className="relative"
           >
 
-            {/* Glow */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-400 blur-md opacity-60 group-hover:opacity-90 transition duration-500"></div>
+            {/* Outer Glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-40 scale-110"></div>
 
+            {/* Glass Ring */}
+            <div className="absolute inset-0 rounded-full border border-white/10 backdrop-blur-md"></div>
+
+            {/* Image */}
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full object-cover border-4 border-slate-900 shadow-2xl transition duration-500 group-hover:scale-105"
+              className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] xl:w-[470px] xl:h-[470px] rounded-full object-cover border-[6px] border-[#0b1220] shadow-2xl"
             />
           </motion.div>
         </motion.div>
@@ -214,7 +228,7 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-500 text-sm tracking-wide"
       >
         ↓ Scroll
       </motion.div>
