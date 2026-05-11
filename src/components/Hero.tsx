@@ -25,25 +25,35 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#050816] px-6 md:px-12 text-white"
+      className="scroll-mt-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050816] px-6 md:px-12 text-white"
     >
 
-      {/* Background Effects */}
+      {/* GRID BACKGROUND */}
+      <div className="absolute inset-0 opacity-[0.04]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:80px_80px]" />
+      </div>
+
+      {/* TOP LIGHT */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/10 blur-3xl rounded-full" />
+
+      {/* LEFT GLOW */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.25, 0.12] }}
         transition={{ duration: 6, repeat: Infinity }}
         className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
       />
 
+      {/* RIGHT GLOW */}
       <motion.div
         animate={{ scale: [1, 1.25, 1], opacity: [0.12, 0.22, 0.12] }}
         transition={{ duration: 7, repeat: Infinity }}
         className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
       />
 
+      {/* MAIN CONTENT */}
       <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10">
 
-        {/* LEFT SIDE */}
+        {/* LEFT CONTENT */}
         <div className="text-center lg:text-left">
 
           {/* Availability Badge */}
@@ -155,7 +165,7 @@ export default function Hero() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/30 transition-all duration-300"
+                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/30 hover:bg-white/10 transition-all duration-300"
               >
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   {stat.number}
@@ -195,7 +205,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE IMAGE */}
+        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -208,13 +218,13 @@ export default function Hero() {
             className="relative"
           >
 
-            {/* Outer Glow */}
+            {/* OUTER GLOW */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-40 scale-110"></div>
 
-            {/* Glass Ring */}
+            {/* RING */}
             <div className="absolute inset-0 rounded-full border border-white/10 backdrop-blur-md"></div>
 
-            {/* Image */}
+            {/* IMAGE */}
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
@@ -224,7 +234,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* SCROLL INDICATOR */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
