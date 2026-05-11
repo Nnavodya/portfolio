@@ -1,30 +1,98 @@
-
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import {
   FaGithub,
   FaLinkedin,
   FaInstagram,
-  FaCode,
-  FaLaptopCode,
-  FaServer,
+  FaReact,
+  FaNodeJs,
 } from "react-icons/fa";
 
+import { SiMongodb } from "react-icons/si";
+import { useEffect, useState } from "react";
+
 export default function Hero() {
+  const roles = [
+    "Full-Stack Developer",
+    "Software Engineering Undergraduate",
+    "Frontend Developer",
+    "Backend Developer",
+  ];
+
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Typing Effect
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(currentRole.substring(0, displayText.length + 1));
+
+        if (displayText === currentRole) {
+          setTimeout(() => setIsDeleting(true), 1200);
+        }
+      } else {
+        setDisplayText(currentRole.substring(0, displayText.length - 1));
+
+        if (displayText === "") {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? 45 : 90);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
+
+  // Mouse Glow
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothX = useSpring(mouseX, {
+    damping: 40,
+    stiffness: 200,
+  });
+
+  const smoothY = useSpring(mouseY, {
+    damping: 40,
+    stiffness: 200,
+  });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX - 200);
+      mouseY.set(e.clientY - 200);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mouseX, mouseY]);
 
   const container = {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+    },
   };
 
   return (
@@ -33,41 +101,51 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050816] px-6 md:px-12 text-white"
+      className="relative min-h-screen overflow-hidden bg-[#050816] text-white px-6 md:px-12 flex items-center justify-center"
     >
+      {/* Mouse Glow */}
+      <motion.div
+        style={{ x: smoothX, y: smoothY }}
+        className="pointer-events-none absolute w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-3xl z-0"
+      />
 
-      {/* GRID BACKGROUND */}
-      <div className="absolute inset-0 opacity-[0.04]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
       </div>
 
-      {/* TOP LIGHT */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/10 blur-3xl rounded-full" />
-
-      {/* LEFT GLOW */}
+      {/* Background Lights */}
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.25, 0.12] }}
+        animate={{ opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 6, repeat: Infinity }}
-        className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/10 blur-3xl rounded-full"
       />
 
-      {/* RIGHT GLOW */}
       <motion.div
-        animate={{ scale: [1, 1.25, 1], opacity: [0.12, 0.22, 0.12] }}
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
         transition={{ duration: 7, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
+        className="absolute top-20 left-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
       />
 
-      {/* MAIN CONTENT */}
-      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10">
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.08, 0.18, 0.08],
+        }}
+        transition={{ duration: 8, repeat: Infinity }}
+        className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
+      />
 
+      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center relative z-10 py-24">
         {/* LEFT CONTENT */}
-        <div className="text-center lg:text-left">
-
-          {/* Availability Badge */}
+        <div className="text-center lg:text-left order-2 lg:order-1">
+          {/* Badge */}
           <motion.div
             variants={item}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/30 bg-green-500/10 text-green-300 text-sm font-medium backdrop-blur-sm mb-7"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/20 bg-green-500/10 text-green-300 text-sm font-medium backdrop-blur-md mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
             Available for Internships
@@ -75,14 +153,14 @@ export default function Hero() {
 
           {/* Heading */}
           <motion.div
-            className="space-y-4"
             variants={item}
+            className="space-y-5"
           >
-            <p className="text-lg sm:text-xl font-semibold text-blue-400 tracking-[0.25em] uppercase">
+            <p className="text-lg font-semibold tracking-[0.3em] uppercase text-blue-400">
               Hi, I&apos;m
             </p>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black leading-none tracking-tight">
               <span className="text-white">
                 Nethmi
               </span>
@@ -95,69 +173,26 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Role */}
-          <motion.p
+          {/* Typing Role */}
+          <motion.div
             variants={item}
-            className="mt-6 text-xl sm:text-2xl font-medium text-gray-300 leading-relaxed max-w-2xl"
+            className="mt-7 h-12"
           >
-            Aspiring Full-Stack Developer & Software Engineering Undergraduate
-          </motion.p>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-300">
+              {displayText}
+              <span className="text-cyan-400 animate-pulse">|</span>
+            </h2>
+          </motion.div>
 
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-8 max-w-2xl text-base sm:text-lg leading-9 text-gray-400"
+            className="mt-7 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg leading-9 text-gray-400"
           >
-            Passionate about building scalable web applications and creating
-            clean, user-friendly digital experiences. Interested in full-stack
-            development, cloud technologies, and modern software engineering
-            practices while continuously improving technical and problem-solving skills.
+            Aspiring Full-Stack Developer dedicated to creating scalable web
+applications with intuitive user experiences and efficient backend systems.
+Continuously learning modern technologies and software engineering practices.
           </motion.p>
-
-          {/* TRUST CARDS */}
-          <motion.div
-            variants={item}
-            className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4"
-          >
-            {[
-              {
-                icon: FaCode,
-                title: "Frontend",
-                desc: "Modern UI/UX",
-              },
-              {
-                icon: FaServer,
-                title: "Backend",
-                desc: "Scalable APIs",
-              },
-              {
-                icon: FaLaptopCode,
-                title: "Full Stack",
-                desc: "End-to-End Apps",
-              },
-            ].map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <div
-                  key={card.title}
-                  className="group p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-cyan-500/10 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-xl mb-4 mx-auto lg:mx-0 group-hover:scale-110 transition">
-                    <Icon />
-                  </div>
-
-                  <h3 className="font-semibold text-white text-lg">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-400 mt-1">
-                    {card.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </motion.div>
 
           {/* Tech Stack */}
           <motion.div
@@ -177,58 +212,29 @@ export default function Hero() {
           {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-5 justify-center lg:justify-start"
+            className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
           >
-
-            {/* Download CV */}
             <a
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
-              className="px-8 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xl shadow-blue-500/20 hover:scale-105 transition-all duration-300 text-center"
+              className="min-w-[170px] px-8 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xl shadow-blue-500/20 hover:scale-105 transition-all duration-300 text-center"
             >
               Download CV
             </a>
 
-            {/* View Projects */}
             <a
               href="#projects"
-              className="px-8 py-3.5 rounded-2xl border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-semibold hover:scale-105 transition-all duration-300 text-center"
+              className="min-w-[170px] px-8 py-3.5 rounded-2xl border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-semibold hover:scale-105 transition-all duration-300 text-center"
             >
               View Projects
             </a>
 
-            {/* Contact */}
             <a
               href="#contact"
-              className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:scale-105 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 text-center border border-cyan-400/20"
+              className="min-w-[170px] px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:scale-105 transition-all duration-300 text-center"
             >
               Contact Me
             </a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            variants={item}
-            className="mt-14 grid grid-cols-3 gap-4 max-w-xl mx-auto lg:mx-0"
-          >
-            {[
-              { number: "5+", label: "Projects" },
-              { number: "10+", label: "Technologies" },
-              { number: "3+", label: "Articles" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/10 transition-all duration-300"
-              >
-                <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  {stat.number}
-                </h3>
-
-                <p className="text-sm text-gray-400 mt-2">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
           </motion.div>
 
           {/* Social Icons */}
@@ -250,7 +256,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-cyan-400 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-xl shadow-lg shadow-black/20"
+                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-cyan-400 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 backdrop-blur-xl"
               >
                 <Icon />
               </motion.a>
@@ -263,31 +269,47 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
-          className="flex justify-center lg:justify-end"
+          className="flex justify-center lg:justify-end order-1 lg:order-2"
         >
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
             className="relative"
           >
+            {/* Floating Icons */}
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="hidden lg:flex absolute -top-3 -left-3 w-16 h-16 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-xl items-center justify-center text-cyan-400 text-3xl"
+            >
+              <FaReact />
+            </motion.div>
 
-            {/* OUTER GLOW */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-40 scale-110"></div>
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="hidden lg:flex absolute bottom-8 -right-6 w-16 h-16 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-xl items-center justify-center text-green-500 text-3xl"
+            >
+              <SiMongodb />
+            </motion.div>
 
-            {/* GLASS RING */}
-            <div className="absolute inset-0 rounded-full border border-white/20 backdrop-blur-md bg-white/5"></div>
+            {/* Glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-30 scale-110"></div>
 
-            {/* IMAGE */}
+            {/* Image Ring */}
+            <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-md"></div>
+
+            {/* Profile Image */}
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
-              className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] xl:w-[470px] xl:h-[470px] rounded-full object-cover border-[6px] border-[#0b1220] shadow-2xl"
+              className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[360px] md:h-[360px] xl:w-[400px] xl:h-[400px] rounded-full object-cover border-[6px] border-[#0b1220] shadow-2xl"
             />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* SCROLL INDICATOR */}
+      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
@@ -298,5 +320,3 @@ export default function Hero() {
     </motion.section>
   );
 }
-
-
