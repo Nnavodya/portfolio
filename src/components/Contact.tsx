@@ -38,21 +38,15 @@ export default function Contact() {
       label: "GitHub",
       value: "Nnavodya",
       href: "https://github.com/Nnavodya",
-      color: "hover:text-gray-300",
+      color: "hover:text-gray-500",
     },
   ];
 
-  // 🔥 Left side stagger
   const container = {
     hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+    show: { transition: { staggerChildren: 0.15 } },
   };
 
-  // 🔥 Item animation
   const item = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0 },
@@ -95,19 +89,17 @@ export default function Contact() {
                   whileHover={{ scale: 1.02, y: -3 }}
                   target={info.label === "Email" || info.label === "Call/SMS" ? "_self" : "_blank"}
                   rel={info.label === "Email" || info.label === "Call/SMS" ? "" : "noopener noreferrer"}
-                  className="flex-1 p-4 sm:p-5 rounded-lg bg-linear-to-br from-blue-900/30 to-purple-900/30 border border-white/10 hover:border-blue-400 hover:from-blue-900/50 hover:to-purple-900/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group"
+                  className="flex-1 p-4 sm:p-5 rounded-lg bg-blue-50 dark:bg-gradient-to-br dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-100 dark:border-white/10 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`text-2xl sm:text-3xl transition ${info.color} shrink-0 group-hover:scale-110`}>
+                    <div className={`text-2xl sm:text-3xl transition ${info.color} shrink-0 group-hover:scale-110 text-gray-600 dark:text-gray-300`}>
                       <Icon />
                     </div>
-
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-300 dark:text-white mb-0.5 group-hover:text-blue-200 transition-colors">
+                      <h4 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white mb-0.5 group-hover:text-blue-600 dark:group-hover:text-blue-200 transition-colors">
                         {info.label}
                       </h4>
-
-                      <p className="text-xs sm:text-sm text-gray-400 dark:text-white break-all group-hover:text-gray-300 transition-colors">
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300 break-all group-hover:text-gray-600 dark:group-hover:text-gray-200 transition-colors">
                         {info.value}
                       </p>
                     </div>
@@ -134,26 +126,22 @@ export default function Contact() {
             <input
               type="text"
               placeholder="Your Name"
-              className="p-2 sm:p-3 rounded border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-300 transition-all text-sm sm:text-base"
+              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all text-sm sm:text-base"
             />
-
             <input
               type="email"
               placeholder="Email"
-              className="p-2 sm:p-3 rounded border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-300 transition-all text-sm sm:text-base"
+              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all text-sm sm:text-base"
             />
-
             <textarea
               placeholder="Message"
-              className="p-2 sm:p-3 rounded border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-300 transition-all resize-none text-sm sm:text-base flex-1 min-h-30"
+              className="p-2 sm:p-3 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-400 transition-all resize-none text-sm sm:text-base flex-1 min-h-30"
             />
-
             <button className="bg-blue-600 hover:bg-blue-500 text-white p-2 sm:p-3 rounded transition-all font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-600/50 hover:-translate-y-1">
               Send
             </button>
           </form>
         </motion.div>
-
       </div>
     </motion.section>
   );

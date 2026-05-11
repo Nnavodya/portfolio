@@ -23,24 +23,11 @@ export default function Skills() {
 "use client";
 
 import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaNode,
-  FaGithub,
-  FaDocker,
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNode, FaGithub, FaDocker,
 } from "react-icons/fa";
-
 import {
-  SiTypescript,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiMysql,
-  SiPostman,
+  SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiMysql, SiPostman,
 } from "react-icons/si";
-
 import { VscVscode } from "react-icons/vsc";
 import { DiGit } from "react-icons/di";
 import { motion } from "framer-motion";
@@ -71,17 +58,11 @@ export default function Skills() {
     { name: "Docker (basic)", icon: FaDocker },
   ];
 
-  // 🔥 Stagger container
   const container = {
     hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    show: { transition: { staggerChildren: 0.2 } },
   };
 
-  // 🔥 Card animation
   const item = {
     hidden: { opacity: 0, y: 40 },
     show: { opacity: 1, y: 0 },
@@ -109,12 +90,11 @@ export default function Skills() {
         {/* Frontend */}
         <motion.div
           variants={item}
-          className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-sky-400 hover:bg-sky-500/10 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group"
+          className="p-6 rounded-xl bg-sky-500/10 dark:bg-white/10 backdrop-blur-md border border-sky-200 dark:border-white/10 hover:border-sky-400 hover:bg-sky-500/20 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group"
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-5 text-sky-600 dark:text-sky-400 group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors">
             Frontend Development
           </h3>
-
           <div className="flex flex-wrap gap-3">
             {frontend.map((skill) => {
               const Icon = skill.icon;
@@ -124,10 +104,8 @@ export default function Skills() {
                   whileHover={{ scale: 1.1, y: -5 }}
                   className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-sky-500/20 border border-sky-400/30 hover:bg-sky-500/40 hover:border-sky-400/60 hover:shadow-md hover:shadow-sky-500/30 transition-all duration-300 cursor-pointer group/card"
                 >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
-                  <span className="text-xs font-semibold group-hover/card:text-sky-200 transition-colors">
+                  {Icon && <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />}
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-sky-700 dark:group-hover/card:text-sky-200 transition-colors">
                     {skill.name}
                   </span>
                 </motion.div>
@@ -139,12 +117,11 @@ export default function Skills() {
         {/* Backend */}
         <motion.div
           variants={item}
-          className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-purple-400 hover:bg-purple-500/10 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group"
+          className="p-6 rounded-xl bg-purple-500/10 dark:bg-white/10 backdrop-blur-md border border-purple-200 dark:border-white/10 hover:border-purple-400 hover:bg-purple-500/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group"
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-5 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
             Backend Development
           </h3>
-
           <div className="flex flex-wrap gap-3">
             {backend.map((skill) => {
               const Icon = skill.icon;
@@ -154,10 +131,8 @@ export default function Skills() {
                   whileHover={{ scale: 1.1, y: -5 }}
                   className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-purple-500/20 border border-purple-400/30 hover:bg-purple-500/40 hover:border-purple-400/60 hover:shadow-md hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer group/card"
                 >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
-                  <span className="text-xs font-semibold group-hover/card:text-purple-200 transition-colors">
+                  {Icon && <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />}
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-purple-700 dark:group-hover/card:text-purple-200 transition-colors">
                     {skill.name}
                   </span>
                 </motion.div>
@@ -169,12 +144,11 @@ export default function Skills() {
         {/* Tools */}
         <motion.div
           variants={item}
-          className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-emerald-400 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 group"
+          className="p-6 rounded-xl bg-emerald-500/10 dark:bg-white/10 backdrop-blur-md border border-emerald-200 dark:border-white/10 hover:border-emerald-400 hover:bg-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 group"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-emerald-300 dark:text-emerald-600 group-hover:text-emerald-200 transition-colors">
+          <h3 className="text-lg sm:text-xl font-semibold mb-5 text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
             Tools & DevOps
           </h3>
-
           <div className="flex flex-wrap gap-3">
             {tools.map((tool) => {
               const Icon = tool.icon;
@@ -184,10 +158,8 @@ export default function Skills() {
                   whileHover={{ scale: 1.1, y: -5 }}
                   className="flex flex-col items-center gap-2 px-4 py-3 rounded-lg bg-emerald-500/20 border border-emerald-400/30 hover:bg-emerald-500/40 hover:border-emerald-400/60 hover:shadow-md hover:shadow-emerald-500/30 transition-all duration-300 cursor-pointer group/card"
                 >
-                  {Icon && (
-                    <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />
-                  )}
-                  <span className="text-xs font-semibold group-hover/card:text-emerald-200 transition-colors">
+                  {Icon && <Icon className="text-2xl group-hover/card:scale-125 transition-transform duration-300" />}
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 group-hover/card:text-emerald-700 dark:group-hover/card:text-emerald-200 transition-colors">
                     {tool.name}
                   </span>
                 </motion.div>

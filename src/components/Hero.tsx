@@ -27,7 +27,6 @@ export default function Hero() {
       variants={container}
       className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-gray-900 dark:text-white px-4 md:px-10 overflow-hidden bg-white dark:bg-[#0b0f1e]"
     >
-      {/* Animated Background Glow */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
         transition={{ duration: 6, repeat: Infinity }}
@@ -40,27 +39,21 @@ export default function Hero() {
       />
 
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center relative z-10">
-
-        {/* LEFT SIDE */}
         <div className="text-center md:text-left">
 
           <motion.div className="space-y-2" variants={item}>
             <p className="text-xl sm:text-2xl font-semibold text-blue-600 dark:text-blue-400 tracking-wide">
               Hi, I'm
             </p>
-
-            {/* ✅ was missing dark: variant — now responds to theme */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
               Nethmi Rajapaksha
             </h1>
           </motion.div>
 
-          {/* ✅ was missing text color — now responds to theme */}
           <motion.p variants={item} className="mt-4 text-lg sm:text-xl md:text-2xl text-gray-900 dark:text-white">
             Software Engineering Undergraduate
           </motion.p>
 
-          {/* ✅ was text-gray-300 in light mode (invisible on white) — fixed */}
           <motion.p
             variants={item}
             className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300"
@@ -70,8 +63,6 @@ export default function Hero() {
             my skills in modern software development.
           </motion.p>
 
-          {/* Tech Stack */}
-          {/* ✅ was text-white hardcoded — fixed to respond to theme */}
           <motion.div
             variants={item}
             className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start"
@@ -86,20 +77,18 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Buttons */}
           <motion.div
             variants={item}
             className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start"
           >
-            <a
+            
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
               className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 hover:scale-105 transition-all duration-300"
             >
               Download CV
             </a>
-
-            <a
+            
               href="#projects"
               className="px-6 py-3 border border-blue-500 text-blue-600 dark:text-blue-400 rounded hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300"
             >
@@ -107,8 +96,6 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Social Links */}
-          {/* ✅ was text-white hardcoded — fixed to respond to theme */}
           <motion.div
             variants={item}
             className="mt-10 flex gap-8 justify-center md:justify-start"
@@ -135,7 +122,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE (IMAGE) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -147,10 +133,7 @@ export default function Hero() {
             transition={{ duration: 4, repeat: Infinity }}
             className="relative group"
           >
-            {/* Gradient Ring */}
             <div className="absolute inset-0 rounded-full bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
-
-            {/* Image */}
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
@@ -160,7 +143,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
