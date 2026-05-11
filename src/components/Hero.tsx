@@ -25,9 +25,9 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-white dark:text-white px-4 md:px-10 overflow-hidden bg-gray-900 dark:bg-[#0b0f1e]"
+      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-gray-900 dark:text-white px-4 md:px-10 overflow-hidden bg-white dark:bg-[#0b0f1e]"
     >
-      {/* 🔥 Animated Background Glow */}
+      {/* Animated Background Glow */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
         transition={{ duration: 6, repeat: Infinity }}
@@ -45,29 +45,33 @@ export default function Hero() {
         <div className="text-center md:text-left">
 
           <motion.div className="space-y-2" variants={item}>
-            <p className="text-xl sm:text-2xl font-semibold text-blue-300 dark:text-blue-600 tracking-wide">
+            <p className="text-xl sm:text-2xl font-semibold text-blue-600 dark:text-blue-400 tracking-wide">
               Hi, I'm
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
+            {/* ✅ was missing dark: variant — now responds to theme */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
               Nethmi Rajapaksha
             </h1>
           </motion.div>
 
-          <motion.p variants={item} className="mt-4 text-lg sm:text-xl md:text-2xl">
+          {/* ✅ was missing text color — now responds to theme */}
+          <motion.p variants={item} className="mt-4 text-lg sm:text-xl md:text-2xl text-gray-900 dark:text-white">
             Software Engineering Undergraduate
           </motion.p>
 
+          {/* ✅ was text-gray-300 in light mode (invisible on white) — fixed */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-300 dark:text-gray-600"
+            className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300"
           >
             Aspiring Software Engineering Intern passionate about building responsive
             web applications, solving real-world problems, and continuously expanding
             my skills in modern software development.
           </motion.p>
 
-          {/* 🔥 Tech Stack */}
+          {/* Tech Stack */}
+          {/* ✅ was text-white hardcoded — fixed to respond to theme */}
           <motion.div
             variants={item}
             className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start"
@@ -75,7 +79,7 @@ export default function Hero() {
             {['React', 'Next.js', 'Node.js', 'MongoDB'].map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 bg-blue-500/20 border border-blue-400 rounded-full text-sm hover:bg-blue-500/40 transition text-white dark:text-gray-700"
+                className="px-3 py-1 bg-blue-500/20 border border-blue-400 rounded-full text-sm hover:bg-blue-500/40 transition text-gray-800 dark:text-white"
               >
                 {tech}
               </span>
@@ -97,13 +101,14 @@ export default function Hero() {
 
             <a
               href="#projects"
-              className="px-6 py-3 border border-blue-500 text-blue-400 rounded hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300"
+              className="px-6 py-3 border border-blue-500 text-blue-600 dark:text-blue-400 rounded hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300"
             >
               View Projects
             </a>
           </motion.div>
 
-          {/* 🔥 UPDATED Social Links */}
+          {/* Social Links */}
+          {/* ✅ was text-white hardcoded — fixed to respond to theme */}
           <motion.div
             variants={item}
             className="mt-10 flex gap-8 justify-center md:justify-start"
@@ -122,7 +127,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl sm:text-5xl md:text-6xl text-white dark:text-white hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+                className="text-4xl sm:text-5xl md:text-6xl text-gray-800 dark:text-white hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"
               >
                 <Icon />
               </motion.a>
@@ -143,19 +148,19 @@ export default function Hero() {
             className="relative group"
           >
             {/* Gradient Ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+            <div className="absolute inset-0 rounded-full bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
 
             {/* Image */}
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full object-cover border-4 border-gray-900 transition duration-500 group-hover:scale-110"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full object-cover border-4 border-gray-200 dark:border-gray-900 transition duration-500 group-hover:scale-110"
             />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* 🔥 Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}

@@ -22,7 +22,7 @@ export default function Projects() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-white dark:text-white bg-gray-900 dark:bg-[#0b0f1e]"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white bg-white dark:bg-[#0b0f1e]"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -45,13 +45,13 @@ export default function Projects() {
         <motion.div
           variants={item}
           transition={{ duration: 0.5 }}
-          className="p-4 sm:p-6 rounded-lg bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-white/10 hover:border-blue-400 hover:from-blue-900/60 hover:to-purple-900/60 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 cursor-pointer group hover:-translate-y-3 hover:scale-[1.03]"
+          className="p-4 sm:p-6 rounded-lg bg-linear-to-br from-blue-900/40 to-purple-900/40 border border-white/10 hover:border-blue-400 hover:from-blue-900/60 hover:to-purple-900/60 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 cursor-pointer group hover:-translate-y-3 hover:scale-[1.03]"
         >
           <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors">
             Project One
           </h3>
 
-          <p className="text-sm sm:text-base text-gray-300 dark:text-gray-600 group-hover:text-gray-200 transition-colors">
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 group-hover:text-gray-600 dark:group-hover:text-gray-200 transition-colors">
             E-commerce website using Next.js
           </p>
         </motion.div>

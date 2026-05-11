@@ -60,7 +60,7 @@ export default function Contact() {
 
   return (
     <motion.section
-      className="p-4 sm:p-6 md:p-10 text-white dark:text-white bg-gray-900 dark:bg-[#0b0f1e]"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white bg-white dark:bg-[#0b0f1e]"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -80,7 +80,7 @@ export default function Contact() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-300 dark:text-blue-600">
+          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-600 dark:text-blue-400">
             Get in Touch
           </h3>
 
@@ -95,19 +95,19 @@ export default function Contact() {
                   whileHover={{ scale: 1.02, y: -3 }}
                   target={info.label === "Email" || info.label === "Call/SMS" ? "_self" : "_blank"}
                   rel={info.label === "Email" || info.label === "Call/SMS" ? "" : "noopener noreferrer"}
-                  className="flex-1 p-4 sm:p-5 rounded-lg bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-white/10 hover:border-blue-400 hover:from-blue-900/50 hover:to-purple-900/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group"
+                  className="flex-1 p-4 sm:p-5 rounded-lg bg-linear-to-br from-blue-900/30 to-purple-900/30 border border-white/10 hover:border-blue-400 hover:from-blue-900/50 hover:to-purple-900/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`text-2xl sm:text-3xl transition ${info.color} flex-shrink-0 group-hover:scale-110`}>
+                    <div className={`text-2xl sm:text-3xl transition ${info.color} shrink-0 group-hover:scale-110`}>
                       <Icon />
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-300 dark:text-gray-700 mb-0.5 group-hover:text-blue-200 transition-colors">
+                      <h4 className="text-sm sm:text-base font-semibold text-gray-300 dark:text-white mb-0.5 group-hover:text-blue-200 transition-colors">
                         {info.label}
                       </h4>
 
-                      <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-600 break-all group-hover:text-gray-300 transition-colors">
+                      <p className="text-xs sm:text-sm text-gray-400 dark:text-white break-all group-hover:text-gray-300 transition-colors">
                         {info.value}
                       </p>
                     </div>
@@ -126,7 +126,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-300">
+          <h3 className="text-lg sm:text-xl font-semibold mb-6 text-blue-600 dark:text-blue-400">
             Send Message
           </h3>
 
@@ -145,7 +145,7 @@ export default function Contact() {
 
             <textarea
               placeholder="Message"
-              className="p-2 sm:p-3 rounded border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-300 transition-all resize-none text-sm sm:text-base flex-1 min-h-[120px]"
+              className="p-2 sm:p-3 rounded border border-gray-400 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/50 hover:border-gray-300 transition-all resize-none text-sm sm:text-base flex-1 min-h-30"
             />
 
             <button className="bg-blue-600 hover:bg-blue-500 text-white p-2 sm:p-3 rounded transition-all font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-600/50 hover:-translate-y-1">

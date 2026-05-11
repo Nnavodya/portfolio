@@ -68,7 +68,7 @@ export default function Articles() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="p-4 sm:p-6 md:p-10 text-white dark:text-white scroll-mt-24 bg-gray-900 dark:bg-[#0b0f1e]"
+      className="p-4 sm:p-6 md:p-10 text-gray-900 dark:text-white scroll-mt-24 bg-white dark:bg-[#0b0f1e]"
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">
         My Articles & Blog Posts
@@ -76,7 +76,7 @@ export default function Articles() {
 
       <div className="max-w-4xl mx-auto px-2 sm:px-4">
         {/* 🔥 Carousel */}
-        <div className="relative bg-gradient-to-br from-sky-900/20 to-purple-900/20 border border-sky-400/30 rounded-xl p-4 sm:p-6 md:p-8 hover:border-sky-400/60 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group">
+        <div className="relative bg-linear-to-br from-sky-900/20 to-purple-900/20 border border-sky-400/30 rounded-xl p-4 sm:p-6 md:p-8 hover:border-sky-400/60 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 group">
 
           {/* 🖼️ Animated Image */}
           <div className="mb-4 overflow-hidden rounded-lg">
