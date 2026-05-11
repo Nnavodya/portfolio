@@ -7,6 +7,8 @@ import {
   FaChevronRight,
   FaArrowRight,
   FaMedium,
+  FaRegBookmark,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 
 export default function Articles() {
@@ -22,6 +24,8 @@ export default function Articles() {
       date: "May 2026",
       category: "Web Development",
       readTime: "6 min read",
+      featured: true,
+      views: "1.2k views",
       link: "https://medium.com/@nethmirajapaksha038/how-i-connected-mongodb-atlas-to-my-node-js-app-using-mongoose-beginner-friendly-guide-91116df81b0f",
       image: "/mongoose.png",
     },
@@ -33,6 +37,8 @@ export default function Articles() {
       date: "May 2025",
       category: "Python",
       readTime: "4 min read",
+      featured: false,
+      views: "850 views",
       link: "https://medium.com/@nethmirajapaksha038/data-structures-in-python-e1e300efc879",
       image: "/python.png",
     },
@@ -45,6 +51,8 @@ export default function Articles() {
       date: "May 2025",
       category: "Software Engineering",
       readTime: "5 min read",
+      featured: true,
+      views: "980 views",
       link: "https://medium.com/@rajapakse22030.kln/the-importance-of-continuous-learning-in-the-software-industry-e5acb43c7fe2",
       image: "/continuous.png",
     },
@@ -56,6 +64,8 @@ export default function Articles() {
       date: "May 2025",
       category: "Software Engineering",
       readTime: "7 min read",
+      featured: false,
+      views: "700 views",
       link: "https://medium.com/@rajapakse22030.kln/choosing-the-right-software-license-what-every-developer-should-know-9bcf52a9b609",
       image: "/license.png",
     },
@@ -80,31 +90,66 @@ export default function Articles() {
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-500/10 blur-3xl rounded-full" />
 
+      {/* Animated Grid */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      {/* Floating Blur */}
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.2, 0.35, 0.2],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500/10 blur-3xl rounded-full"
+      />
+
       {/* Section Header */}
       <div className="relative z-10 text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 text-cyan-300 text-sm font-medium backdrop-blur-xl mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 text-cyan-300 text-sm font-medium backdrop-blur-xl mb-5"
+        >
           <FaMedium className="text-cyan-400" />
           Technical Writing
-        </div>
+        </motion.div>
 
-        <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-4xl sm:text-5xl font-black tracking-tight"
+        >
           My{" "}
           <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
             Articles
           </span>
-        </h2>
+        </motion.h2>
 
-        <p className="mt-5 max-w-2xl mx-auto text-gray-400 text-base sm:text-lg leading-8">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mt-5 max-w-2xl mx-auto text-gray-400 text-base sm:text-lg leading-8"
+        >
           I write beginner-friendly technical articles about web development,
           software engineering, databases, and modern technologies.
-        </p>
+        </motion.p>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* Featured Article */}
-        <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl">
-
+        <motion.div
+          layout
+          className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl"
+        >
           {/* Image */}
           <div className="relative overflow-hidden">
             <AnimatePresence mode="wait">
@@ -116,18 +161,30 @@ export default function Articles() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full h-[260px] sm:h-[380px] object-cover"
+                className="w-full h-[260px] sm:h-[420px] object-cover"
               />
             </AnimatePresence>
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/40 to-transparent" />
+
+            {/* Featured Badge */}
+            {articles[currentSlide].featured && (
+              <div className="absolute top-5 left-5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
+                Featured Article
+              </div>
+            )}
+
+            {/* Floating Read Time */}
+            <div className="absolute bottom-5 right-5 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl text-sm text-gray-200">
+              {articles[currentSlide].readTime}
+            </div>
           </div>
 
           {/* Content */}
           <div className="relative p-6 sm:p-10">
 
-            {/* Top Tags */}
+            {/* Meta */}
             <div className="flex flex-wrap items-center gap-3 mb-5">
               <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide">
                 {articles[currentSlide].category}
@@ -138,7 +195,7 @@ export default function Articles() {
               </span>
 
               <span className="text-sm text-gray-500">
-                • {articles[currentSlide].readTime}
+                • {articles[currentSlide].views}
               </span>
             </div>
 
@@ -152,18 +209,32 @@ export default function Articles() {
               {articles[currentSlide].description}
             </p>
 
-            {/* CTA */}
-            <motion.a
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              href={articles[currentSlide].link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 transition-all duration-300"
-            >
-              Read Full Article
-              <FaArrowRight />
-            </motion.a>
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <motion.a
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                href={articles[currentSlide].link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 transition-all duration-300"
+              >
+                Read Full Article
+                <FaArrowRight />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                href="https://medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
+              >
+                Visit Medium
+                <FaExternalLinkAlt className="text-xs" />
+              </motion.a>
+            </div>
           </div>
 
           {/* Navigation Buttons */}
@@ -182,7 +253,7 @@ export default function Articles() {
           >
             <FaChevronRight />
           </motion.button>
-        </div>
+        </motion.div>
 
         {/* Dots */}
         <div className="flex justify-center gap-3 mt-8">
@@ -202,7 +273,7 @@ export default function Articles() {
         {/* All Articles */}
         <div className="mt-24">
 
-          {/* Section Header */}
+          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
               <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm">
@@ -219,19 +290,34 @@ export default function Articles() {
             </p>
           </div>
 
-          {/* Article Cards */}
+          {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
 
-            {articles.map((article) => (
+            {articles.map((article, index) => (
               <motion.a
                 key={article.id}
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.5,
+                }}
+                viewport={{ once: true }}
                 whileHover={{ y: -8 }}
                 className="group h-full"
               >
-                <div className="h-full flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-300 shadow-xl">
+                <div className="relative h-full flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-300 shadow-xl">
+
+                  {/* Featured Ribbon */}
+                  {article.featured && (
+                    <div className="absolute top-4 right-4 z-20 flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/90 text-white text-xs font-semibold shadow-lg">
+                      <FaRegBookmark className="text-[10px]" />
+                      Featured
+                    </div>
+                  )}
 
                   {/* Image */}
                   <div className="relative overflow-hidden">
