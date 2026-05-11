@@ -113,16 +113,16 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Social Icons */}
+          {/* Updated Social Icons */}
           <motion.div
             variants={item}
-            className="mt-12 flex gap-8 justify-center md:justify-start"
+            className="mt-12 flex gap-5 justify-center md:justify-start"
           >
             {[FaGithub, FaLinkedin, FaInstagram].map((Icon, i) => (
               <motion.a
                 key={i}
-                whileHover={{ scale: 1.2, y: -5 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.12, y: -4 }}
+                whileTap={{ scale: 0.95 }}
                 href={
                   i === 0
                     ? "https://github.com/Nnavodya"
@@ -132,7 +132,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl text-gray-300 hover:text-blue-400 transition duration-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+                className="p-4 rounded-full bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-sky-400 hover:border-sky-400/40 hover:bg-sky-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
               >
                 <Icon />
               </motion.a>
