@@ -50,19 +50,20 @@ export default function Hero() {
             className="space-y-3"
             variants={item}
           >
-            <p className="text-lg sm:text-xl font-semibold text-blue-500 tracking-wider uppercase">
+            <p className="text-lg sm:text-xl font-semibold text-blue-500 tracking-[0.2em] uppercase">
               Hi, I&apos;m
             </p>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
-              Nethmi Rajapaksha
+              Nethmi <br />
+              Rajapaksha
             </h1>
           </motion.div>
 
           {/* Professional Role */}
           <motion.p
             variants={item}
-            className="mt-5 text-xl sm:text-2xl font-medium text-gray-300"
+            className="mt-5 text-xl sm:text-2xl font-medium text-gray-300 leading-relaxed"
           >
             Aspiring Full-Stack Developer & Software Engineering Undergraduate
           </motion.p>
@@ -70,7 +71,7 @@ export default function Hero() {
           {/* Professional Description */}
           <motion.p
             variants={item}
-            className="mt-7 max-w-2xl text-base sm:text-lg leading-8 text-gray-400"
+            className="mt-8 max-w-2xl text-base sm:text-lg leading-9 text-gray-400"
           >
             Passionate about building scalable web applications and creating
             clean, user-friendly digital experiences. Interested in full-stack
@@ -82,28 +83,29 @@ export default function Hero() {
           {/* Tech Stack */}
           <motion.div
             variants={item}
-            className="mt-7 flex flex-wrap gap-3 justify-center md:justify-start"
+            className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start"
           >
             {["React", "Next.js", "Node.js", "MongoDB"].map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 bg-blue-500/10 border border-blue-400/30 rounded-full text-sm font-medium hover:bg-blue-500/20 transition text-gray-200"
+                className="px-5 py-2 bg-blue-500/10 border border-blue-400/30 rounded-full text-sm font-medium hover:bg-blue-500/20 transition text-gray-200 backdrop-blur-sm"
               >
                 {tech}
               </span>
             ))}
           </motion.div>
 
-          {/* Updated Buttons */}
+          {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start"
+            className="mt-10 flex flex-col sm:flex-row flex-wrap gap-5 justify-center md:justify-start"
           >
+
             {/* Download CV */}
             <a
               href="/cv.pdf"
               download="Nethmi_Rajapaksha_CV.pdf"
-              className="px-7 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-lg shadow-blue-500/20"
+              className="px-8 py-3.5 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-semibold shadow-xl shadow-blue-500/20 text-center"
             >
               Download CV
             </a>
@@ -111,15 +113,15 @@ export default function Hero() {
             {/* View Projects */}
             <a
               href="#projects"
-              className="px-7 py-3 border border-blue-500 text-blue-400 rounded-xl hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-medium"
+              className="px-8 py-3.5 border border-blue-500 text-blue-400 rounded-2xl hover:bg-blue-500 hover:text-white hover:scale-105 transition-all duration-300 font-semibold text-center"
             >
               View Projects
             </a>
 
-            {/* Contact Me */}
+            {/* Updated Contact Me Button */}
             <a
               href="#contact"
-              className="px-7 py-3 bg-white/5 border border-white/10 text-gray-200 rounded-xl hover:bg-white/10 hover:border-sky-400/40 hover:text-sky-400 hover:scale-105 transition-all duration-300 font-medium backdrop-blur-md"
+              className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:scale-105 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 text-center border border-cyan-400/20"
             >
               Contact Me
             </a>
@@ -128,7 +130,7 @@ export default function Hero() {
           {/* Social Icons */}
           <motion.div
             variants={item}
-            className="mt-10 flex gap-5 justify-center md:justify-start"
+            className="mt-12 flex gap-5 justify-center md:justify-start"
           >
             {[FaGithub, FaLinkedin, FaInstagram].map((Icon, i) => (
               <motion.a
@@ -144,7 +146,7 @@ export default function Hero() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-full bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-sky-400 hover:border-sky-400/40 hover:bg-sky-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
+                className="p-4 rounded-2xl bg-white/5 border border-white/10 text-2xl text-gray-300 hover:text-sky-400 hover:border-sky-400/40 hover:bg-sky-500/10 transition-all duration-300 backdrop-blur-md shadow-lg shadow-black/20"
               >
                 <Icon />
               </motion.a>
