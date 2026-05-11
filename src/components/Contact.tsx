@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
+
+
 import {
   FaGithub,
   FaLinkedin,
@@ -11,14 +14,17 @@ import {
 } from "react-icons/fa";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [isSending, setIsSending] = useState(false);
-  const [isSent, setIsSent] = useState(false);
+
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({
+    type: null,
+    message: "",
+  });
 
   const contactInfo = [
     {
@@ -72,37 +78,49 @@ export default function Contact() {
     show: { opacity: 1, y: 0 },
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (
+  const sendEmail = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
+    if (!formRef.current) return;
+
     setIsSending(true);
 
-    // Fake loading
-    setTimeout(() => {
-      setIsSending(false);
-      setIsSent(true);
+    setStatus({
+      type: null,
+      message: "",
+    });
 
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
+    try {
+      await emailjs.sendForm(
+        "service_4sb3ke6",
+        "template_k7qlvv7",
+        formRef.current,
+        "_3_fYq2hOvA-L2i7b"
+      );
+
+      setStatus({
+        type: "success",
+        message: "Message sent successfully 🚀",
       });
 
+      formRef.current.reset();
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSending(false);
+
       setTimeout(() => {
-        setIsSent(false);
-      }, 4000);
-    }, 2000);
+        setStatus({
+          type: null,
+          message: "",
+        });
+      }, 5000);
+    }
   };
 
   return (
@@ -114,7 +132,7 @@ export default function Contact() {
       transition={{ duration: 0.7 }}
       viewport={{ once: true }}
     >
-      {/* Animated Background Glow */}
+      {/* Background Glow */}
       <motion.div
         animate={{
           scale: [1, 1.15, 1],
@@ -139,7 +157,7 @@ export default function Contact() {
         className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-3xl"
       />
 
-      {/* Grid Background */}
+      {/* Grid */}
       <div className="absolute inset-0 opacity-[0.04]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
       </div>
@@ -162,7 +180,7 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           {/* LEFT */}
           <motion.div
@@ -252,29 +270,32 @@ export default function Contact() {
               Send me a message.
             </p>
 
-            {/* Success Message */}
+            {/* Status Message */}
             <AnimatePresence>
-              {isSent && (
+              {status.type && (
                 <motion.div
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mb-5 rounded-2xl border border-green-500/30 bg-green-500/10 px-5 py-4 text-green-300"
+                  className={`mb-5 rounded-2xl px-5 py-4 border ${
+                    status.type === "success"
+                      ? "bg-green-500/10 border-green-500/30 text-green-300"
+                      : "bg-red-500/10 border-red-500/30 text-red-300"
+                  }`}
                 >
-                  Message sent successfully 🚀
+                  {status.message}
                 </motion.div>
               )}
             </AnimatePresence>
 
             <form
-              onSubmit={handleSubmit}
+              ref={formRef}
+              onSubmit={sendEmail}
               className="relative z-10 flex flex-col gap-5"
             >
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                name="user_name"
                 placeholder="Your Name"
                 required
                 className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
@@ -282,9 +303,7 @@ export default function Contact() {
 
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="user_email"
                 placeholder="Your Email"
                 required
                 className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
@@ -292,8 +311,6 @@ export default function Contact() {
 
               <textarea
                 name="message"
-                value={formData.message}
-                onChange={handleChange}
                 placeholder="Your Message"
                 rows={7}
                 required
@@ -312,7 +329,9 @@ export default function Contact() {
                 className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition-all duration-300 disabled:opacity-70"
               >
                 <span className="relative z-10">
-                  {isSending ? "Sending..." : "Send Message"}
+                  {isSending
+                    ? "Sending..."
+                    : "Send Message"}
                 </span>
 
                 <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-400 to-blue-500" />
