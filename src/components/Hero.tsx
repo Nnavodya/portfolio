@@ -25,32 +25,32 @@ export default function Hero() {
       initial="hidden"
       animate="show"
       variants={container}
-      className="scroll-mt-24 relative min-h-screen flex items-center justify-center text-gray-900 dark:text-white px-6 md:px-10 overflow-hidden bg-white dark:bg-[#0b0f1e]"
+      className="scroll-mt-24 relative min-h-[90vh] flex items-center justify-center text-gray-900 dark:text-white px-6 md:px-12 overflow-hidden bg-white dark:bg-[#0b0f1e]"
     >
 
       {/* Background Blur Effects */}
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 6, repeat: Infinity }}
         className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"
       />
 
       <motion.div
-        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.35, 0.2] }}
+        animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 7, repeat: Infinity }}
         className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center relative z-10">
+      <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
 
         {/* Left Content */}
         <div className="text-center md:text-left">
 
           <motion.div
-            className="space-y-4"
+            className="space-y-3"
             variants={item}
           >
-            <p className="text-lg sm:text-xl font-semibold text-blue-500 tracking-wide uppercase">
+            <p className="text-lg sm:text-xl font-semibold text-blue-500 tracking-wider uppercase">
               Hi, I&apos;m
             </p>
 
@@ -62,7 +62,7 @@ export default function Hero() {
           {/* Role */}
           <motion.p
             variants={item}
-            className="mt-6 text-xl sm:text-2xl font-medium text-gray-300"
+            className="mt-5 text-xl sm:text-2xl font-medium text-gray-300"
           >
             Software Engineering Undergraduate
           </motion.p>
@@ -70,7 +70,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-8 max-w-2xl text-base sm:text-lg leading-8 text-gray-400"
+            className="mt-7 max-w-2xl text-base sm:text-lg leading-8 text-gray-400"
           >
             Aspiring Software Engineering Intern passionate about building
             responsive web applications, solving real-world problems, and
@@ -80,7 +80,7 @@ export default function Hero() {
           {/* Tech Stack */}
           <motion.div
             variants={item}
-            className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start"
+            className="mt-7 flex flex-wrap gap-3 justify-center md:justify-start"
           >
             {["React", "Next.js", "Node.js", "MongoDB"].map((tech) => (
               <span
@@ -95,7 +95,7 @@ export default function Hero() {
           {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-10 flex flex-col sm:flex-row gap-5 justify-center md:justify-start"
+            className="mt-9 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
             <a
               href="/cv.pdf"
@@ -113,10 +113,10 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Updated Social Icons */}
+          {/* Social Icons */}
           <motion.div
             variants={item}
-            className="mt-12 flex gap-5 justify-center md:justify-start"
+            className="mt-10 flex gap-5 justify-center md:justify-start"
           >
             {[FaGithub, FaLinkedin, FaInstagram].map((Icon, i) => (
               <motion.a
@@ -158,7 +158,7 @@ export default function Hero() {
             <img
               src="/my-photo.jpeg"
               alt="Nethmi Rajapaksha"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] rounded-full object-cover border-4 border-gray-900 transition duration-500 group-hover:scale-105"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full object-cover border-4 border-gray-900 transition duration-500 group-hover:scale-105"
             />
           </motion.div>
         </motion.div>
@@ -168,7 +168,7 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm"
+        className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm"
       >
         ↓ Scroll
       </motion.div>
