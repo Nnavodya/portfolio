@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -7,6 +6,8 @@ import {
   FaInstagram,
   FaEnvelope,
   FaArrowUp,
+  FaHeart,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 import { motion } from "framer-motion";
@@ -48,15 +49,37 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#050816] border-t border-white/10 text-white">
 
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500/10 blur-3xl rounded-full" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full" />
+      {/* Animated Background Glow */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.12, 0.22, 0.12],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+        }}
+        className="absolute top-0 left-0 w-80 h-80 bg-cyan-500/20 blur-3xl rounded-full"
+      />
 
-      {/* Grid Background */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.08, 0.18, 0.08],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full"
+      />
+
+      {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
       </div>
 
+      {/* Main Footer */}
       <div className="relative z-10 px-6 md:px-10 py-16">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -64,7 +87,7 @@ export default function Footer() {
           <div>
             <motion.h3
               whileHover={{ scale: 1.03 }}
-              className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4"
+              className="text-3xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent mb-4"
             >
               Nethmi.dev
             </motion.h3>
@@ -72,13 +95,25 @@ export default function Footer() {
             <p className="text-gray-400 leading-7 text-sm">
               Software Engineering Undergraduate passionate about
               full-stack development, cloud technologies, and
-              building scalable real-world applications.
+              building scalable real-world software solutions.
             </p>
 
-            <div className="mt-5">
+            {/* Availability Badge */}
+            <div className="mt-6 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-xs text-cyan-300">
-                ● Open to Internship Opportunities
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                Open to Internships
               </span>
+
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-xs text-blue-300">
+                Full-Stack Developer
+              </span>
+            </div>
+
+            {/* Location */}
+            <div className="mt-5 flex items-center gap-2 text-sm text-gray-500">
+              <FaMapMarkerAlt className="text-cyan-400" />
+              Sri Lanka
             </div>
           </div>
 
@@ -94,8 +129,9 @@ export default function Footer() {
                   key={link.label}
                   href={link.href}
                   whileHover={{ x: 6 }}
-                  className="text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
+                  className="group flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
                 >
+                  <span className="w-0 group-hover:w-2 h-[2px] bg-cyan-400 transition-all duration-300" />
                   {link.label}
                 </motion.a>
               ))}
@@ -109,38 +145,42 @@ export default function Footer() {
             </h4>
 
             <div className="flex flex-col gap-3">
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href="https://github.com/Nnavodya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
               >
                 GitHub Profile
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href="https://medium.com/@nethmirajapaksha"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
               >
                 Medium Articles
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href="#contact"
                 className="text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
               >
                 Contact Form
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href="/cv.pdf"
                 target="_blank"
                 className="text-sm text-gray-400 hover:text-cyan-300 transition duration-300"
               >
                 Download CV
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -162,47 +202,102 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     whileHover={{
                       scale: 1.15,
-                      y: -4,
+                      y: -5,
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative w-12 h-12 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+                    className="group relative w-12 h-12 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
                   >
-                    <Icon className="text-lg text-gray-300 group-hover:text-cyan-300 transition-colors duration-300" />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl" />
+
+                    <Icon className="relative z-10 text-lg text-gray-300 group-hover:text-cyan-300 transition-colors duration-300" />
                   </motion.a>
                 );
               })}
             </div>
 
-            {/* Scroll To Top */}
-            <motion.a
-              href="#hero"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-              }}
-              className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
+            {/* CTA */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="mt-8 rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-5"
             >
-              Back to Top
-              <FaArrowUp />
-            </motion.a>
+              <h5 className="font-semibold text-white mb-2">
+                Looking for a developer?
+              </h5>
+
+              <p className="text-sm text-gray-400 leading-6 mb-4">
+                I’m currently available for internship opportunities
+                and exciting collaborations.
+              </p>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+              >
+                Contact Me
+              </a>
+            </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Bottom */}
-      <div className="relative z-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Bottom Bar */}
+      <div className="relative z-10 border-t border-white/10 backdrop-blur-md bg-white/[0.02]">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
 
-          <p className="text-sm text-gray-500 text-center md:text-left">
-            © {currentYear} Nethmi Rajapaksha. All rights reserved.
-          </p>
+          {/* Left */}
+          <div className="text-center lg:text-left">
+            <p className="text-sm text-gray-500">
+              © {currentYear} Nethmi Rajapaksha. All rights reserved.
+            </p>
 
-          <p className="text-sm text-gray-500 text-center md:text-right">
-            Built with{" "}
-            <span className="text-cyan-400">Next.js</span> &{" "}
-            <span className="text-blue-400">Tailwind CSS</span>
-          </p>
+            <p className="text-xs text-gray-600 mt-1">
+              Designed & Developed by Nethmi.dev
+            </p>
+          </div>
+
+          {/* Center */}
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            Built with
+            <span className="text-cyan-400 font-medium">
+              Next.js
+            </span>
+            &
+            <span className="text-blue-400 font-medium">
+              Tailwind CSS
+            </span>
+          </div>
+
+          {/* Right */}
+          <motion.a
+            href="#hero"
+            whileHover={{
+              scale: 1.05,
+              y: -2,
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="group inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-gray-300 hover:text-white hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            Back to Top
+
+            <motion.div
+              animate={{ y: [0, -3, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+              }}
+            >
+              <FaArrowUp className="text-cyan-400 group-hover:text-cyan-300" />
+            </motion.div>
+          </motion.a>
         </div>
+      </div>
+
+      {/* Floating Bottom Line */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+
+      {/* Tiny Signature */}
+      <div className="absolute bottom-2 right-4 hidden md:flex items-center gap-1 text-[10px] text-gray-600">
+        Made with <FaHeart className="text-red-400" /> using React & Next.js
       </div>
     </footer>
   );
