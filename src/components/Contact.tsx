@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 import {
   FaGithub,
   FaLinkedin,
@@ -93,12 +92,14 @@ export default function Contact() {
     });
 
     try {
-      await emailjs.sendForm(
+      const result = await emailjs.sendForm(
         "service_4sb3ke6",
         "template_k7qlvv7",
         formRef.current,
         "_3_fYq2hOvA-L2i7b"
       );
+
+      console.log("SUCCESS!", result.text);
 
       setStatus({
         type: "success",
@@ -106,10 +107,14 @@ export default function Contact() {
       });
 
       formRef.current.reset();
-    } catch (error) {
+    } catch (error: any) {
+      console.error("EMAILJS ERROR:", error);
+
       setStatus({
         type: "error",
-        message: "Something went wrong. Please try again.",
+        message:
+          error?.text ||
+          "Something went wrong. Please try again.",
       });
     } finally {
       setIsSending(false);
@@ -270,7 +275,6 @@ export default function Contact() {
               Send me a message.
             </p>
 
-            {/* Status Message */}
             <AnimatePresence>
               {status.type && (
                 <motion.div
@@ -298,7 +302,7 @@ export default function Contact() {
                 name="user_name"
                 placeholder="Your Name"
                 required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
               />
 
               <input
@@ -306,7 +310,7 @@ export default function Contact() {
                 name="user_email"
                 placeholder="Your Email"
                 required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
               />
 
               <textarea
@@ -314,7 +318,7 @@ export default function Contact() {
                 placeholder="Your Message"
                 rows={7}
                 required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 resize-none"
+                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 resize-none"
               />
 
               <motion.button
@@ -322,19 +326,11 @@ export default function Contact() {
                 disabled={isSending}
                 whileHover={{
                   scale: isSending ? 1 : 1.02,
-                  boxShadow:
-                    "0px 0px 30px rgba(34,211,238,0.35)",
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white transition-all duration-300 disabled:opacity-70"
+                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white disabled:opacity-70"
               >
-                <span className="relative z-10">
-                  {isSending
-                    ? "Sending..."
-                    : "Send Message"}
-                </span>
-
-                <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-400 to-blue-500" />
+                {isSending ? "Sending..." : "Send Message"}
               </motion.button>
             </form>
           </motion.div>
