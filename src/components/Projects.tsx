@@ -103,7 +103,7 @@ export default function Projects() {
       live:
         "https://github.com/Nnavodya",
 
-      image: "/portfolio.png",
+      image: "/iproject1.png",
 
       gradient:
         "from-cyan-500/20 via-blue-500/10 to-black/40",
