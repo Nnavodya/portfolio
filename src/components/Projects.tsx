@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -24,6 +26,14 @@ export default function Projects() {
       title: "BookFair Stall Reservation System",
 
       type: "Group Project",
+
+      role: "Frontend Developer",
+
+      duration: "Jan 2026 - Apr 2026",
+
+      team: "5 Members",
+
+      featured: true,
 
       description:
         "A comprehensive full-stack web application developed for managing stall reservations, event layouts, vendor operations, QR-based entry passes, and analytics for large-scale book fairs.",
@@ -49,7 +59,8 @@ export default function Projects() {
       github:
         "https://github.com/Nnavodya/SA_PROJECT_V1",
 
-      live: "https://github.com/Nnavodya/SA_PROJECT_V1",
+      live:
+        "https://github.com/Nnavodya/SA_PROJECT_V1",
 
       image: "/gproject1.png",
 
@@ -77,6 +88,14 @@ export default function Projects() {
       title: "Personal Portfolio Website",
 
       type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "May 2026 - Present",
+
+      team: "Solo Project",
+
+      featured: false,
 
       description:
         "A modern responsive portfolio website built using Next.js and Tailwind CSS to showcase my projects, technical skills, articles, and contact information with smooth animations and dark mode support.",
@@ -172,10 +191,10 @@ export default function Projects() {
             Featured Projects
           </h2>
 
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 leading-8 text-base md:text-lg">
-            Here are some of the software engineering projects
-            I have worked on using modern frontend and backend
-            technologies.
+          <p className="max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-8 text-base md:text-lg">
+            A selection of full-stack and frontend engineering
+            projects built using modern technologies and scalable
+            architectures.
           </p>
         </div>
 
@@ -193,44 +212,80 @@ export default function Projects() {
               variants={item}
               transition={{ duration: 0.5 }}
               whileHover={{ y: -10 }}
-              className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
+              className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
             >
-              {/* Hover Glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
-
-              {/* Project Image */}
-              {project.image && (
-                <div className="mb-6 overflow-hidden rounded-2xl border border-white/10">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    className="w-full h-52 md:h-60 object-cover transition duration-500 group-hover:scale-105"
-                  />
+              {/* Featured Badge */}
+              {project.featured && (
+                <div className="absolute top-5 right-5 z-20 rounded-full bg-yellow-400 px-4 py-1 text-xs font-bold text-black shadow-lg">
+                  Featured
                 </div>
               )}
 
+              {/* Hover Glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
+
+              {/* Clickable Project Image */}
+              {project.image && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative mb-6 overflow-hidden rounded-2xl border border-white/10 block cursor-pointer"
+                >
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    width={800}
+                    height={500}
+                    className="w-full h-52 md:h-60 object-cover transition duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Image Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg tracking-wide">
+                      View Project
+                    </span>
+                  </div>
+                </a>
+              )}
+
               {/* Type Badge */}
-              <div className="inline-flex items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1 text-xs font-semibold text-cyan-400 mb-5">
+              <div className="inline-flex w-fit items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1 text-xs font-semibold text-cyan-400 mb-4">
                 {project.type}
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-cyan-400 transition">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition">
                 {project.title}
               </h3>
 
+              {/* Role */}
+              <p className="text-sm text-cyan-400 mb-2 font-medium">
+                Role: {project.role}
+              </p>
+
+              {/* Duration */}
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                {project.duration}
+              </p>
+
+              {/* Team */}
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                Team: {project.team}
+              </p>
+
               {/* Description */}
-              <p className="text-gray-600 dark:text-gray-300 leading-7 mb-6">
+              <p className="text-gray-600 dark:text-gray-300 leading-8 mb-6">
                 {project.description}
               </p>
 
               {/* Features */}
               <div className="mb-6">
-                <h4 className="font-semibold mb-3 text-lg">
+                <h4 className="font-semibold mb-4 text-lg">
                   Key Features
                 </h4>
 
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {project.features.map((feature) => (
                     <li
                       key={feature}
@@ -277,30 +332,32 @@ export default function Projects() {
               </div>
 
               {/* Buttons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="mt-auto flex flex-wrap gap-4">
                 {/* GitHub Button */}
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 cursor-pointer"
                 >
                   <FaGithub />
 
-                  <span>View Repository</span>
+                  <span>Source Code</span>
                 </a>
 
                 {/* Live Preview Button */}
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-gray-800 dark:text-white transition hover:bg-white/10 hover:scale-105"
-                >
-                  <FaExternalLinkAlt />
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-gray-800 dark:text-white transition hover:bg-white/10 hover:scale-105 cursor-pointer"
+                  >
+                    <FaExternalLinkAlt />
 
-                  <span>Live Preview</span>
-                </a>
+                    <span>Live Preview</span>
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
