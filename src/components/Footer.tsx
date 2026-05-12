@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,6 +8,8 @@ import {
   FaInstagram,
   FaEnvelope,
   FaArrowUp,
+  FaHeart,
+  FaCode,
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -45,13 +48,56 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-[#050816] border-t border-white/10 text-white">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500/10 blur-3xl rounded-full" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/10 blur-3xl rounded-full" />
+      {/* Animated Background Glow */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.3, 0.15],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+        }}
+        className="absolute top-0 left-0 w-80 h-80 bg-cyan-500/10 blur-3xl rounded-full"
+      />
+
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.1, 0.25, 0.1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 blur-3xl rounded-full"
+      />
 
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      {/* Top CTA Banner */}
+      <div className="relative z-10 border-b border-white/10 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-bold text-white">
+              Let’s build something amazing together.
+            </h3>
+
+            <p className="text-sm text-gray-400 mt-1">
+              Open for internships, freelance work, and collaborations.
+            </p>
+          </div>
+
+          <a
+            href="#contact"
+            className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-105 transition-all duration-300 font-medium shadow-lg shadow-cyan-500/20"
+          >
+            Contact Me
+          </a>
+        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-16">
@@ -75,7 +121,6 @@ export default function Footer() {
               digital experiences.
             </p>
 
-            {/* Mini Badge */}
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-xs text-cyan-300 w-fit">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               Available for Internships
@@ -151,7 +196,7 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Social + Back To Top */}
+          {/* Connect */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +251,7 @@ export default function Footer() {
 
       {/* Bottom Footer */}
       <div className="relative z-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <p className="text-sm text-gray-400 leading-7">
             © {currentYear}{" "}
             <span className="text-white font-medium">
@@ -215,14 +260,15 @@ export default function Footer() {
             . All rights reserved.
           </p>
 
-          <p className="text-xs text-gray-500 mt-2">
-            Built with{" "}
-            <span className="text-cyan-400">Next.js</span>,{" "}
-            <span className="text-blue-400">Tailwind CSS</span>{" "}
-            & Framer Motion.
-          </p>
+          <div className="flex items-center gap-2 text-xs text-gray-500">
+            <FaCode className="text-cyan-400" />
+            Built with Next.js & Tailwind CSS
+            <FaHeart className="text-red-400 animate-pulse" />
+          </div>
         </div>
       </div>
     </footer>
   );
 }
+
+
