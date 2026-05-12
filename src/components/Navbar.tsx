@@ -2,44 +2,43 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { BsMoonStarsFill, BsSun } from "react-icons/bs";
-import { HiMenu, HiX } from "react-icons/hi";
+import { motion, AnimatePresence } from "framer-motion";
+
+import {
+  BsMoonStarsFill,
+  BsSun,
+  BsArrowUpRight,
+} from "react-icons/bs";
+
+import {
+  HiMenu,
+  HiX,
+} from "react-icons/hi";
+
+import {
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
+
 import { useTheme } from "next-themes";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
 
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [activeSection, setActiveSection] = useState("#hero");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
 
-  // Active Section Highlight
-  useEffect(() => {
     const handleScroll = () => {
-      const sections = navLinks.map((link) =>
-        document.querySelector(link.href)
-      );
-
-      sections.forEach((section, index) => {
-        if (!section) return;
-
-        const rect = section.getBoundingClientRect();
-
-        if (rect.top <= 120 && rect.bottom >= 120) {
-          setActiveSection(navLinks[index].href);
-        }
-      });
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -54,142 +53,205 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7 }}
-      className="fixed top-0 left-0 right-0 z-50"
+      transition={{ duration: 0.6 }}
+      className={`
+        fixed top-0 left-0 right-0 z-50
+        transition-all duration-500
+        ${
+          scrolled
+            ? "backdrop-blur-xl bg-[#050816]/80 border-b border-cyan-500/10 shadow-2xl shadow-cyan-500/5"
+            : "bg-transparent"
+        }
+      `}
     >
-      {/* Glassmorphism Navbar */}
-      <div className="relative flex justify-between items-center px-6 md:px-10 py-5 bg-[#050816]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-
-        {/* Logo / Brand */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="flex items-center gap-3"
-        >
-          {/* Logo Circle */}
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/30">
-            N
-          </div>
-
-          {/* Brand Name */}
-          <div className="flex flex-col leading-tight">
-            <h1 className="text-xl md:text-2xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Nethmi.dev
-            </h1>
-
-            <span className="text-[10px] md:text-xs text-cyan-300 tracking-wide">
-              Software Engineer
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`relative text-sm lg:text-base font-medium transition-all duration-300 hover:text-cyan-400 hover:-translate-y-0.5 ${
-                activeSection === link.href
-                  ? "text-cyan-400"
-                  : "text-white"
-              }`}
-            >
-              {link.name}
-
-              {/* Active Underline */}
-              <span
-                className={`absolute left-0 -bottom-2 h-[2px] bg-cyan-400 transition-all duration-300 ${
-                  activeSection === link.href
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                }`}
-              />
-            </Link>
-          ))}
-
-          {/* Theme Toggle */}
-          <button
-            onClick={() =>
-              setTheme(theme === "dark" ? "light" : "dark")
-            }
-            className="p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20"
-            title={
-              mounted
-                ? theme === "dark"
-                  ? "Switch to Light Mode"
-                  : "Switch to Dark Mode"
-                : ""
-            }
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div className="flex items-center justify-between h-20">
+          {/* LOGO */}
+          <Link
+            href="#hero"
+            className="group flex items-center gap-3"
           >
-            {mounted &&
-              (theme === "dark" ? (
-                <BsSun className="text-lg text-yellow-400" />
-              ) : (
-                <BsMoonStarsFill className="text-lg text-cyan-400" />
-              ))}
-          </button>
-        </div>
+            <div className="relative">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition duration-300">
+                N
+              </div>
 
-        {/* Mobile Controls */}
-        <div className="md:hidden flex items-center gap-3">
-          {/* Theme Toggle */}
-          <button
-            onClick={() =>
-              setTheme(theme === "dark" ? "light" : "dark")
-            }
-            className="p-2.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
-          >
-            {mounted &&
-              (theme === "dark" ? (
-                <BsSun className="text-lg text-yellow-400" />
-              ) : (
-                <BsMoonStarsFill className="text-lg text-cyan-400" />
-              ))}
-          </button>
+              <div className="absolute inset-0 rounded-2xl bg-cyan-400 blur-xl opacity-0 group-hover:opacity-40 transition duration-500" />
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300 text-white"
-          >
-            {isOpen ? (
-              <HiX className="text-2xl" />
-            ) : (
-              <HiMenu className="text-2xl" />
-            )}
-          </button>
-        </div>
+            <div className="hidden sm:block">
+              <h1 className="text-lg md:text-xl font-black text-white tracking-wide">
+                Nethmi Rajapaksha
+              </h1>
 
-        {/* Bottom Glow Line */}
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-      </div>
+              <p className="text-xs text-gray-400 tracking-[0.2em] uppercase">
+                Software Engineer
+              </p>
+            </div>
+          </Link>
 
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-[#050816]/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl"
-        >
-          <div className="flex flex-col px-6 py-5">
+          {/* DESKTOP NAVIGATION */}
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`py-4 text-base border-b border-white/10 transition-all duration-300 ${
-                  activeSection === link.href
-                    ? "text-cyan-400"
-                    : "text-white hover:text-cyan-300"
-                }`}
+                className="relative text-sm font-medium text-gray-300 hover:text-cyan-300 transition duration-300 group"
               >
                 {link.name}
+
+                <span className="absolute left-0 -bottom-2 h-[2px] w-0 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
-        </motion.div>
-      )}
+
+          {/* RIGHT SIDE */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* SOCIAL ICONS */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/Nnavodya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/40 hover:scale-110 transition-all duration-300"
+              >
+                <FaGithub />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/nethmi-rajapaksha-465335359"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400/40 hover:scale-110 transition-all duration-300"
+              >
+                <FaLinkedin />
+              </a>
+            </div>
+
+            {/* RESUME BUTTON */}
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Resume
+                <BsArrowUpRight />
+              </span>
+
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-400 to-blue-500" />
+            </a>
+
+            {/* THEME TOGGLE */}
+            <button
+              onClick={() =>
+                setTheme(theme === "dark" ? "light" : "dark")
+              }
+              className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-yellow-300 hover:bg-white/10 hover:scale-110 transition-all duration-300"
+              title={
+                mounted
+                  ? theme === "dark"
+                    ? "Switch to Light Mode"
+                    : "Switch to Dark Mode"
+                  : ""
+              }
+            >
+              {mounted &&
+                (theme === "dark" ? (
+                  <BsSun className="text-lg" />
+                ) : (
+                  <BsMoonStarsFill className="text-lg" />
+                ))}
+            </button>
+          </div>
+
+          {/* MOBILE BUTTONS */}
+          <div className="lg:hidden flex items-center gap-3">
+            {/* THEME */}
+            <button
+              onClick={() =>
+                setTheme(theme === "dark" ? "light" : "dark")
+              }
+              className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:bg-white/10 transition duration-300"
+            >
+              {mounted &&
+                (theme === "dark" ? (
+                  <BsSun className="text-lg text-yellow-300" />
+                ) : (
+                  <BsMoonStarsFill className="text-lg text-cyan-300" />
+                ))}
+            </button>
+
+            {/* MENU BUTTON */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition duration-300"
+            >
+              {isOpen ? (
+                <HiX className="text-2xl" />
+              ) : (
+                <HiMenu className="text-2xl" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden border-t border-white/10 bg-[#050816]/95 backdrop-blur-2xl"
+          >
+            <div className="px-6 py-6 flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-xl border border-white/5 bg-white/5 px-4 py-3 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/20 transition-all duration-300"
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              {/* MOBILE RESUME */}
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                className="mt-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-center font-semibold text-white"
+              >
+                Download Resume
+              </a>
+
+              {/* MOBILE SOCIALS */}
+              <div className="flex items-center justify-center gap-4 mt-4">
+                <a
+                  href="https://github.com/Nnavodya"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-cyan-500/20 transition-all duration-300"
+                >
+                  <FaGithub />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/nethmi-rajapaksha-465335359"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-500/20 transition-all duration-300"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
