@@ -10,12 +10,29 @@ import {
   FaEnvelope,
   FaPhone,
   FaWhatsapp,
+  FaCopy,
+  FaCheck,
+  FaSpinner,
 } from "react-icons/fa";
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isSending, setIsSending] = useState(false);
+
+  const [copied, setCopied] = useState("");
+
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
 
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
@@ -32,6 +49,7 @@ export default function Contact() {
       value: "nethmirajapaksha038@gmail.com",
       href: "mailto:nethmirajapaksha038@gmail.com",
       color: "group-hover:text-red-400",
+      copyable: true,
     },
     {
       icon: FaPhone,
@@ -39,6 +57,7 @@ export default function Contact() {
       value: "+94 704 122 495",
       href: "tel:+94704122495",
       color: "group-hover:text-green-400",
+      copyable: true,
     },
     {
       icon: FaWhatsapp,
@@ -46,6 +65,7 @@ export default function Contact() {
       value: "+94 704 122 495",
       href: "https://wa.me/94704122495",
       color: "group-hover:text-green-500",
+      copyable: false,
     },
     {
       icon: FaLinkedin,
@@ -53,6 +73,7 @@ export default function Contact() {
       value: "Nethmi Rajapaksha",
       href: "https://www.linkedin.com/in/nethmi-rajapaksha-465335359",
       color: "group-hover:text-blue-400",
+      copyable: false,
     },
     {
       icon: FaGithub,
@@ -60,21 +81,47 @@ export default function Contact() {
       value: "Nnavodya",
       href: "https://github.com/Nnavodya",
       color: "group-hover:text-gray-300",
+      copyable: false,
     },
   ];
 
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+  const validateForm = () => {
+    let valid = true;
+
+    const newErrors = {
+      user_name: "",
+      user_email: "",
+      message: "",
+    };
+
+    if (formData.user_name.trim().length < 3) {
+      newErrors.user_name = "Name must be at least 3 characters";
+      valid = false;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(formData.user_email)) {
+      newErrors.user_email = "Please enter a valid email";
+      valid = false;
+    }
+
+    if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+
+    return valid;
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
+  const copyToClipboard = async (text: string, label: string) => {
+    await navigator.clipboard.writeText(text);
+
+    setCopied(label);
+
+    setTimeout(() => {
+      setCopied("");
+    }, 2000);
   };
 
   const sendEmail = async (
@@ -83,6 +130,8 @@ export default function Contact() {
     e.preventDefault();
 
     if (!formRef.current) return;
+
+    if (!validateForm()) return;
 
     setIsSending(true);
 
@@ -107,6 +156,13 @@ export default function Contact() {
       });
 
       formRef.current.reset();
+
+      setFormData({
+        user_name: "",
+        user_email: "",
+        message: "",
+      });
+
     } catch (error: any) {
       console.error("EMAILJS ERROR:", error);
 
@@ -137,7 +193,30 @@ export default function Contact() {
       transition={{ duration: 0.7 }}
       viewport={{ once: true }}
     >
-      {/* Background Glow */}
+
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0.1, 0.4, 0.1],
+            }}
+            transition={{
+              duration: 6 + i,
+              repeat: Infinity,
+            }}
+            className="absolute w-2 h-2 rounded-full bg-cyan-400/30"
+            style={{
+              left: `${i * 5}%`,
+              top: `${i * 4}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Glow Effects */}
       <motion.div
         animate={{
           scale: [1, 1.15, 1],
@@ -168,6 +247,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
+
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm font-semibold mb-3">
@@ -187,14 +267,10 @@ export default function Contact() {
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+
           {/* LEFT */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden"
-          >
+          <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden">
+
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-2">
@@ -207,54 +283,69 @@ export default function Contact() {
             </p>
 
             <div className="flex flex-col gap-4">
+
               {contactInfo.map((info) => {
                 const Icon = info.icon;
 
                 return (
-                  <motion.a
-                    key={info.label}
-                    href={info.href}
-                    variants={item}
+                  <motion.div
                     whileHover={{
                       scale: 1.02,
                       y: -5,
                     }}
-                    target={
-                      info.label === "Email" ||
-                      info.label === "Call/SMS"
-                        ? "_self"
-                        : "_blank"
-                    }
-                    rel={
-                      info.label === "Email" ||
-                      info.label === "Call/SMS"
-                        ? ""
-                        : "noopener noreferrer"
-                    }
-                    className="group relative overflow-hidden flex items-center gap-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-5 transition-all duration-300"
+                    key={info.label}
+                    className="group relative overflow-hidden flex items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-5 transition-all duration-300"
                   >
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
 
-                    <div
-                      className={`relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 text-2xl text-gray-300 transition-all duration-300 ${info.color}`}
+                    <a
+                      href={info.href}
+                      target={
+                        info.label === "Email" ||
+                        info.label === "Call/SMS"
+                          ? "_self"
+                          : "_blank"
+                      }
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-5 flex-1"
                     >
-                      <Icon />
-                    </div>
 
-                    <div className="relative z-10 min-w-0">
-                      <h4 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">
-                        {info.label}
-                      </h4>
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 text-2xl text-gray-300 transition-all duration-300 ${info.color} group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]`}
+                      >
+                        <Icon />
+                      </div>
 
-                      <p className="text-sm text-gray-400 break-all">
-                        {info.value}
-                      </p>
-                    </div>
-                  </motion.a>
+                      <div className="min-w-0">
+                        <h4 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">
+                          {info.label}
+                        </h4>
+
+                        <p className="text-sm text-gray-400 break-all">
+                          {info.value}
+                        </p>
+                      </div>
+
+                    </a>
+
+                    {info.copyable && (
+                      <button
+                        onClick={() =>
+                          copyToClipboard(info.value, info.label)
+                        }
+                        className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 hover:bg-cyan-500/20 flex items-center justify-center transition"
+                      >
+                        {copied === info.label ? (
+                          <FaCheck className="text-green-400" />
+                        ) : (
+                          <FaCopy className="text-gray-300" />
+                        )}
+                      </button>
+                    )}
+                  </motion.div>
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT */}
           <motion.div
@@ -264,6 +355,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden"
           >
+
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-2 relative z-10">
@@ -297,30 +389,80 @@ export default function Contact() {
               onSubmit={sendEmail}
               className="relative z-10 flex flex-col gap-5"
             >
-              <input
-                type="text"
-                name="user_name"
-                placeholder="Your Name"
-                required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
-              />
 
-              <input
-                type="email"
-                name="user_email"
-                placeholder="Your Email"
-                required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
-              />
+              {/* Name */}
+              <div>
+                <input
+                  type="text"
+                  name="user_name"
+                  placeholder="Your Name"
+                  required
+                  value={formData.user_name}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      user_name: e.target.value,
+                    })
+                  }
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
+                />
 
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows={7}
-                required
-                className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 resize-none"
-              />
+                {errors.user_name && (
+                  <p className="text-red-400 text-sm mt-2">
+                    {errors.user_name}
+                  </p>
+                )}
+              </div>
 
+              {/* Email */}
+              <div>
+                <input
+                  type="email"
+                  name="user_email"
+                  placeholder="Your Email"
+                  required
+                  value={formData.user_email}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      user_email: e.target.value,
+                    })
+                  }
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
+                />
+
+                {errors.user_email && (
+                  <p className="text-red-400 text-sm mt-2">
+                    {errors.user_email}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  rows={7}
+                  required
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      message: e.target.value,
+                    })
+                  }
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 resize-none"
+                />
+
+                {errors.message && (
+                  <p className="text-red-400 text-sm mt-2">
+                    {errors.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={isSending}
@@ -328,10 +470,18 @@ export default function Contact() {
                   scale: isSending ? 1 : 1.02,
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white disabled:opacity-70"
+                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white disabled:opacity-70 flex items-center justify-center gap-3"
               >
-                {isSending ? "Sending..." : "Send Message"}
+                {isSending ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </motion.button>
+
             </form>
           </motion.div>
         </div>
