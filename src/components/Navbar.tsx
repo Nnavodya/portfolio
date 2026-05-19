@@ -60,7 +60,11 @@ export default function Navbar() {
         transition-all duration-500
         ${
           scrolled
-            ? "backdrop-blur-xl bg-[#050816]/80 border-b border-cyan-500/10 shadow-2xl shadow-cyan-500/5"
+            ? theme === "light"
+              ? "backdrop-blur-xl bg-white/80 border-b border-gray-200 shadow-lg"
+              : "backdrop-blur-xl bg-[#050816]/80 border-b border-cyan-500/10 shadow-2xl shadow-cyan-500/5"
+            : theme === "light"
+            ? "bg-white/70 backdrop-blur-xl"
             : "bg-transparent"
         }
       `}
@@ -81,11 +85,25 @@ export default function Navbar() {
             </div>
 
             <div className="hidden sm:block">
-              <h1 className="text-lg md:text-xl font-black text-white tracking-wide">
+              {/* FIXED NAME COLOR */}
+              <h1
+                className={`text-lg md:text-xl font-black tracking-wide transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-gray-900"
+                    : "text-white"
+                }`}
+              >
                 Nethmi Rajapaksha
               </h1>
 
-              <p className="text-xs text-gray-400 tracking-[0.2em] uppercase">
+              {/* FIXED SUBTITLE COLOR */}
+              <p
+                className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-gray-600"
+                    : "text-gray-400"
+                }`}
+              >
                 Software Engineer
               </p>
             </div>
@@ -97,7 +115,11 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative text-sm font-medium text-gray-300 hover:text-cyan-300 transition duration-300 group"
+                className={`relative text-sm font-medium transition duration-300 group ${
+                  theme === "light"
+                    ? "text-gray-700 hover:text-cyan-600"
+                    : "text-gray-300 hover:text-cyan-300"
+                }`}
               >
                 {link.name}
 
@@ -114,7 +136,11 @@ export default function Navbar() {
                 href="https://github.com/Nnavodya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/40 hover:scale-110 transition-all duration-300"
+                className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                  theme === "light"
+                    ? "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-cyan-500"
+                    : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/40"
+                }`}
               >
                 <FaGithub />
               </a>
@@ -123,7 +149,11 @@ export default function Navbar() {
                 href="https://www.linkedin.com/in/nethmi-rajapaksha-465335359"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400/40 hover:scale-110 transition-all duration-300"
+                className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                  theme === "light"
+                    ? "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-blue-500"
+                    : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400/40"
+                }`}
               >
                 <FaLinkedin />
               </a>
@@ -148,7 +178,11 @@ export default function Navbar() {
               onClick={() =>
                 setTheme(theme === "dark" ? "light" : "dark")
               }
-              className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-yellow-300 hover:bg-white/10 hover:scale-110 transition-all duration-300"
+              className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                theme === "light"
+                  ? "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
+                  : "border border-white/10 bg-white/5 text-gray-300 hover:text-yellow-300 hover:bg-white/10"
+              }`}
               title={
                 mounted
                   ? theme === "dark"
@@ -173,20 +207,28 @@ export default function Navbar() {
               onClick={() =>
                 setTheme(theme === "dark" ? "light" : "dark")
               }
-              className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:bg-white/10 transition duration-300"
+              className={`w-10 h-10 rounded-xl flex items-center justify-center transition duration-300 ${
+                theme === "light"
+                  ? "border border-gray-300 bg-white text-gray-700"
+                  : "border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10"
+              }`}
             >
               {mounted &&
                 (theme === "dark" ? (
                   <BsSun className="text-lg text-yellow-300" />
                 ) : (
-                  <BsMoonStarsFill className="text-lg text-cyan-300" />
+                  <BsMoonStarsFill className="text-lg text-cyan-500" />
                 ))}
             </button>
 
             {/* MENU BUTTON */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition duration-300"
+              className={`w-10 h-10 rounded-xl flex items-center justify-center transition duration-300 ${
+                theme === "light"
+                  ? "border border-gray-300 bg-white text-gray-800"
+                  : "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+              }`}
             >
               {isOpen ? (
                 <HiX className="text-2xl" />
@@ -206,7 +248,11 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden border-t border-white/10 bg-[#050816]/95 backdrop-blur-2xl"
+            className={`lg:hidden border-t backdrop-blur-2xl ${
+              theme === "light"
+                ? "border-gray-200 bg-white/95"
+                : "border-white/10 bg-[#050816]/95"
+            }`}
           >
             <div className="px-6 py-6 flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -214,7 +260,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="rounded-xl border border-white/5 bg-white/5 px-4 py-3 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/20 transition-all duration-300"
+                  className={`rounded-xl px-4 py-3 transition-all duration-300 ${
+                    theme === "light"
+                      ? "border border-gray-200 bg-gray-50 text-gray-700 hover:text-cyan-600 hover:bg-cyan-50"
+                      : "border border-white/5 bg-white/5 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/20"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -235,7 +285,11 @@ export default function Navbar() {
                   href="https://github.com/Nnavodya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-cyan-500/20 transition-all duration-300"
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                    theme === "light"
+                      ? "border border-gray-200 bg-gray-100 text-gray-700"
+                      : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20"
+                  }`}
                 >
                   <FaGithub />
                 </a>
@@ -244,7 +298,11 @@ export default function Navbar() {
                   href="https://www.linkedin.com/in/nethmi-rajapaksha-465335359"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-500/20 transition-all duration-300"
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                    theme === "light"
+                      ? "border border-gray-200 bg-gray-100 text-gray-700"
+                      : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20"
+                  }`}
                 >
                   <FaLinkedin />
                 </a>

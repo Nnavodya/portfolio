@@ -63,6 +63,7 @@ export default function Projects() {
 
       github: "https://github.com/Nnavodya/SA_PROJECT_V1",
 
+      // Add real deployed link here if available
       live: "https://github.com/Nnavodya/SA_PROJECT_V1",
 
       image: "/gproject1.png",
@@ -117,9 +118,10 @@ export default function Projects() {
         "Tailwind CSS",
       ],
 
-      github: "https://github.com/Nnavodya/Care4Pets.git",
+      github: "https://github.com/Nnavodya/Care4Pets",
 
-      live: "https://github.com/Nnavodya/Care4Pets.git",
+      // Add deployed link later if available
+      live: "https://github.com/Nnavodya/Care4Pets",
 
       image: "/care4pets.png",
 
@@ -173,6 +175,7 @@ export default function Projects() {
 
       github: "https://github.com/Nnavodya",
 
+      // Replace with Vercel URL after deployment
       live: "https://github.com/Nnavodya",
 
       image: "/iproject1.png",
@@ -296,7 +299,7 @@ export default function Projects() {
               opacity: 0,
             }}
             animate={{
-              y: [null, -120],
+              y: [0, -120],
               opacity: [0, 1, 0],
             }}
             transition={{
@@ -371,38 +374,17 @@ export default function Projects() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/60 to-transparent" />
 
-            {/* Badge */}
             {projects[currentSlide].featured && (
               <div className="absolute top-6 left-6 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
                 Featured Project
               </div>
             )}
-
-            {/* Duration */}
-            <div className="absolute bottom-6 right-6 px-5 py-2 rounded-full bg-black/50 border border-white/10 backdrop-blur-xl text-sm text-gray-200">
-              {projects[currentSlide].duration}
-            </div>
           </div>
 
           {/* Content */}
           <div className="relative p-8 md:p-12">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide">
-                {projects[currentSlide].type}
-              </span>
-
-              <span className="text-sm text-gray-400">
-                {projects[currentSlide].role}
-              </span>
-
-              <span className="text-sm text-gray-500">
-                • {projects[currentSlide].team}
-              </span>
-            </div>
-
             <h3 className="text-3xl md:text-5xl font-black leading-tight text-white max-w-4xl">
               {projects[currentSlide].title}
             </h3>
@@ -489,49 +471,15 @@ export default function Projects() {
               whileHover={{ y: -10 }}
               className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
             >
-              {/* Animated Background Orbs */}
-              <motion.div
-                animate={{
-                  x: [0, 50, 0],
-                  y: [0, 30, 0],
-                }}
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-5 left-5 w-40 h-40 bg-cyan-500/15 rounded-full blur-2xl opacity-30"
-              />
-
-              <motion.div
-                animate={{
-                  x: [0, -50, 0],
-                  y: [0, -40, 0],
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute bottom-5 right-5 w-48 h-48 bg-blue-500/15 rounded-full blur-2xl opacity-20"
-              />
-
               {/* Glow */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
-
-              {/* Featured */}
-              {project.featured && (
-                <div className="absolute top-5 right-5 z-20 rounded-full bg-yellow-400 px-4 py-1 text-xs font-bold text-black shadow-lg">
-                  Featured
-                </div>
-              )}
 
               {/* Image */}
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative mb-6 overflow-hidden rounded-2xl border border-white/10 block cursor-pointer"
+                className="relative mb-6 overflow-hidden rounded-2xl border border-white/10 block"
               >
                 <Image
                   src={project.image}
@@ -540,113 +488,45 @@ export default function Projects() {
                   height={500}
                   className="w-full h-52 md:h-60 object-cover transition duration-500 group-hover:scale-105"
                 />
-
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-                  <span className="text-white font-bold text-lg tracking-wide">
-                    View Project
-                  </span>
-                </div>
               </a>
-
-              {/* Type */}
-              <div className="inline-flex w-fit items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1 text-xs font-semibold text-cyan-400 mb-4">
-                {project.type}
-              </div>
 
               {/* Title */}
               <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition">
                 {project.title}
               </h3>
 
-              {/* Meta */}
-              <p className="text-sm text-cyan-400 mb-2 font-medium">
-                Role: {project.role}
-              </p>
-
-              <p className="text-sm text-gray-500 mb-1">
-                {project.duration}
-              </p>
-
-              <p className="text-sm text-gray-500 mb-6">
-                Team: {project.team}
-              </p>
-
               {/* Description */}
               <p className="text-gray-300 leading-8 mb-6">
                 {project.description}
               </p>
 
-              {/* Features */}
-              <div className="mb-6">
-                <h4 className="font-semibold mb-4 text-lg">
-                  Key Features
-                </h4>
-
-                <ul className="space-y-3">
-                  {project.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2 text-sm text-gray-400"
-                    >
-                      <span className="mt-1 text-cyan-400">•</span>
-
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Tech */}
-              <div className="mb-8">
-                <h4 className="font-semibold mb-4 text-lg">
-                  Technologies
-                </h4>
-
-                <div className="flex flex-wrap gap-3">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-4 py-2 rounded-full text-sm bg-white/10 border border-white/10 text-gray-300 backdrop-blur-sm hover:bg-cyan-500/10 transition"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Icons */}
-              <div className="flex items-center gap-4 text-2xl text-cyan-400 mb-8">
-                {project.icons.map((icon, index) => (
-                  <div
-                    key={index}
-                    className="hover:scale-125 transition duration-300"
-                  >
-                    {icon}
-                  </div>
-                ))}
-              </div>
-
               {/* Buttons */}
               <div className="mt-auto flex flex-wrap gap-4">
-                <a
+                {/* SOURCE CODE BUTTON */}
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:shadow-lg hover:shadow-cyan-500/30"
                 >
                   <FaGithub />
                   <span>Source Code</span>
-                </a>
+                </motion.a>
 
-                <a
-                  href={project.live}
+                {/* LIVE PREVIEW BUTTON */}
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  href={project.live || project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10 hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
                 >
                   <FaExternalLinkAlt />
                   <span>Live Preview</span>
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           ))}
