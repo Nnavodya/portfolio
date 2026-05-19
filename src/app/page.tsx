@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import Articles from "../components/Article";
+import Education from "../components/Education";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import SectionDivider from "../components/SectionDivider";
@@ -26,6 +27,10 @@ export default function Home() {
         </div>
         <div id="articles" className="scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28">
           <Articles />
+          <SectionDivider />
+        </div>
+        <div id="education" className="scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28">
+          <Education />
           <SectionDivider />
         </div>
         <div id="contact" className="scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28">
