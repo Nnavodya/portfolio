@@ -106,24 +106,50 @@ export default function Education() {
 
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <motion.span
             key={i}
             className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
             initial={{
-              x: (i * 70) % 1200,
-              y: (i * 90) % 800,
+              x: `${(i * 4) % 100}%`,
+              y: `${(i * 7) % 100}%`,
               opacity: 0,
             }}
             animate={{
-              y: [0, -40, 0],
+              y: ["0%", "-40%", "0%"],
               opacity: [0, 1, 0],
             }}
             transition={{
               duration: 5 + (i % 5),
               repeat: Infinity,
               delay: i * 0.3,
+              ease: "easeInOut",
             }}
+          />
+        ))}
+      </div>
+
+      {/* Animated Lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              opacity: 0,
+              x: `${i * 20}%`,
+              y: "-10%",
+            }}
+            animate={{
+              y: ["0%", "120%"],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              delay: i * 1.5,
+              ease: "linear",
+            }}
+            className="absolute w-[1px] h-40 bg-gradient-to-b from-cyan-400/0 via-cyan-400/40 to-cyan-400/0"
           />
         ))}
       </div>
@@ -187,9 +213,12 @@ export default function Education() {
                 >
                   {/* Timeline Dot */}
                   <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.4)] border border-white/10">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.4)] border border-white/10"
+                    >
                       <Icon className="text-2xl text-white" />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* CARD */}
@@ -197,11 +226,19 @@ export default function Education() {
                     <motion.div
                       whileHover={{
                         y: -8,
+                        scale: 1.01,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
                       }}
                       className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-2xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-500"
                     >
                       {/* Glow */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
+
+                      {/* Hover Border Glow */}
+                      <div className="absolute inset-0 rounded-3xl border border-cyan-400/0 group-hover:border-cyan-400/20 transition-all duration-500" />
 
                       {/* Mobile Icon */}
                       <div className="md:hidden mb-6 w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
@@ -248,14 +285,15 @@ export default function Education() {
 
                             <div className="space-y-4">
                               {item.achievements.map((achievement, i) => (
-                                <div
+                                <motion.div
                                   key={i}
+                                  whileHover={{ x: 5 }}
                                   className="flex items-start gap-3 p-4 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-gray-300 leading-7"
                                 >
                                   <div className="mt-2 w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" />
 
                                   <p>{achievement}</p>
-                                </div>
+                                </motion.div>
                               ))}
                             </div>
                           </div>
@@ -275,12 +313,16 @@ export default function Education() {
 
                             <div className="flex flex-wrap gap-3">
                               {item.coursework.map((course, i) => (
-                                <span
+                                <motion.span
                                   key={i}
+                                  whileHover={{
+                                    scale: 1.05,
+                                    y: -2,
+                                  }}
                                   className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-200 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
                                 >
                                   {course}
-                                </span>
+                                </motion.span>
                               ))}
                             </div>
                           </div>
@@ -295,13 +337,14 @@ export default function Education() {
 
                             <div className="space-y-3">
                               {item.organizations.map((org, i) => (
-                                <div
+                                <motion.div
                                   key={i}
+                                  whileHover={{ x: 5 }}
                                   className="flex items-center gap-3 text-gray-300"
                                 >
                                   <div className="w-2 h-2 rounded-full bg-cyan-400" />
                                   {org}
-                                </div>
+                                </motion.div>
                               ))}
                             </div>
                           </div>
