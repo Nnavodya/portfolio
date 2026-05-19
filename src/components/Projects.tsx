@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   FaGithub,
@@ -9,6 +10,8 @@ import {
   FaReact,
   FaJava,
   FaAws,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
 import {
@@ -21,6 +24,7 @@ import {
 } from "react-icons/si";
 
 export default function Projects() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const projects = [
     {
       title: "BookFair Stall Reservation System",
@@ -202,6 +206,10 @@ export default function Projects() {
     },
   ];
 
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % projects.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  const goToSlide = (index: number) => setCurrentSlide(index);
+
   const container = {
     hidden: {},
 
@@ -258,6 +266,136 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Featured Project Carousel */}
+        <motion.div
+          layout
+          className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl mb-12"
+        >
+          {/* Image */}
+          <div className="relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={projects[currentSlide].image}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-64 sm:h-96 relative"
+              >
+                <Image
+                  src={projects[currentSlide].image}
+                  alt={projects[currentSlide].title}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/40 to-transparent" />
+
+            {/* Featured Badge */}
+            {projects[currentSlide].featured && (
+              <div className="absolute top-5 left-5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
+                Featured Project
+              </div>
+            )}
+
+            {/* Duration */}
+            <div className="absolute bottom-5 right-5 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl text-sm text-gray-200">
+              {projects[currentSlide].duration}
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="relative p-6 sm:p-10">
+
+            {/* Meta */}
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide">
+                {projects[currentSlide].type}
+              </span>
+
+              <span className="text-sm text-gray-400">
+                {projects[currentSlide].role}
+              </span>
+
+              <span className="text-sm text-gray-500">
+                • {projects[currentSlide].team}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl sm:text-4xl font-black leading-tight text-white max-w-4xl">
+              {projects[currentSlide].title}
+            </h3>
+
+            {/* Description */}
+            <p className="mt-5 text-gray-300 leading-8 text-base sm:text-lg max-w-3xl">
+              {projects[currentSlide].description}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <motion.a
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                href={projects[currentSlide].github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 transition-all duration-300"
+              >
+                View Source Code
+                <FaGithub />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                href={projects[currentSlide].live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
+              >
+                Live Preview
+                <FaExternalLinkAlt className="text-xs" />
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            onClick={prevSlide}
+            className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+          >
+            <FaChevronLeft />
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            onClick={nextSlide}
+            className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+          >
+            <FaChevronRight />
+          </motion.button>
+        </motion.div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-3 mb-16">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`transition-all duration-300 rounded-full ${
+                index === currentSlide
+                  ? "w-10 h-3 bg-cyan-400"
+                  : "w-3 h-3 bg-gray-600 hover:bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
+
         {/* Projects Grid */}
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
@@ -272,7 +410,7 @@ export default function Projects() {
               variants={item}
               transition={{ duration: 0.5 }}
               whileHover={{ y: -10 }}
-              className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
+              className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
             >
               {/* Featured Badge */}
               {project.featured && (
@@ -282,7 +420,7 @@ export default function Projects() {
               )}
 
               {/* Hover Glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-white/5 to-transparent" />
 
               {/* Clickable Project Image */}
               {project.image && (
@@ -300,7 +438,6 @@ export default function Projects() {
                     className="w-full h-52 md:h-60 object-cover transition duration-500 group-hover:scale-105"
                   />
 
-                  {/* Image Overlay */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
                     <span className="text-white font-bold text-lg tracking-wide">
                       View Project
@@ -393,19 +530,17 @@ export default function Projects() {
 
               {/* Buttons */}
               <div className="mt-auto flex flex-wrap gap-4">
-                {/* GitHub Button */}
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 cursor-pointer"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 cursor-pointer"
                 >
                   <FaGithub />
 
                   <span>Source Code</span>
                 </a>
 
-                {/* Live Preview Button */}
                 {project.live && (
                   <a
                     href={project.live}
