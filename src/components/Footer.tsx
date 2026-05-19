@@ -8,6 +8,7 @@ import {
   FaArrowUp,
   FaHeart,
   FaMapMarkerAlt,
+  FaCode,
 } from "react-icons/fa";
 
 import { motion } from "framer-motion";
@@ -42,47 +43,148 @@ export default function Footer() {
     { label: "About", href: "#hero" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
+    { label: "Education", href: "#education" },
     { label: "Articles", href: "#articles" },
     { label: "Contact", href: "#contact" },
   ];
 
   return (
     <footer className="relative overflow-hidden bg-[#050816] border-t border-white/10 text-white">
+      {/* ================= ENHANCED BACKGROUND ================= */}
 
-      {/* Animated Background Glow */}
+      {/* Animated Gradient Orbs */}
       <motion.div
         animate={{
+          x: [0, 120, 0],
+          y: [0, 60, 0],
           scale: [1, 1.2, 1],
-          opacity: [0.12, 0.22, 0.12],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-0 left-0 w-[420px] h-[420px] bg-cyan-500/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -100, 0],
+          y: [0, 80, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, 70, 0],
+          y: [0, -90, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 w-[350px] h-[350px] bg-purple-500/10 rounded-full blur-3xl"
+      />
+
+      {/* Aurora Glow */}
+      <motion.div
+        animate={{
+          opacity: [0.2, 0.35, 0.2],
+          rotate: [0, 6, -6, 0],
+        }}
+        transition={{
+          duration: 16,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 blur-3xl"
+      />
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-[0.035]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      {/* Animated Radial Glow */}
+      <motion.div
+        animate={{
+          opacity: [0.15, 0.3, 0.15],
         }}
         transition={{
           duration: 8,
           repeat: Infinity,
         }}
-        className="absolute top-0 left-0 w-80 h-80 bg-cyan-500/20 blur-3xl rounded-full"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08),transparent_60%)]"
       />
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(18)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute rounded-full bg-cyan-400/30"
+            style={{
+              width: `${(i % 4) + 3}px`,
+              height: `${(i % 4) + 3}px`,
+              left: `${(i * 7) % 100}%`,
+              top: `${(i * 11) % 100}%`,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              opacity: [0, 1, 0],
+              scale: [1, 1.4, 1],
+            }}
+            transition={{
+              duration: 5 + (i % 5),
+              repeat: Infinity,
+              delay: i * 0.4,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating Tech Icons */}
+      <motion.div
+        animate={{
+          y: [0, -12, 0],
+          rotate: [0, 8, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+        }}
+        className="hidden lg:flex absolute top-20 left-16 w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl items-center justify-center text-cyan-400"
+      >
+        <FaCode className="text-2xl" />
+      </motion.div>
 
       <motion.div
         animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.08, 0.18, 0.08],
+          y: [0, 10, 0],
+          rotate: [0, -8, 0],
         }}
         transition={{
-          duration: 10,
+          duration: 7,
           repeat: Infinity,
         }}
-        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full"
-      />
+        className="hidden lg:flex absolute bottom-24 right-20 w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl items-center justify-center text-blue-400"
+      >
+        <FaGithub className="text-2xl" />
+      </motion.div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
-      </div>
+      {/* ================= MAIN FOOTER ================= */}
 
-      {/* Main Footer */}
       <div className="relative z-10 px-6 md:px-10 py-16">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
           {/* Brand */}
           <div>
             <motion.h3
@@ -218,7 +320,7 @@ export default function Footer() {
             {/* CTA */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="mt-8 rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-5"
+              className="mt-8 rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-5 backdrop-blur-xl"
             >
               <h5 className="font-semibold text-white mb-2">
                 Looking for a developer?
@@ -240,10 +342,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* ================= BOTTOM BAR ================= */}
+
       <div className="relative z-10 border-t border-white/10 backdrop-blur-md bg-white/[0.02]">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
-
           {/* Left */}
           <div className="text-center lg:text-left">
             <p className="text-sm text-gray-500">
@@ -292,12 +394,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Floating Bottom Line */}
+      {/* Bottom Gradient Line */}
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
 
       {/* Tiny Signature */}
       <div className="absolute bottom-2 right-4 hidden md:flex items-center gap-1 text-[10px] text-gray-600">
-        Made with <FaHeart className="text-red-400" /> using React & Next.js
+        Made with <FaHeart className="text-red-400 animate-pulse" /> using React
+        & Next.js
       </div>
     </footer>
   );
