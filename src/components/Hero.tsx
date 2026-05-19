@@ -216,12 +216,12 @@ export default function Hero() {
             </p>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black leading-none tracking-tight">
-              <span className="text-white">Nethmi</span>
+              <span className="text-white">NETHMI</span>
 
               <br />
 
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                Rajapaksha
+                RAJAPAKSHA
               </span>
             </h1>
           </motion.div>
