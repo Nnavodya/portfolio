@@ -87,25 +87,46 @@ export default function Articles() {
       transition={{ duration: 0.6 }}
       className="relative overflow-hidden px-4 sm:px-6 md:px-10 py-24 text-white bg-[#050816] scroll-mt-24"
     >
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-500/10 blur-3xl rounded-full" />
+      {/* ================= BACKGROUND ANIMATION ================= */}
 
-      {/* Animated Grid */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
-      </div>
-
-      {/* Floating Blur */}
+      {/* Animated Gradient Orbs */}
       <motion.div
         animate={{
-          y: [0, -20, 0],
-          opacity: [0.2, 0.35, 0.2],
+          x: [0, 100, 0],
+          y: [0, 50, 0],
         }}
         transition={{
-          duration: 8,
+          duration: 18,
           repeat: Infinity,
+          ease: "easeInOut",
         }}
-        className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500/10 blur-3xl rounded-full"
+        className="absolute top-10 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -120, 0],
+          y: [0, 80, 0],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, 60, 0],
+          y: [0, -80, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
       />
 
       {/* Section Header */}

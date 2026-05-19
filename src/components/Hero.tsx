@@ -103,6 +103,48 @@ export default function Hero() {
       variants={container}
       className="relative min-h-screen overflow-hidden bg-[#050816] text-white px-6 md:px-12 flex items-center justify-center"
     >
+      {/* ================= BACKGROUND ANIMATION ================= */}
+
+      {/* Animated Gradient Orbs */}
+      <motion.div
+        animate={{
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-10 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -120, 0],
+          y: [0, 80, 0],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, 60, 0],
+          y: [0, -80, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
+      />
+
       {/* Mouse Glow */}
       <motion.div
         style={{ x: smoothX, y: smoothY }}
@@ -113,31 +155,6 @@ export default function Hero() {
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
       </div>
-
-      {/* Background Lights */}
-      <motion.div
-        animate={{ opacity: [0.15, 0.3, 0.15] }}
-        transition={{ duration: 6, repeat: Infinity }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/10 blur-3xl rounded-full"
-      />
-
-      <motion.div
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 7, repeat: Infinity }}
-        className="absolute top-20 left-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
-      />
-
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.08, 0.18, 0.08],
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
-      />
 
       <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center relative z-10 py-24">
         {/* LEFT CONTENT */}
