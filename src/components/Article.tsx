@@ -129,6 +129,45 @@ export default function Articles() {
         className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
       />
 
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-[0.05]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+
+        {/* Glow Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent" />
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            initial={{
+              x: (i * 120) % 1400,
+              y: (i * 70) % 900,
+              opacity: 0,
+            }}
+            animate={{
+              y: [
+                (i * 70) % 900,
+                ((i * 70) % 900) - 80,
+                (i * 70) % 900,
+              ],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 6 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ================= CONTENT ================= */}
+
       {/* Section Header */}
       <div className="relative z-10 text-center mb-16">
         <motion.div

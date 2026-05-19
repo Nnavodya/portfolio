@@ -489,6 +489,33 @@ export default function Projects() {
               whileHover={{ y: -10 }}
               className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
             >
+              {/* Animated Background Orbs */}
+              <motion.div
+                animate={{
+                  x: [0, 50, 0],
+                  y: [0, 30, 0],
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-5 left-5 w-40 h-40 bg-cyan-500/15 rounded-full blur-2xl opacity-30"
+              />
+
+              <motion.div
+                animate={{
+                  x: [0, -50, 0],
+                  y: [0, -40, 0],
+                }}
+                transition={{
+                  duration: 15,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-5 right-5 w-48 h-48 bg-blue-500/15 rounded-full blur-2xl opacity-20"
+              />
+
               {/* Glow */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
 

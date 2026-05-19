@@ -1,25 +1,3 @@
-/*
-export default function Skills() {
-  const skills = ["Next.js", "React", "Tailwind", "TypeScript"];
-
-  return (
-    <section className="p-10">
-      <h2 className="text-3xl font-bold">Skills</h2>
-
-      <div className="grid grid-cols-2 gap-4 mt-6">
-        {skills.map((skill) => (
-          <div
-            key={skill}
-            className="p-4 rounded bg-gray-200 dark:bg-gray-800"
-          >
-            {skill}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}*/
-
 "use client";
 
 import {
@@ -151,6 +129,43 @@ export default function Skills() {
         className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
       />
 
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-[0.05]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+
+        {/* Glow Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent" />
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            initial={{
+              x: (i * 120) % 1400,
+              y: (i * 70) % 900,
+              opacity: 0,
+            }}
+            animate={{
+              y: [
+                (i * 70) % 900,
+                ((i * 70) % 900) - 80,
+                (i * 70) % 900,
+              ],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 6 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -189,7 +204,7 @@ export default function Skills() {
               key={group.title}
               variants={item}
               whileHover={{ y: -8 }}
-              className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-br from-[#161b2e] to-[#111827] backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
+              className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-br from-[#161b2e]/90 to-[#111827]/90 backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
             >
               {/* Animated Glow */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />

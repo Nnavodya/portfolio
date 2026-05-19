@@ -6,11 +6,10 @@ import {
   FaLinkedin,
   FaInstagram,
   FaReact,
-  FaNodeJs,
 } from "react-icons/fa";
 
 import { SiMongodb } from "react-icons/si";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Hero() {
   const roles = [
@@ -24,7 +23,20 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typing Effect
+  // ================= PARTICLES =================
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 35 }, (_, i) => ({
+        id: i,
+        x: (i * 137) % 100,
+        y: (i * 89) % 100,
+        duration: 12 + (i % 10),
+        delay: (i % 5) * 0.5,
+      })),
+    []
+  );
+
+  // ================= TYPING EFFECT =================
   useEffect(() => {
     const currentRole = roles[roleIndex];
 
@@ -48,7 +60,7 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, roleIndex]);
 
-  // Mouse Glow
+  // ================= MOUSE GLOW =================
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -75,6 +87,7 @@ export default function Hero() {
     };
   }, [mouseX, mouseY]);
 
+  // ================= ANIMATIONS =================
   const container = {
     hidden: {},
     show: {
@@ -103,9 +116,14 @@ export default function Hero() {
       variants={container}
       className="relative min-h-screen overflow-hidden bg-[#050816] text-white px-6 md:px-12 flex items-center justify-center"
     >
-      {/* ================= BACKGROUND ANIMATION ================= */}
+      {/* ================= BACKGROUND ================= */}
 
-      {/* Animated Gradient Orbs */}
+      {/* Animated Grid */}
+      <div className="absolute inset-0 opacity-[0.04]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      {/* Aurora Background */}
       <motion.div
         animate={{
           x: [0, 100, 0],
@@ -145,16 +163,39 @@ export default function Hero() {
         className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
       />
 
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {particles.map((particle) => (
+          <motion.span
+            key={particle.id}
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            initial={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              opacity: 0,
+            }}
+            animate={{
+              y: [0, -120, 0],
+              opacity: [0, 1, 0],
+              scale: [1, 1.8, 1],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Mouse Glow */}
       <motion.div
         style={{ x: smoothX, y: smoothY }}
         className="pointer-events-none absolute w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-3xl z-0"
       />
 
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
-      </div>
+      {/* ================= CONTENT ================= */}
 
       <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center relative z-10 py-24">
         {/* LEFT CONTENT */}
@@ -169,18 +210,13 @@ export default function Hero() {
           </motion.div>
 
           {/* Heading */}
-          <motion.div
-            variants={item}
-            className="space-y-5"
-          >
+          <motion.div variants={item} className="space-y-5">
             <p className="text-lg font-semibold tracking-[0.3em] uppercase text-blue-400">
               Hi, I&apos;m
             </p>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black leading-none tracking-tight">
-              <span className="text-white">
-                Nethmi
-              </span>
+              <span className="text-white">Nethmi</span>
 
               <br />
 
@@ -191,10 +227,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Typing Role */}
-          <motion.div
-            variants={item}
-            className="mt-7 h-12"
-          >
+          <motion.div variants={item} className="mt-7 h-12">
             <h2 className="text-2xl sm:text-3xl font-semibold text-gray-300">
               {displayText}
               <span className="text-cyan-400 animate-pulse">|</span>
@@ -207,8 +240,9 @@ export default function Hero() {
             className="mt-7 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg leading-9 text-gray-400"
           >
             Aspiring Full-Stack Developer dedicated to creating scalable web
-applications with intuitive user experiences and efficient backend systems.
-Continuously learning modern technologies and software engineering practices.
+            applications with intuitive user experiences and efficient backend
+            systems. Continuously learning modern technologies and software
+            engineering practices.
           </motion.p>
 
           {/* Tech Stack */}
@@ -293,15 +327,29 @@ Continuously learning modern technologies and software engineering practices.
             transition={{ duration: 4, repeat: Infinity }}
             className="relative"
           >
-            {/* Floating Icons */}
+            {/* Floating React Icon */}
             <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={{
+                y: [0, -15, 0],
+                rotate: [0, 360],
+              }}
+              transition={{
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                },
+                rotate: {
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                },
+              }}
               className="hidden lg:flex absolute -top-3 -left-3 w-16 h-16 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-xl items-center justify-center text-cyan-400 text-3xl"
             >
               <FaReact />
             </motion.div>
 
+            {/* Floating MongoDB Icon */}
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
@@ -312,6 +360,17 @@ Continuously learning modern technologies and software engineering practices.
 
             {/* Glow */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 blur-2xl opacity-30 scale-110"></div>
+
+            {/* Ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute inset-[-15px] rounded-full border border-dashed border-cyan-400/20"
+            />
 
             {/* Image Ring */}
             <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-md"></div>
