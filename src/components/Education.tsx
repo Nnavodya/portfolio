@@ -99,31 +99,46 @@ export default function Education() {
         className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
       />
 
+      {/* Extra Floating Glow */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-3xl"
+      />
+
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
       </div>
 
-      {/* Floating Particles */}
+      {/* Animated Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <motion.span
             key={i}
-            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
-            initial={{
-              x: `${(i * 4) % 100}%`,
-              y: `${(i * 7) % 100}%`,
-              opacity: 0,
+            className="absolute rounded-full bg-cyan-400/40"
+            style={{
+              width: `${(i % 4) + 2}px`,
+              height: `${(i % 4) + 2}px`,
+              left: `${(i * 13) % 100}%`,
+              top: `${(i * 17) % 100}%`,
             }}
             animate={{
-              y: ["0%", "-40%", "0%"],
+              y: [0, -50, 0],
               opacity: [0, 1, 0],
+              scale: [1, 1.4, 1],
             }}
             transition={{
-              duration: 5 + (i % 5),
+              duration: 6 + (i % 5),
               repeat: Infinity,
-              delay: i * 0.3,
-              ease: "easeInOut",
+              delay: i * 0.4,
             }}
           />
         ))}
@@ -131,25 +146,27 @@ export default function Education() {
 
       {/* Animated Lines */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             initial={{
               opacity: 0,
-              x: `${i * 20}%`,
-              y: "-10%",
+              x: -200,
             }}
             animate={{
-              y: ["0%", "120%"],
-              opacity: [0, 0.5, 0],
+              opacity: [0, 0.3, 0],
+              x: ["0%", "120%"],
             }}
             transition={{
               duration: 10 + i * 2,
               repeat: Infinity,
-              delay: i * 1.5,
               ease: "linear",
+              delay: i,
             }}
-            className="absolute w-[1px] h-40 bg-gradient-to-b from-cyan-400/0 via-cyan-400/40 to-cyan-400/0"
+            className="absolute h-[1px] w-64 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"
+            style={{
+              top: `${10 + i * 10}%`,
+            }}
           />
         ))}
       </div>
@@ -214,8 +231,18 @@ export default function Education() {
                   {/* Timeline Dot */}
                   <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 z-20">
                     <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.4)] border border-white/10"
+                      animate={{
+                        boxShadow: [
+                          "0 0 20px rgba(34,211,238,0.3)",
+                          "0 0 40px rgba(34,211,238,0.6)",
+                          "0 0 20px rgba(34,211,238,0.3)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                      }}
+                      className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center border border-white/10"
                     >
                       <Icon className="text-2xl text-white" />
                     </motion.div>
@@ -237,7 +264,7 @@ export default function Education() {
                       {/* Glow */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
 
-                      {/* Hover Border Glow */}
+                      {/* Animated Border Glow */}
                       <div className="absolute inset-0 rounded-3xl border border-cyan-400/0 group-hover:border-cyan-400/20 transition-all duration-500" />
 
                       {/* Mobile Icon */}
@@ -287,7 +314,7 @@ export default function Education() {
                               {item.achievements.map((achievement, i) => (
                                 <motion.div
                                   key={i}
-                                  whileHover={{ x: 5 }}
+                                  whileHover={{ x: 6 }}
                                   className="flex items-start gap-3 p-4 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-gray-300 leading-7"
                                 >
                                   <div className="mt-2 w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" />
