@@ -85,6 +85,66 @@ export default function Projects() {
     },
 
     {
+      title: "Care4Pets Pet Care Management System",
+
+      type: "Group Project",
+
+      role: "Frontend Developer",
+
+      duration: "2025 - 2026",
+
+      team: "5 Members",
+
+      featured: false,
+
+      description:
+        "A full-stack pet care management web application developed to streamline pet adoption, pet care services, appointment handling, and user management through an interactive and responsive platform.",
+
+      features: [
+        "Pet adoption management system",
+        "Appointment booking functionality",
+        "Responsive modern UI/UX design",
+        "Role-based user authentication",
+        "Pet service & care management",
+        "Admin dashboard & data handling",
+      ],
+
+      tech: [
+        "React",
+        "TypeScript",
+        "Spring Boot",
+        "PostgreSQL",
+        "Tailwind CSS",
+      ],
+
+      github:
+        "https://github.com/Nnavodya/Care4Pets.git",
+
+      live:
+        "https://github.com/Nnavodya/Care4Pets.git",
+
+      image: "/care4pets.png",
+
+      gradient:
+        "from-pink-500/20 via-rose-500/10 to-black/40",
+
+      border:
+        "hover:border-pink-400/40",
+
+      shadow:
+        "hover:shadow-pink-500/20",
+
+      icons: [
+        <FaReact key="react" />,
+        <SiTypescript key="ts" />,
+        <SiSpringboot key="spring" />,
+        <FaJava key="java" />,
+        <SiPostgresql key="pg" />,
+        <SiTailwindcss key="tailwind" />,
+      ],
+    },
+
+    {
       title: "Personal Portfolio Website",
 
       type: "Individual Project",
