@@ -57,86 +57,149 @@ export default function Education() {
       viewport={{ once: true }}
       className="relative overflow-hidden bg-[#050816] py-24 px-6 md:px-12 text-white"
     >
-      {/* ================= BACKGROUND ANIMATION ================= */}
+      {/* ================= ENHANCED BACKGROUND ANIMATION ================= */}
 
-      {/* Animated Gradient Orbs */}
+      {/* Main Animated Gradient Orbs */}
       <motion.div
         animate={{
-          x: [0, 100, 0],
-          y: [0, 50, 0],
+          x: [0, 120, 0],
+          y: [0, 60, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-10 left-10 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -140, 0],
+          y: [0, 90, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-blue-600/20 rounded-full blur-3xl"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, 80, 0],
+          y: [0, -100, 0],
+          scale: [1, 1.1, 1],
         }}
         transition={{
           duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-10 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
       />
 
+      {/* Aurora Glow Layer */}
       <motion.div
         animate={{
-          x: [0, -120, 0],
-          y: [0, 80, 0],
+          opacity: [0.15, 0.3, 0.15],
+          scale: [1, 1.08, 1],
         }}
         transition={{
-          duration: 22,
+          duration: 8,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_65%)]"
       />
 
-      <motion.div
-        animate={{
-          x: [0, 60, 0],
-          y: [0, -80, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
-      />
-
-      {/* Extra Floating Glow */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-3xl"
-      />
-
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]" />
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-[0.05]">
+        <motion.div
+          animate={{
+            backgroundPosition: ["0px 0px", "70px 70px"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:70px_70px]"
+        />
       </div>
 
-      {/* Animated Floating Particles */}
+      {/* Moving Light Beams */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(25)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              opacity: 0,
+              rotate: 25,
+              x: "-20%",
+            }}
+            animate={{
+              opacity: [0, 0.15, 0],
+              x: ["-20%", "120%"],
+            }}
+            transition={{
+              duration: 12 + i * 2,
+              repeat: Infinity,
+              ease: "linear",
+              delay: i * 2,
+            }}
+            className="absolute top-0 w-40 h-[120%] bg-gradient-to-b from-cyan-400/10 via-blue-500/10 to-transparent blur-3xl"
+          />
+        ))}
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(35)].map((_, i) => (
           <motion.span
             key={i}
             className="absolute rounded-full bg-cyan-400/40"
             style={{
               width: `${(i % 4) + 2}px`,
               height: `${(i % 4) + 2}px`,
-              left: `${(i * 13) % 100}%`,
-              top: `${(i * 17) % 100}%`,
+              left: `${(i * 7) % 100}%`,
+              top: `${(i * 11) % 100}%`,
             }}
             animate={{
-              y: [0, -50, 0],
+              y: [0, -80, 0],
+              x: [0, i % 2 === 0 ? 20 : -20, 0],
               opacity: [0, 1, 0],
-              scale: [1, 1.4, 1],
+              scale: [1, 1.8, 1],
             }}
             transition={{
-              duration: 6 + (i % 5),
+              duration: 6 + (i % 6),
+              repeat: Infinity,
+              delay: i * 0.25,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Animated Stars */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-white"
+            style={{
+              left: `${(i * 17) % 100}%`,
+              top: `${(i * 13) % 100}%`,
+            }}
+            animate={{
+              opacity: [0.2, 1, 0.2],
+              scale: [1, 1.8, 1],
+            }}
+            transition={{
+              duration: 2 + (i % 3),
               repeat: Infinity,
               delay: i * 0.4,
             }}
@@ -144,32 +207,18 @@ export default function Education() {
         ))}
       </div>
 
-      {/* Animated Lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{
-              opacity: 0,
-              x: -200,
-            }}
-            animate={{
-              opacity: [0, 0.3, 0],
-              x: ["0%", "120%"],
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              ease: "linear",
-              delay: i,
-            }}
-            className="absolute h-[1px] w-64 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"
-            style={{
-              top: `${10 + i * 10}%`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Bottom Glow */}
+      <motion.div
+        animate={{
+          opacity: [0.2, 0.35, 0.2],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-40 bg-cyan-500/10 blur-3xl"
+      />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* SECTION HEADER */}
@@ -263,9 +312,6 @@ export default function Education() {
                     >
                       {/* Glow */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
-
-                      {/* Animated Border Glow */}
-                      <div className="absolute inset-0 rounded-3xl border border-cyan-400/0 group-hover:border-cyan-400/20 transition-all duration-500" />
 
                       {/* Mobile Icon */}
                       <div className="md:hidden mb-6 w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
