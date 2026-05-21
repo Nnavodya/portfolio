@@ -18,7 +18,7 @@ export default function Education() {
       institution: "University of Kelaniya",
       degree: "BSc (Hons) in Software Engineering",
       duration: "2024 - 2027",
-      gpa: "Current GPA: 3.6",
+      gpa: "Current GPA: 3.68",
       description:
         "Currently pursuing a Software Engineering degree with a strong focus on full-stack development, software architecture, and modern web technologies.",
       coursework: [
