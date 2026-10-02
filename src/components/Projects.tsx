@@ -21,12 +21,226 @@ import {
   SiTypescript,
   SiNextdotjs,
   SiFramer,
+  SiMongodb,
+  SiExpress,
+  SiPrisma,
 } from "react-icons/si";
 
 export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const projects = [
+    {
+      title: "AI GitHub Codebase Assistant",
+
+      type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "Ongoing",
+
+      team: "Solo Project",
+
+      featured: true,
+
+      description:
+        "An ongoing RAG-based code Q&A tool where users can submit a GitHub repository and ask questions about its code. It uses code chunking, embeddings, vector search, and Groq to provide answers with file references, alongside a streaming chat interface and automatically generated documentation.",
+
+      features: [
+        "Ask natural-language questions about a GitHub repository",
+        "Retrieve relevant code with chunking, embeddings, and vector search",
+        "Generate Groq-powered answers with file references",
+        "Next.js chat interface with streaming responses",
+        "Automatically generate project documentation",
+      ],
+
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Groq API",
+        "GitHub API (Octokit)",
+        "Vector Search",
+        "Tailwind CSS",
+      ],
+
+      github: "https://github.com/Nnavodya/codebase-assistant",
+
+      live: "https://github.com/Nnavodya/codebase-assistant",
+
+      image: "/CodebaseAI.png",
+
+      gradient: "from-teal-500/20 via-cyan-500/10 to-black/40",
+
+      border: "hover:border-teal-400/40",
+
+      shadow: "hover:shadow-teal-500/20",
+
+      icons: [
+        <SiNextdotjs key="next" />,
+        <SiTypescript key="ts" />,
+        <SiTailwindcss key="tailwind" />,
+      ],
+    },
+
+    {
+      title: "FurniHub",
+
+      type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "2026",
+
+      team: "Solo Project",
+
+      featured: false,
+
+      description:
+        "A full-stack furniture e-commerce platform with product browsing, cart, wishlist, checkout, and order tracking. It includes secure JWT authentication, role-based customer and admin access, an admin dashboard, Cloudinary image management, and Google Gemini-powered room furniture recommendations.",
+
+      features: [
+        "Product browsing, cart, wishlist, checkout, and order tracking",
+        "JWT authentication with bcrypt password hashing",
+        "Role-based access for customers and administrators",
+        "Admin dashboard for product CRUD, order management, and sales statistics",
+        "Cloudinary image management",
+        "Google Gemini room furniture recommendations",
+      ],
+
+      tech: [
+        "React.js",
+        "Vite",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "JWT",
+        "Cloudinary",
+        "Google Gemini",
+      ],
+
+      github: "https://github.com/Nnavodya/MERN-furniture-shop",
+
+      live: "https://github.com/Nnavodya/MERN-furniture-shop",
+
+      image: "/furnihub.png",
+
+      gradient: "from-amber-500/20 via-orange-500/10 to-black/40",
+
+      border: "hover:border-amber-400/40",
+
+      shadow: "hover:shadow-amber-500/20",
+
+      icons: [
+        <FaReact key="react" />,
+        <SiMongodb key="mongo" />,
+        <SiExpress key="express" />,
+        <SiTailwindcss key="tailwind" />,
+      ],
+    },
+
+    {
+      title: "ContentFlow AI",
+
+      type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "2026",
+
+      team: "Solo Project",
+
+      featured: false,
+
+      description:
+        "A full-stack AI content generator that produces blog posts, articles, social media posts, emails, product descriptions, and captions with customizable tone, length, keywords, and target audience — with a searchable generation history.",
+
+      features: [
+        "AI-powered generation of 6 content types with tone & length controls",
+        "Authentication via Clerk (email/password + Google OAuth)",
+        "Dashboard with generation stats and recent activity",
+        "Searchable, filterable content history",
+        "Account settings with real profile & password management",
+        "Persisted dark mode across the app",
+      ],
+
+      tech: [
+        "Next.js 16",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "Neon PostgreSQL",
+        "Groq AI",
+        "Clerk",
+      ],
+
+      github: "https://github.com/Nnavodya/AI-Content-Generator",
+
+      live: "https://github.com/Nnavodya/AI-Content-Generator",
+
+      image: "/contentflow-ai.png",
+
+      gradient: "from-cyan-500/20 via-blue-500/10 to-black/40",
+
+      border: "hover:border-cyan-400/40",
+
+      shadow: "hover:shadow-cyan-500/20",
+
+      icons: [
+        <SiNextdotjs key="next" />,
+        <SiTypescript key="ts" />,
+        <SiTailwindcss key="tailwind" />,
+        <SiPrisma key="prisma" />,
+        <SiPostgresql key="pg" />,
+      ],
+    },
+
+    {
+      title: "MERN Student Management System",
+
+      type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "2026",
+
+      team: "Solo Project",
+
+      featured: false,
+
+      description:
+        "A full-stack student management system built on the MERN stack, handling student records with a themed dashboard and data export functionality.",
+
+      features: [
+        "MongoDB Atlas cloud database integration",
+        "RESTful API routing with Express",
+        "CSV export of student records",
+        "Themed, responsive navigation bar",
+        "CRUD operations for student data",
+      ],
+
+      tech: ["React", "Node.js", "Express", "MongoDB Atlas"],
+
+      github: "https://github.com/Nnavodya/MERN-StudentManagementSystem",
+
+      live: "https://github.com/Nnavodya/MERN-StudentManagementSystem",
+
+      image: "/mern-student-management.png",
+
+      gradient: "from-emerald-500/20 via-teal-500/10 to-black/40",
+
+      border: "hover:border-emerald-400/40",
+
+      shadow: "hover:shadow-emerald-500/20",
+
+      icons: [
+        <FaReact key="react" />,
+        <SiMongodb key="mongo" />,
+        <SiExpress key="express" />,
+      ],
+    },
+
     {
       title: "BookFair Stall Reservation System",
 
@@ -38,7 +252,7 @@ export default function Projects() {
 
       team: "5 Members",
 
-      featured: true,
+      featured: false,
 
       description:
         "A comprehensive full-stack web application developed for managing stall reservations, event layouts, vendor operations, QR-based entry passes, and analytics for large-scale book fairs.",
@@ -63,7 +277,6 @@ export default function Projects() {
 
       github: "https://github.com/Nnavodya/SA_PROJECT_V1",
 
-      // Add real deployed link here if available
       live: "https://github.com/Nnavodya/SA_PROJECT_V1",
 
       image: "/gproject1.png",
@@ -120,7 +333,6 @@ export default function Projects() {
 
       github: "https://github.com/Nnavodya/Care4Pets",
 
-      // Add deployed link later if available
       live: "https://github.com/Nnavodya/Care4Pets",
 
       image: "/care4pets.png",
@@ -166,16 +378,10 @@ export default function Projects() {
         "Optimized for desktop & mobile",
       ],
 
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Framer Motion",
-      ],
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
 
       github: "https://github.com/Nnavodya",
 
-      // Replace with Vercel URL after deployment
       live: "https://github.com/Nnavodya",
 
       image: "/iproject1.png",
@@ -199,7 +405,7 @@ export default function Projects() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % projects.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [projects.length]);
@@ -294,8 +500,8 @@ export default function Projects() {
             key={i}
             className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
             initial={{
-              x: Math.random() * 1500,
-              y: Math.random() * 1000,
+              x: (i * 53.3) % 1500,
+              y: (i * 37.1) % 1000,
               opacity: 0,
             }}
             animate={{
@@ -303,9 +509,9 @@ export default function Projects() {
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: 6 + Math.random() * 6,
+              duration: 6 + (i % 6),
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: (i % 10) * 0.5,
             }}
           />
         ))}
@@ -499,6 +705,17 @@ export default function Projects() {
               <p className="text-gray-300 leading-8 mb-6">
                 {project.description}
               </p>
+
+              <div className="mb-6 flex flex-wrap gap-2" aria-label="Technologies used">
+                {project.tech.map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-sm text-gray-300"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
 
               {/* Buttons */}
               <div className="mt-auto flex flex-wrap gap-4">
