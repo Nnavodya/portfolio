@@ -83,6 +83,48 @@ export default function Projects() {
     },
 
     {
+      title: "LankaTrails",
+
+      type: "Individual Project",
+
+      role: "Mobile App Developer",
+
+      duration: "June 2026 - Present",
+
+      team: "Solo Project",
+
+      featured: false,
+
+      description:
+        "A cross-platform travel guide app for Sri Lankan tourism with category filtering, search, and a favorites system using persistent local storage. It also integrates GPS location services and Google Maps navigation with real-time distance calculations to attractions, along with a multi-screen layout and clean component architecture.",
+
+      features: [
+        "Category-based travel discovery and searching",
+        "Favorites system with persistent local storage",
+        "GPS location services and Google Maps navigation",
+        "Real-time distance calculation using the Haversine formula",
+        "Multi-screen app with file-based routing and tab navigation",
+        "Clean component architecture using React Hooks",
+      ],
+
+      tech: ["React Native", "Expo", "JavaScript", "Google Maps", "AsyncStorage"],
+
+      github: "https://github.com/Nnavodya/LankaTrails",
+
+      live: "https://github.com/Nnavodya/LankaTrails",
+
+      image: "/Lankatrails.jpeg",
+
+      gradient: "from-green-500/20 via-emerald-500/10 to-black/40",
+
+      border: "hover:border-green-400/40",
+
+      shadow: "hover:shadow-green-500/20",
+
+      icons: [<FaReact key="react" />, <FaGithub key="github" />],
+    },
+
+    {
       title: "FurniHub",
 
       type: "Individual Project",
