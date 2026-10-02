@@ -12,6 +12,8 @@ import {
   FaAws,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronDown,
+  FaChevronUp,
 } from "react-icons/fa";
 
 import {
@@ -26,8 +28,18 @@ import {
   SiPrisma,
 } from "react-icons/si";
 
+const INITIAL_VISIBLE = 6;
+
+const FILTERS = [
+  { label: "All", value: "All" },
+  { label: "Individual", value: "Individual Project" },
+  { label: "Group", value: "Group Project" },
+];
+
 export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [filter, setFilter] = useState("All");
+  const [showAll, setShowAll] = useState(false);
 
   const projects = [
     {
@@ -74,6 +86,58 @@ export default function Projects() {
       border: "hover:border-teal-400/40",
 
       shadow: "hover:shadow-teal-500/20",
+
+      icons: [
+        <SiNextdotjs key="next" />,
+        <SiTypescript key="ts" />,
+        <SiTailwindcss key="tailwind" />,
+      ],
+    },
+
+    {
+      title: "GitHub Codebase Assistant",
+
+      type: "Individual Project",
+
+      role: "Full Stack Developer",
+
+      duration: "Ongoing",
+
+      team: "Solo Project",
+
+      featured: false,
+
+      description:
+        "Developing a web app where users paste a GitHub repository link and ask natural-language questions about its code. The project implements a RAG pipeline using the GitHub API, code chunking, embeddings, and vector search, and uses Groq to answer with file references.",
+
+      features: [
+        "Paste a GitHub repo link and ask natural-language questions",
+        "RAG pipeline with GitHub API, chunking, embeddings, and vector search",
+        "Groq-powered answers with file references",
+        "Next.js chat interface with streaming responses",
+        "Auto-generated documentation for explored repositories",
+      ],
+
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Groq API",
+        "GitHub API (Octokit)",
+        "Vector Search",
+        "Tailwind CSS",
+      ],
+
+      github: "https://github.com/Nnavodya/codebase-assistant.git",
+
+      live: "https://github.com/Nnavodya/codebase-assistant.git",
+
+      image: "/CodebaseAI.jpeg",
+
+      gradient: "from-sky-500/20 via-cyan-500/10 to-black/40",
+
+      border: "hover:border-sky-400/40",
+
+      shadow: "hover:shadow-sky-500/20",
 
       icons: [
         <SiNextdotjs key="next" />,
@@ -462,27 +526,22 @@ export default function Projects() {
 
   const goToSlide = (index: number) => setCurrentSlide(index);
 
-  const container = {
-    hidden: {},
+  // Filter + Show more logic
+  const filteredProjects =
+    filter === "All"
+      ? projects
+      : projects.filter((p) => p.type === filter);
 
-    show: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+  const visibleProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, INITIAL_VISIBLE);
+
+  const handleFilter = (value: string) => {
+    setFilter(value);
+    setShowAll(false);
   };
 
-  const item = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-    },
-
-    show: {
-      opacity: 1,
-      y: 0,
-    },
-  };
+  const MAX_TECH_CHIPS = 4;
 
   return (
     <motion.section
@@ -564,7 +623,7 @@ export default function Projects() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <motion.p
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -595,22 +654,22 @@ export default function Projects() {
           </motion.p>
         </div>
 
-        {/* ================= FEATURED PROJECT SLIDER ================= */}
+        {/* ================= FEATURED PROJECT SLIDER (NARROWER) ================= */}
 
         <motion.div
           layout
-          className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl mb-14"
+          className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl mb-10"
         >
           {/* Image */}
           <div className="relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
-                key={projects[currentSlide].image}
+                key={projects[currentSlide].image + currentSlide}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6 }}
-                className="w-full h-72 sm:h-[500px] relative"
+                className="w-full h-44 sm:h-56 md:h-64 relative"
               >
                 <Image
                   src={projects[currentSlide].image}
@@ -625,31 +684,31 @@ export default function Projects() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/60 to-transparent" />
 
             {projects[currentSlide].featured && (
-              <div className="absolute top-6 left-6 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
+              <div className="absolute top-4 left-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
                 Featured Project
               </div>
             )}
           </div>
 
           {/* Content */}
-          <div className="relative p-8 md:p-12">
-            <h3 className="text-3xl md:text-5xl font-black leading-tight text-white max-w-4xl">
+          <div className="relative px-6 pb-6 pt-2 md:px-8 md:pb-8">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-black leading-tight text-white">
               {projects[currentSlide].title}
             </h3>
 
-            <p className="mt-6 text-gray-300 leading-8 text-base md:text-lg max-w-3xl">
+            <p className="mt-3 text-gray-300 leading-7 text-sm line-clamp-3 max-w-3xl">
               {projects[currentSlide].description}
             </p>
 
             {/* Buttons */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-5 flex flex-wrap gap-3">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 href={projects[currentSlide].github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
               >
                 View Source Code
                 <FaGithub />
@@ -661,7 +720,7 @@ export default function Projects() {
                 href={projects[currentSlide].live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl text-sm text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
               >
                 Live Preview
                 <FaExternalLinkAlt className="text-xs" />
@@ -673,7 +732,8 @@ export default function Projects() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={prevSlide}
-            className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+            aria-label="Previous project"
+            className="absolute left-4 top-24 sm:top-28 md:top-32 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
           >
             <FaChevronLeft />
           </motion.button>
@@ -681,18 +741,20 @@ export default function Projects() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={nextSlide}
-            className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+            aria-label="Next project"
+            className="absolute right-4 top-24 sm:top-28 md:top-32 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
           >
             <FaChevronRight />
           </motion.button>
         </motion.div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-3 mb-16">
+        <div className="flex justify-center gap-3 mb-14">
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
+              aria-label={`Go to project ${index + 1}`}
               className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
                   ? "w-10 h-3 bg-cyan-400"
@@ -702,94 +764,142 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* ================= PROJECT GRID ================= */}
+        {/* ================= FILTER TABS ================= */}
+
+        <div className="flex justify-center gap-3 mb-10">
+          {FILTERS.map((f) => (
+            <button
+              key={f.value}
+              onClick={() => handleFilter(f.value)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all duration-300 ${
+                filter === f.value
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-600 border-transparent text-white shadow-lg shadow-cyan-500/20"
+                  : "border-white/10 bg-white/5 text-gray-300 hover:border-cyan-400/40 hover:text-cyan-300"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        {/* ================= PROJECT GRID (COMPACT) ================= */}
 
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={item}
-              transition={{ duration: 0.5 }}
-              whileHover={{ y: -10 }}
-              className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-8 transition-all duration-500 hover:scale-[1.02] ${project.border} hover:shadow-2xl ${project.shadow}`}
-            >
-              {/* Glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent" />
-
-              {/* Image */}
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative mb-6 overflow-hidden rounded-2xl border border-white/10 block"
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project) => (
+              <motion.div
+                layout
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ y: -8 }}
+                className={`group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.gradient} backdrop-blur-xl p-5 transition-colors duration-500 ${project.border} hover:shadow-2xl ${project.shadow}`}
               >
-                <Image
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  width={800}
-                  height={500}
-                  className="w-full h-52 md:h-60 object-cover transition duration-500 group-hover:scale-105"
-                />
-              </a>
+                {/* Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
-              {/* Title */}
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition">
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-300 leading-8 mb-6">
-                {project.description}
-              </p>
-
-              <div className="mb-6 flex flex-wrap gap-2" aria-label="Technologies used">
-                {project.tech.map((technology) => (
-                  <span
-                    key={technology}
-                    className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-sm text-gray-300"
-                  >
-                    {technology}
-                  </span>
-                ))}
-              </div>
-
-              {/* Buttons */}
-              <div className="mt-auto flex flex-wrap gap-4">
-                {/* SOURCE CODE BUTTON */}
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
+                {/* Image */}
+                <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 font-semibold text-white transition hover:shadow-lg hover:shadow-cyan-500/30"
+                  className="relative mb-4 overflow-hidden rounded-2xl border border-white/10 block"
                 >
-                  <FaGithub />
-                  <span>Source Code</span>
-                </motion.a>
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    width={800}
+                    height={500}
+                    className="w-full h-40 object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute top-3 left-3 rounded-full bg-black/60 backdrop-blur px-3 py-1 text-[11px] font-semibold text-cyan-300 border border-white/10">
+                    {project.type === "Group Project" ? "Group" : "Individual"}
+                  </span>
+                </a>
 
-                {/* LIVE PREVIEW BUTTON */}
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  href={project.live || project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
+                {/* Title */}
+                <h3 className="text-lg font-bold mb-2 group-hover:text-cyan-400 transition line-clamp-1">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-300 text-sm leading-6 mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Tech chips (limited) */}
+                <div
+                  className="mb-5 flex flex-wrap gap-2"
+                  aria-label="Technologies used"
                 >
-                  <FaExternalLinkAlt />
-                  <span>Live Preview</span>
-                </motion.a>
-              </div>
-            </motion.div>
-          ))}
+                  {project.tech.slice(0, MAX_TECH_CHIPS).map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-xs text-gray-300"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                  {project.tech.length > MAX_TECH_CHIPS && (
+                    <span className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-300">
+                      +{project.tech.length - MAX_TECH_CHIPS}
+                    </span>
+                  )}
+                </div>
+
+                {/* Buttons */}
+                <div className="mt-auto flex flex-wrap gap-3">
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:shadow-lg hover:shadow-cyan-500/30"
+                  >
+                    <FaGithub />
+                    <span>Source</span>
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    href={project.live || project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    <FaExternalLinkAlt className="text-xs" />
+                    <span>Live</span>
+                  </motion.a>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
+
+        {/* ================= SHOW MORE / LESS ================= */}
+
+        {filteredProjects.length > INITIAL_VISIBLE && (
+          <div className="mt-12 flex justify-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-7 py-3 text-sm font-semibold text-cyan-300 backdrop-blur-xl transition hover:bg-cyan-500 hover:text-white"
+            >
+              {showAll
+                ? "Show Less"
+                : `Show More (${filteredProjects.length - INITIAL_VISIBLE})`}
+              {showAll ? <FaChevronUp /> : <FaChevronDown />}
+            </motion.button>
+          </div>
+        )}
       </div>
     </motion.section>
   );
