@@ -42,3 +42,41 @@ html:not(.dark) body {
   background: #ffffff;
   color: #0f172a;
 }
+
+.skills-marquee-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.skills-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: skills-marquee var(--marquee-duration, 36s) linear infinite;
+}
+
+.skills-marquee-reverse {
+  animation-direction: reverse;
+}
+
+.skills-marquee-viewport:hover .skills-marquee-track,
+.skills-marquee-viewport:focus-within .skills-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes skills-marquee {
+  to {
+    transform: translateX(-33.333333%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none;
+    scrollbar-width: thin;
+  }
+
+  .skills-marquee-track {
+    animation: none;
+  }
+}
