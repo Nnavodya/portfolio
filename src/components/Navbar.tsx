@@ -224,9 +224,9 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`w-10 h-10 rounded-xl flex items-center justify-center transition duration-300 ${
-                theme === "light"
-                  ? "border border-gray-300 bg-white text-gray-800"
-                  : "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                isDarkMode
+                  ? "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                  : "border border-gray-300 bg-white text-gray-800"
               }`}
             >
               {isOpen ? (
@@ -248,9 +248,9 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             className={`lg:hidden border-t backdrop-blur-2xl ${
-              theme === "light"
-                ? "border-gray-200 bg-white/95"
-                : "border-white/10 bg-[#050816]/95"
+              isDarkMode
+                ? "border-white/10 bg-[#050816]/95"
+                : "border-gray-200 bg-white/95"
             }`}
           >
             <div className="px-6 py-6 flex flex-col gap-3">
@@ -260,9 +260,9 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className={`rounded-xl px-4 py-3 transition-all duration-300 ${
-                    theme === "light"
-                      ? "border border-gray-200 bg-gray-50 text-gray-700 hover:text-cyan-600 hover:bg-cyan-50"
-                      : "border border-white/5 bg-white/5 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/20"
+                    isDarkMode
+                      ? "border border-white/5 bg-white/5 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/20"
+                      : "border border-gray-200 bg-gray-50 text-gray-700 hover:text-cyan-600 hover:bg-cyan-50"
                   }`}
                 >
                   {link.name}
@@ -285,9 +285,9 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                    theme === "light"
-                      ? "border border-gray-200 bg-gray-100 text-gray-700"
-                      : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20"
+                    isDarkMode
+                      ? "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20"
+                      : "border border-gray-200 bg-gray-100 text-gray-700"
                   }`}
                 >
                   <FaGithub />
@@ -298,9 +298,9 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                    theme === "light"
-                      ? "border border-gray-200 bg-gray-100 text-gray-700"
-                      : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20"
+                    isDarkMode
+                      ? "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20"
+                      : "border border-gray-200 bg-gray-100 text-gray-700"
                   }`}
                 >
                   <FaLinkedin />
