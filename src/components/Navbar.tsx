@@ -29,6 +29,8 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const isDarkMode = mounted ? theme === "dark" : true;
+
   useEffect(() => {
     setMounted(true);
 
@@ -61,12 +63,12 @@ export default function Navbar() {
         transition-all duration-500
         ${
           scrolled
-            ? theme === "light"
-              ? "backdrop-blur-xl bg-white/80 border-b border-gray-200 shadow-lg"
-              : "backdrop-blur-xl bg-[#050816]/80 border-b border-cyan-500/10 shadow-2xl shadow-cyan-500/5"
-            : theme === "light"
-            ? "bg-white/70 backdrop-blur-xl"
-            : "bg-transparent"
+            ? isDarkMode
+              ? "backdrop-blur-xl bg-[#050816]/80 border-b border-cyan-500/10 shadow-2xl shadow-cyan-500/5"
+              : "backdrop-blur-xl bg-white/80 border-b border-gray-200 shadow-lg"
+            : isDarkMode
+            ? "bg-transparent"
+            : "bg-white/70 backdrop-blur-xl"
         }
       `}
     >
@@ -89,9 +91,7 @@ export default function Navbar() {
               {/* FIXED NAME COLOR */}
               <h1
                 className={`text-lg md:text-xl font-black tracking-wide transition-colors duration-300 ${
-                  theme === "light"
-                    ? "text-gray-900"
-                    : "text-white"
+                  isDarkMode ? "text-white" : "text-gray-900"
                 }`}
               >
                 Nethmi Rajapaksha
@@ -100,9 +100,7 @@ export default function Navbar() {
               {/* FIXED SUBTITLE COLOR */}
               <p
                 className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
-                  theme === "light"
-                    ? "text-gray-600"
-                    : "text-gray-400"
+                  isDarkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
                 Software Engineer
@@ -117,9 +115,9 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={`relative text-sm font-medium transition duration-300 group ${
-                  theme === "light"
-                    ? "text-gray-700 hover:text-cyan-600"
-                    : "text-gray-300 hover:text-cyan-300"
+                  isDarkMode
+                    ? "text-gray-300 hover:text-cyan-300"
+                    : "text-gray-700 hover:text-cyan-600"
                 }`}
               >
                 {link.name}
@@ -138,9 +136,9 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
-                  theme === "light"
-                    ? "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-cyan-500"
-                    : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/40"
+                  isDarkMode
+                    ? "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/40"
+                    : "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-cyan-500"
                 }`}
               >
                 <FaGithub />
@@ -151,9 +149,9 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
-                  theme === "light"
-                    ? "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-blue-500"
-                    : "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400/40"
+                  isDarkMode
+                    ? "border border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400/40"
+                    : "border border-gray-200 bg-gray-100 text-gray-700 hover:text-white hover:bg-blue-500"
                 }`}
               >
                 <FaLinkedin />
@@ -180,9 +178,9 @@ export default function Navbar() {
                 setTheme(theme === "dark" ? "light" : "dark")
               }
               className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 ${
-                theme === "light"
-                  ? "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
-                  : "border border-white/10 bg-white/5 text-gray-300 hover:text-yellow-300 hover:bg-white/10"
+                isDarkMode
+                  ? "border border-white/10 bg-white/5 text-gray-300 hover:text-yellow-300 hover:bg-white/10"
+                  : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
               }`}
               title={
                 mounted
@@ -209,9 +207,9 @@ export default function Navbar() {
                 setTheme(theme === "dark" ? "light" : "dark")
               }
               className={`w-10 h-10 rounded-xl flex items-center justify-center transition duration-300 ${
-                theme === "light"
-                  ? "border border-gray-300 bg-white text-gray-700"
-                  : "border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10"
+                isDarkMode
+                  ? "border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10"
+                  : "border border-gray-300 bg-white text-gray-700"
               }`}
             >
               {mounted &&
