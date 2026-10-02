@@ -79,7 +79,7 @@ export default function Projects() {
 
       live: "https://github.com/Nnavodya/codebase-assistant.git",
 
-      image: "/codebaseAI.png",
+      image: "/CodebaseAI.png",
 
       gradient: "from-sky-500/20 via-cyan-500/10 to-black/40",
 
