@@ -43,58 +43,6 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "AI GitHub Codebase Assistant",
-
-      type: "Individual Project",
-
-      role: "Full Stack Developer",
-
-      duration: "Ongoing",
-
-      team: "Solo Project",
-
-      featured: true,
-
-      description:
-        "An ongoing RAG-based code Q&A tool where users can submit a GitHub repository and ask questions about its code. It uses code chunking, embeddings, vector search, and Groq to provide answers with file references, alongside a streaming chat interface and automatically generated documentation.",
-
-      features: [
-        "Ask natural-language questions about a GitHub repository",
-        "Retrieve relevant code with chunking, embeddings, and vector search",
-        "Generate Groq-powered answers with file references",
-        "Next.js chat interface with streaming responses",
-        "Automatically generate project documentation",
-      ],
-
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "Groq API",
-        "GitHub API (Octokit)",
-        "Vector Search",
-        "Tailwind CSS",
-      ],
-
-      github: "https://github.com/Nnavodya/codebase-assistant",
-
-      live: "https://github.com/Nnavodya/codebase-assistant",
-
-      image: "/CodebaseAI.png",
-
-      gradient: "from-teal-500/20 via-cyan-500/10 to-black/40",
-
-      border: "hover:border-teal-400/40",
-
-      shadow: "hover:shadow-teal-500/20",
-
-      icons: [
-        <SiNextdotjs key="next" />,
-        <SiTypescript key="ts" />,
-        <SiTailwindcss key="tailwind" />,
-      ],
-    },
-
-    {
       title: "GitHub Codebase Assistant",
 
       type: "Individual Project",
@@ -105,7 +53,7 @@ export default function Projects() {
 
       team: "Solo Project",
 
-      featured: false,
+      featured: true,
 
       description:
         "Developing a web app where users paste a GitHub repository link and ask natural-language questions about its code. The project implements a RAG pipeline using the GitHub API, code chunking, embeddings, and vector search, and uses Groq to answer with file references.",
@@ -131,7 +79,7 @@ export default function Projects() {
 
       live: "https://github.com/Nnavodya/codebase-assistant.git",
 
-      image: "/CodebaseAI.jpeg",
+      image: "/codebaseAI.png",
 
       gradient: "from-sky-500/20 via-cyan-500/10 to-black/40",
 
