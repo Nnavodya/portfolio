@@ -227,7 +227,7 @@ export default function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 backdrop-blur-xl text-cyan-300 text-sm font-medium mb-6">
             <FaGraduationCap className="text-cyan-400" />
@@ -249,10 +249,7 @@ export default function Education() {
 
         {/* TIMELINE */}
         <div className="relative">
-          {/* Vertical Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 h-full w-[2px] bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-500 transform -translate-x-1/2" />
-
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-stretch gap-6">
             {educationData.map((item, index) => {
               const Icon = item.icon;
 
@@ -271,34 +268,10 @@ export default function Education() {
                     duration: 0.7,
                   }}
                   viewport={{ once: true }}
-                  className={`relative flex flex-col md:flex-row items-center ${
-                    index % 2 === 0
-                      ? "md:justify-start"
-                      : "md:justify-end"
-                  }`}
+                  className="h-full"
                 >
-                  {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 z-20">
-                    <motion.div
-                      animate={{
-                        boxShadow: [
-                          "0 0 20px rgba(34,211,238,0.3)",
-                          "0 0 40px rgba(34,211,238,0.6)",
-                          "0 0 20px rgba(34,211,238,0.3)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                      }}
-                      className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center border border-white/10"
-                    >
-                      <Icon className="text-2xl text-white" />
-                    </motion.div>
-                  </div>
-
                   {/* CARD */}
-                  <div className="w-full md:w-[46%]">
+                  <div className="h-full w-full">
                     <motion.div
                       whileHover={{
                         y: -8,
@@ -308,42 +281,42 @@ export default function Education() {
                         type: "spring",
                         stiffness: 200,
                       }}
-                      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-2xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-500"
+                      className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-6 shadow-2xl hover:border-cyan-400/30 hover:bg-white/[0.07] transition-all duration-500"
                     >
                       {/* Glow */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
 
-                      {/* Mobile Icon */}
-                      <div className="md:hidden mb-6 w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
+                      {/* Institution Icon */}
+                      <div className="mb-4 w-12 h-12 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
                         <Icon className="text-white text-2xl" />
                       </div>
 
                       <div className="relative z-10">
                         {/* Type */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-xs font-semibold tracking-wide mb-5">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-xs font-semibold tracking-wide mb-3">
                           <FaBookOpen />
                           {item.type}
                         </div>
 
                         {/* Institution */}
-                        <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
+                        <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
                           {item.institution}
                         </h3>
 
                         {/* Degree */}
-                        <p className="mt-4 text-lg text-gray-300 font-medium">
+                        <p className="mt-3 text-base text-gray-300 font-medium">
                           {item.degree}
                         </p>
 
                         {/* Duration */}
-                        <div className="mt-4 flex items-center gap-3 text-gray-400">
+                        <div className="mt-3 flex items-center gap-3 text-gray-400">
                           <FaCalendarAlt className="text-cyan-400" />
                           <span>{item.duration}</span>
                         </div>
 
                         {/* GPA */}
                         {item.gpa && (
-                          <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-green-500/10 border border-green-400/20 text-green-300 text-sm font-medium">
+                          <div className="mt-3 inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-green-500/10 border border-green-400/20 text-green-300 text-sm font-medium">
                             <FaAward />
                             {item.gpa}
                           </div>
@@ -351,17 +324,17 @@ export default function Education() {
 
                         {/* Achievements */}
                         {item.achievements && (
-                          <div className="mt-7">
-                            <h4 className="text-white font-semibold mb-4">
+                          <div className="mt-5">
+                            <h4 className="text-white font-semibold mb-2">
                               Academic Achievements
                             </h4>
 
-                            <div className="space-y-4">
+                            <div className="space-y-2">
                               {item.achievements.map((achievement, i) => (
                                 <motion.div
                                   key={i}
                                   whileHover={{ x: 6 }}
-                                  className="flex items-start gap-3 p-4 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-gray-300 leading-7"
+                                  className="flex items-start gap-3 p-3 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-gray-300 leading-6"
                                 >
                                   <div className="mt-2 w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" />
 
@@ -373,18 +346,18 @@ export default function Education() {
                         )}
 
                         {/* Description */}
-                        <p className="mt-6 text-gray-400 leading-8">
+                        <p className="mt-4 text-gray-400 leading-7">
                           {item.description}
                         </p>
 
                         {/* Coursework */}
                         {item.coursework && (
-                          <div className="mt-7">
-                            <h4 className="text-white font-semibold mb-4">
+                          <div className="mt-5">
+                            <h4 className="text-white font-semibold mb-2">
                               Relevant Coursework
                             </h4>
 
-                            <div className="flex flex-wrap gap-3">
+                            <div className="flex flex-wrap gap-2">
                               {item.coursework.map((course, i) => (
                                 <motion.span
                                   key={i}
@@ -392,7 +365,7 @@ export default function Education() {
                                     scale: 1.05,
                                     y: -2,
                                   }}
-                                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-200 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+                                  className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-gray-200 hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
                                 >
                                   {course}
                                 </motion.span>
@@ -403,12 +376,12 @@ export default function Education() {
 
                         {/* Organizations */}
                         {item.organizations && (
-                          <div className="mt-7">
-                            <h4 className="text-white font-semibold mb-4">
+                          <div className="mt-5">
+                            <h4 className="text-white font-semibold mb-2">
                               Organizations & Communities
                             </h4>
 
-                            <div className="space-y-3">
+                            <div className="space-y-2">
                               {item.organizations.map((org, i) => (
                                 <motion.div
                                   key={i}
