@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  FaChevronDown,
+  FaChevronUp,
   FaChevronLeft,
   FaChevronRight,
   FaArrowRight,
@@ -11,8 +13,11 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 
+const INITIAL_VISIBLE = 3;
+
 export default function Articles() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showAll, setShowAll] = useState(false);
 
   const articles = [
     {
@@ -78,6 +83,9 @@ export default function Articles() {
     setCurrentSlide((prev) => (prev - 1 + articles.length) % articles.length);
 
   const goToSlide = (index: number) => setCurrentSlide(index);
+  const visibleArticles = showAll
+    ? articles
+    : articles.slice(0, INITIAL_VISIBLE);
 
   return (
     <motion.section
@@ -208,7 +216,7 @@ export default function Articles() {
         {/* Featured Article */}
         <motion.div
           layout
-          className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl"
+          className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl mb-10"
         >
           {/* Image */}
           <div className="relative overflow-hidden">
@@ -221,7 +229,7 @@ export default function Articles() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full h-[260px] sm:h-[420px] object-cover"
+                className="w-full h-44 sm:h-56 md:h-64 object-cover"
               />
             </AnimatePresence>
 
@@ -230,23 +238,23 @@ export default function Articles() {
 
             {/* Featured Badge */}
             {articles[currentSlide].featured && (
-              <div className="absolute top-5 left-5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
+              <div className="absolute top-4 left-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold tracking-wide shadow-lg">
                 Featured Article
               </div>
             )}
 
             {/* Floating Read Time */}
-            <div className="absolute bottom-5 right-5 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl text-sm text-gray-200">
+            <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl text-sm text-gray-200">
               {articles[currentSlide].readTime}
             </div>
           </div>
 
           {/* Content */}
-          <div className="relative p-6 sm:p-10">
+          <div className="relative px-6 pb-6 pt-2 md:px-8 md:pb-8">
 
             {/* Meta */}
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide">
                 {articles[currentSlide].category}
               </span>
 
@@ -260,24 +268,24 @@ export default function Articles() {
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl sm:text-4xl font-black leading-tight text-white max-w-4xl">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-black leading-tight text-white">
               {articles[currentSlide].title}
             </h3>
 
             {/* Description */}
-            <p className="mt-5 text-gray-300 leading-8 text-base sm:text-lg max-w-3xl">
+            <p className="mt-3 text-gray-300 leading-7 text-sm line-clamp-3 max-w-3xl">
               {articles[currentSlide].description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-5 flex flex-wrap gap-3">
               <motion.a
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
                 href={articles[currentSlide].link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/40 transition-all duration-300"
               >
                 Read Full Article
                 <FaArrowRight />
@@ -289,7 +297,7 @@ export default function Articles() {
                 href="https://medium.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl text-sm text-gray-200 hover:border-cyan-400/30 hover:text-cyan-300 transition-all duration-300"
               >
                 Visit Medium
                 <FaExternalLinkAlt className="text-xs" />
@@ -301,7 +309,8 @@ export default function Articles() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={prevSlide}
-            className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+            aria-label="Previous article"
+            className="absolute left-4 top-24 sm:top-28 md:top-32 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
           >
             <FaChevronLeft />
           </motion.button>
@@ -309,7 +318,8 @@ export default function Articles() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={nextSlide}
-            className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
+            aria-label="Next article"
+            className="absolute right-4 top-24 sm:top-28 md:top-32 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-cyan-500 transition"
           >
             <FaChevronRight />
           </motion.button>
@@ -351,9 +361,12 @@ export default function Articles() {
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
-
-            {articles.map((article, index) => (
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+          >
+            <AnimatePresence mode="popLayout">
+              {visibleArticles.map((article, index) => (
               <motion.a
                 key={article.id}
                 href={article.link}
@@ -428,8 +441,25 @@ export default function Articles() {
                   </div>
                 </div>
               </motion.a>
-            ))}
-          </div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {articles.length > INITIAL_VISIBLE && (
+            <div className="mt-12 flex justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setShowAll((prev) => !prev)}
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-7 py-3 text-sm font-semibold text-cyan-300 backdrop-blur-xl transition hover:bg-cyan-500 hover:text-white"
+              >
+                {showAll
+                  ? "Show Less"
+                  : `Read More (${articles.length - INITIAL_VISIBLE})`}
+                {showAll ? <FaChevronUp /> : <FaChevronDown />}
+              </motion.button>
+            </div>
+          )}
         </div>
       </div>
     </motion.section>
