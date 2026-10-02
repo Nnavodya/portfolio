@@ -249,7 +249,7 @@ export default function Contact() {
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm font-semibold mb-3">
             Contact
           </p>
@@ -266,23 +266,23 @@ export default function Contact() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
           {/* LEFT */}
-          <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden">
+          <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 md:p-7 overflow-hidden">
 
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 pointer-events-none" />
 
-            <h3 className="text-2xl font-bold mb-2">
+            <h3 className="text-xl font-bold mb-2">
               Get in Touch
             </h3>
 
-            <p className="text-gray-400 mb-8 leading-7">
+            <p className="text-gray-400 mb-5 leading-6">
               You can contact me through email, phone,
               WhatsApp, or my social platforms.
             </p>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
 
               {contactInfo.map((info) => {
                 const Icon = info.icon;
@@ -294,7 +294,7 @@ export default function Contact() {
                       y: -5,
                     }}
                     key={info.label}
-                    className="group relative overflow-hidden flex items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-5 transition-all duration-300"
+                    className="group relative overflow-hidden flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-400/30 p-3.5 transition-all duration-300"
                   >
 
                     <a
@@ -306,17 +306,17 @@ export default function Contact() {
                           : "_blank"
                       }
                       rel="noopener noreferrer"
-                      className="flex items-center gap-5 flex-1"
+                      className="flex items-center gap-4 flex-1"
                     >
 
                       <div
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 text-2xl text-gray-300 transition-all duration-300 ${info.color} group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]`}
+                        className={`w-11 h-11 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 text-xl text-gray-300 transition-all duration-300 ${info.color} group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]`}
                       >
                         <Icon />
                       </div>
 
                       <div className="min-w-0">
-                        <h4 className="text-lg font-semibold text-white group-hover:text-cyan-300 transition">
+                        <h4 className="text-base font-semibold text-white group-hover:text-cyan-300 transition">
                           {info.label}
                         </h4>
 
@@ -353,16 +353,16 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 overflow-hidden"
+            className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 md:p-7 overflow-hidden"
           >
 
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 pointer-events-none" />
 
-            <h3 className="text-2xl font-bold mb-2 relative z-10">
+            <h3 className="text-xl font-bold mb-2 relative z-10">
               Send Message
             </h3>
 
-            <p className="text-gray-400 mb-8 leading-7 relative z-10">
+            <p className="text-gray-400 mb-5 leading-6 relative z-10">
               Have a project idea or internship opportunity?
               Send me a message.
             </p>
@@ -387,7 +387,7 @@ export default function Contact() {
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="relative z-10 flex flex-col gap-5"
+              className="relative z-10 flex flex-col gap-4"
             >
 
               {/* Name */}
@@ -404,7 +404,7 @@ export default function Contact() {
                       user_name: e.target.value,
                     })
                   }
-                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
                 />
 
                 {errors.user_name && (
@@ -428,7 +428,7 @@ export default function Contact() {
                       user_email: e.target.value,
                     })
                   }
-                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400"
                 />
 
                 {errors.user_email && (
@@ -443,7 +443,7 @@ export default function Contact() {
                 <textarea
                   name="message"
                   placeholder="Your Message"
-                  rows={7}
+                  rows={5}
                   required
                   value={formData.message}
                   onChange={(e) =>
@@ -452,7 +452,7 @@ export default function Contact() {
                       message: e.target.value,
                     })
                   }
-                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 resize-none"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0f172a] px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 resize-none"
                 />
 
                 {errors.message && (
@@ -470,7 +470,7 @@ export default function Contact() {
                   scale: isSending ? 1 : 1.02,
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-white disabled:opacity-70 flex items-center justify-center gap-3"
+                className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white disabled:opacity-70 flex items-center justify-center gap-3"
               >
                 {isSending ? (
                   <>
