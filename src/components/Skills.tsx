@@ -8,14 +8,29 @@ import {
   FaNode,
   FaGithub,
   FaDocker,
+  FaJava,
+  FaAws,
 } from "react-icons/fa";
 
 import {
+  SiRedux,
   SiTypescript,
   SiNextdotjs,
   SiTailwindcss,
+  SiExpress,
+  SiSpringboot,
   SiMongodb,
+  SiMongoose,
   SiMysql,
+  SiPostgresql,
+  SiPrisma,
+  SiExpo,
+  SiVite,
+  SiCloudinary,
+  SiGooglegemini,
+  SiGooglemaps,
+  SiJsonwebtokens,
+  SiFramer,
   SiPostman,
 } from "react-icons/si";
 
@@ -25,28 +40,49 @@ import { motion } from "framer-motion";
 
 export default function Skills() {
   const frontend = [
-    { name: "HTML", icon: FaHtml5 },
-    { name: "CSS", icon: FaCss3Alt },
-    { name: "JavaScript", icon: FaJs },
-    { name: "TypeScript", icon: SiTypescript },
-    { name: "React", icon: FaReact },
-    { name: "Next.js", icon: SiNextdotjs },
-    { name: "Tailwind CSS", icon: SiTailwindcss },
+    { name: "HTML", icon: FaHtml5, mark: "HTML" },
+    { name: "CSS", icon: FaCss3Alt, mark: "CSS" },
+    { name: "JavaScript", icon: FaJs, mark: "JS" },
+    { name: "TypeScript", icon: SiTypescript, mark: "TS" },
+    { name: "React", icon: FaReact, mark: "R" },
+    { name: "React Native", icon: FaReact, mark: "RN" },
+    { name: "Next.js", icon: SiNextdotjs, mark: "N" },
+    { name: "Vite", icon: SiVite, mark: "V" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, mark: "TW" },
+    { name: "Redux", icon: SiRedux, mark: "R" },
   ];
 
   const backend = [
-    { name: "Node.js", icon: FaNode },
-    { name: "MongoDB", icon: SiMongodb },
-    { name: "MySQL", icon: SiMysql },
-    { name: "REST API", icon: null },
+    { name: "Node.js", icon: FaNode, mark: "N" },
+    { name: "Express.js", icon: SiExpress, mark: "E" },
+    { name: "Spring Boot", icon: SiSpringboot, mark: "SB" },
+    { name: "Java", icon: FaJava, mark: "J" },
+    { name: "REST API", icon: null, mark: "API" },
+    { name: "Groq AI", icon: null, mark: "AI" },
+    { name: "Google Gemini", icon: SiGooglegemini, mark: "G" },
+    { name: "Clerk", icon: null, mark: "C" },
+    { name: "JWT", icon: SiJsonwebtokens, mark: "JWT" },
   ];
 
   const tools = [
-    { name: "Git", icon: DiGit },
-    { name: "GitHub", icon: FaGithub },
-    { name: "VS Code", icon: VscVscode },
-    { name: "Postman", icon: SiPostman },
-    { name: "Docker (basic)", icon: FaDocker },
+    { name: "MongoDB", icon: SiMongodb, mark: "M" },
+    { name: "Mongoose", icon: SiMongoose, mark: "M" },
+    { name: "PostgreSQL", icon: SiPostgresql, mark: "PG" },
+    { name: "MySQL", icon: SiMysql, mark: "SQL" },
+    { name: "Prisma", icon: SiPrisma, mark: "P" },
+    { name: "Git", icon: DiGit, mark: "Git" },
+    { name: "GitHub", icon: FaGithub, mark: "GH" },
+    { name: "GitHub API", icon: FaGithub, mark: "API" },
+    { name: "Google Maps", icon: SiGooglemaps, mark: "Maps" },
+    { name: "Expo", icon: SiExpo, mark: "E" },
+    { name: "AsyncStorage", icon: null, mark: "AS" },
+    { name: "Cloudinary", icon: SiCloudinary, mark: "C" },
+    { name: "AWS", icon: FaAws, mark: "AWS" },
+    { name: "Postman", icon: SiPostman, mark: "P" },
+    { name: "VS Code", icon: VscVscode, mark: "VS" },
+    { name: "Docker", icon: FaDocker, mark: "D" },
+    { name: "Framer Motion", icon: SiFramer, mark: "FM" },
+    { name: "Vector Search", icon: null, mark: "VS" },
   ];
 
   const skillGroups = [
@@ -63,20 +99,6 @@ export default function Skills() {
       skills: tools,
     },
   ];
-
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0 },
-  };
 
   return (
     <motion.section
@@ -191,67 +213,59 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        {/* Skill Cards */}
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          {skillGroups.map((group) => (
+        {/* Auto-scrolling skill rows */}
+        <div className="space-y-10">
+          {skillGroups.map((group, groupIndex) => (
             <motion.div
               key={group.title}
-              variants={item}
-              whileHover={{ y: -8 }}
-              className="group relative h-full rounded-3xl border border-white/10 bg-gradient-to-br from-[#161b2e]/90 to-[#111827]/90 backdrop-blur-xl p-8 transition-all duration-500 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
+              viewport={{ once: true }}
             >
-              {/* Animated Glow */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500" />
-
-              {/* Card Header */}
-              <div className="relative z-10 mb-8">
-                <h3 className="text-2xl font-bold text-white">
+              <div className="mb-5 flex items-center justify-center gap-4">
+                <span className="h-px w-10 bg-white/10" />
+                <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
                   {group.title}
                 </h3>
-
-                <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
+                <span className="h-px w-10 bg-white/10" />
               </div>
 
-              {/* Skills Grid */}
-              <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {group.skills.map((skill) => {
-                  const Icon = skill.icon;
-
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      whileHover={{
-                        scale: 1.08,
-                        y: -6,
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                      }}
-                      className="group/skill flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)]"
+              <div className="skills-marquee-viewport">
+                <div
+                  className={`skills-marquee-track ${groupIndex % 2 ? "skills-marquee-reverse" : ""}`}
+                  style={{ "--marquee-duration": `${group.skills.length * 4}s` } as React.CSSProperties}
+                >
+                  {[0, 1, 2].map((copy) => (
+                    <div
+                      key={copy}
+                      className="flex shrink-0 gap-4 pr-4"
+                      aria-hidden={copy > 0}
                     >
-                      {/* Icon */}
-                      {Icon && (
-                        <Icon className="text-4xl text-cyan-400 transition-all duration-300 group-hover/skill:scale-125 group-hover/skill:rotate-6" />
-                      )}
+                      {group.skills.map((skill) => {
+                        const Icon = skill.icon;
 
-                      {/* Skill Name */}
-                      <span className="text-sm font-medium text-gray-200 text-center transition-colors duration-300 group-hover/skill:text-cyan-300">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  );
-                })}
+                        return (
+                          <div
+                            key={`${copy}-${skill.name}`}
+                            className="flex h-36 w-36 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] px-3 text-center shadow-lg shadow-black/10 transition-colors hover:border-cyan-400/30 hover:bg-white/[0.07]"
+                          >
+                            <div className="flex h-12 items-center justify-center text-4xl text-cyan-400">
+                              {Icon ? <Icon aria-hidden="true" /> : <span className="text-2xl font-bold">{skill.mark}</span>}
+                            </div>
+                            <span className="text-sm font-medium text-gray-300">
+                              {skill.name}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   );
